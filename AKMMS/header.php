@@ -38,7 +38,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Inventory and Stock</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="browseitem.html">Browse Item</a>
+                        <a class="dropdown-item" href="browseitem.php">Browse Item</a>
                         <a class="dropdown-item" href="#">Add Item</a>
                         <a class="dropdown-item" href="#">Remove Item</a>
                         </div>
