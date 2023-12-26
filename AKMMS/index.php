@@ -1,5 +1,5 @@
 
-<?php include 'header.php';?>
+<?php include 'headerNav.php';?>
 
 
                 <div class="container-fluid">
@@ -115,4 +115,4 @@
                 </div>
             </div>
 
-            <?php include 'footer.php';?>
+<?php include 'footer.php';?>
