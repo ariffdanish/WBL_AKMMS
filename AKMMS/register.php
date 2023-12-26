@@ -36,8 +36,8 @@
                                 </div>
                                     <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account</button><br>
                             </form>
-                            <div class="text-center"><a class="small" href="forgotpassword.html">Forgot Password?</a></div>
-                            <div class="text-center"><a class="small" href="login.html">Already have an account? Login!</a></div>
+                            <div class="text-center"><a class="small" href="forgotpassword.php">Forgot Password?</a></div>
+                            <div class="text-center"><a class="small" href="login.php">Already have an account? Login!</a></div>
                         </div>
                     </div> 
                     

@@ -19,7 +19,7 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index.html"><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php"><span>Dashboard</span></a></li>
 
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Advertising</span></a>
@@ -46,9 +46,9 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Authentication</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="login.html"><span>Login</span></a>
-                        <a class="dropdown-item" href="register.html"><span>Register</span></a>
-                        <a class="dropdown-item" href="forgotpassword.html"><span>Reset Password</span></a>
+                        <a class="dropdown-item" href="login.php"><span>Login</span></a>
+                        <a class="dropdown-item" href="register.php"><span>Register</span></a>
+                        <a class="dropdown-item" href="forgotpassword.php"><span>Reset Password</span></a>
                         </div>
                     </li>
 
