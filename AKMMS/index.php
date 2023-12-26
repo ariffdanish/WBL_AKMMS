@@ -48,6 +48,7 @@
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="login.html"><span>Login</span></a>
                         <a class="dropdown-item" href="register.html"><span>Register</span></a>
+                        <a class="dropdown-item" href="forgotpassword.html"><span>Reset Password</span></a>
                         </div>
                     </li>
 
