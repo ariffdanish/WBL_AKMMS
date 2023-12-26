@@ -14,15 +14,15 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Advertising</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="#">Customer Details</a>
-                        <a class="dropdown-item" href="#">Customer Order</a>
+                        <a class="dropdown-item" href="customerdetails.php">Customer Details</a>
+                        <a class="dropdown-item" href="customerorder.php">Customer Order</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Construction</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="#">Customer Details</a>
-                        <a class="dropdown-item" href="#">Customer Order</a>
+                        <a class="dropdown-item" href="customerdetails.php">Customer Details</a>
+                        <a class="dropdown-item" href="customerorder.php">Customer Order</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown no-arrow">
