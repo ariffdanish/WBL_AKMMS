@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Table - Brand</title>
+    <title>Browse Item</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -32,7 +32,14 @@
                         <a class="dropdown-item" href="#">Customer Details</a>
                         <a class="dropdown-item" href="#">Customer Order</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="browseitem.html"><span>Inventory and Stock</span></a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Inventory and Stock</span></a>
+                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                        <a class="dropdown-item" href="browseitem.html">Browse Item</a>
+                        <a class="dropdown-item" href="#">Add Item</a>
+                        <a class="dropdown-item" href="#">Remove Item</a>
+                        </div>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="login.html"><span>Login</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="register.html"><span>Register</span></a></li>
                 </ul>
@@ -140,7 +147,7 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Searching For an Item? Search Here:</h3>
+                    <h3 class="text-dark mb-4">Search for Item Above</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold">Item Info</p>
