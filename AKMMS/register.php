@@ -27,6 +27,7 @@
                             </div>
                             <form class="user">
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Full Name" name="full_name"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Staff ID" name="staffID"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email Address" name="email"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Telephone No" name="telno"></div>
                                 <div class="row mb-3">
@@ -35,8 +36,8 @@
                                 </div>
                                     <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account</button><br>
                             </form>
-                            <div class="text-center"><a class="small" href="login.html">Forgot Password?</a></div>
-                            <div class="text-center"><a class="small" href="login.html">Already have an account? Login!</a></div>
+                            <div class="text-center"><a class="small" href="forgotpassword.php">Forgot Password?</a></div>
+                            <div class="text-center"><a class="small" href="login.php">Already have an account? Login!</a></div>
                         </div>
                     </div> 
                     

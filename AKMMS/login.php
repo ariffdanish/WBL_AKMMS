@@ -20,7 +20,7 @@
                     </div>
 
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-7">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Welcome Back !</h4>
@@ -35,8 +35,8 @@
                                         </div>
                                         <button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button><br>
                                     </form>
-                                    <div class="text-center"><a class="small" href="login.html">Forgot Password?</a></div>
-                                    <div class="text-center"><a class="small" href="register.html">Register Account</a></div>
+                                    <div class="text-center"><a class="small" href="forgotpassword.php">Forgot Password?</a></div>
+                                    <div class="text-center"><a class="small" href="register.php">Register Account</a></div>
                                 </div>
                             </div>
 
