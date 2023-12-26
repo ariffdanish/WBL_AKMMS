@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-<<<<<<< HEAD
+
 </head>
-=======
-</head>
+
 
 <body id="page-top">
 
@@ -159,4 +158,4 @@
                         </ul>
                     </div>
                 </nav>
->>>>>>> e1a46aeff9f22fe830c20f03e166acb55f5e675d
+
