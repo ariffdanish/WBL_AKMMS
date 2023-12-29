@@ -15,14 +15,18 @@
                             <div class="text-center">
                                 <h4 class="text-dark mb-4">Register Account</h4>
                             </div>
-                            <form class="user">
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Full Name" name="full_name"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Staff ID" name="staffID"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email Address" name="email"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Telephone No" name="telno"></div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Password" name="password"></div>
-                                    <div class="col-sm-6"><input class="form-control form-control-user" type="password" id="exampleRepeatPasswordInput" placeholder="Repeat Password" name="password_repeat"></div>
+                            <form method="POST" action="registerprocess.php" class="user">
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Full Name" name="fname"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Staff ID" name="fid"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email Address" name="femail"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Telephone No" name="ftel"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Password" name="fpwd"></div>
+                                <div class="mb-3">
+                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Select" name="ftype">
+                                    <option>Role</option>
+                                    <option>Admin</option>
+                                    <option>Staff</option>
+                                </select>
                                 </div>
                                     <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account</button><br>
                             </form>

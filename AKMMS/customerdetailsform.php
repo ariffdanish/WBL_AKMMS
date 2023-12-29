@@ -1,4 +1,12 @@
-<?php include 'headerNav.php';?>
+<?php 
+    include ('mysession.php');
+        if(!session_id())
+        {
+            session_start();
+        }
+    include 'headerNav.php';
+    include ('dbconnect.php');
+?>
 
 
                 <div class="container-fluid">
@@ -7,18 +15,16 @@
                     </div>
 
                     <div class="row">
-                    <form class="user">
-                                <div class="mb-3"><label for="exampleSelect1" class="form-label mt-4">Fullname</label><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Full Name" name="cname"></div>
-                                <div class="mb-3"><label for="exampleSelect1" class="form-label mt-4">Phone No</label><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Phone No" name="cphone"></div>
-                                <div class="mb-3"><label for="exampleSelect1" class="form-label mt-4">Address</label><textarea class="form-control form-control-user" type="text" id="exampleTextarea" placeholder="Address" name="caddress" rows="2"></textarea></div>
-                                <div class="mb-3"><label for="exampleSelect1" class="form-label mt-4">Email</label><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Email" name="cemail"></div>
+                    <form method="POST" action="customerdetailsformprocess.php" class="user">
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Full Name" name="cname"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Phone No" name="cphone"></div>
+                                <div class="mb-3"><textarea class="form-control form-control-user" type="text" id="exampleTextarea" placeholder="Address" name="caddress" rows="2"></textarea></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Email" name="cemail"></div>
                                 <div class="mb-3">
-                                <label for="exampleSelect1" class="form-label mt-4">Type</label>
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Select" name="ctype">
-                                    <option>Select</option>
+                                    <option>Type</option>
                                     <option>Personnel</option>
                                     <option>Agency</option>
-                                    <option>Goverment</option>
                                 </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -26,7 +32,6 @@
                                 <a type="cancel" class="btn btn-danger" href="customerdetails.php">Cancel</a>
                             </form>
                     </div>
-                    
                 </div>
 
 <?php include 'footer.php';?>
