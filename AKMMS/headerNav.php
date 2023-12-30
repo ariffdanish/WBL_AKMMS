@@ -10,19 +10,13 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="index.php"><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="customerdetails.php"><span>List Of Customer</span></a></li>
 
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Advertising</span></a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>List Of Order</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="customerdetailsADV.php">Customer Details</a>
-                        <a class="dropdown-item" href="customerorderADV.php">Customer Order</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Construction</span></a>
-                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="customerdetailsCONS.php">Customer Details</a>
-                        <a class="dropdown-item" href="customerorderCONS.php">Customer Order</a>
+                        <a class="dropdown-item" href="##">Advertising</a>
+                        <a class="dropdown-item" href="##">Construction</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown no-arrow">
