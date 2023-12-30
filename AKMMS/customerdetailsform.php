@@ -23,9 +23,16 @@
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Email" name="cemail"></div>
                                 <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Select" name="ctype">
-                                    <option>Type</option>
+                                    <option>Customer Type</option>
                                     <option>Personnel</option>
                                     <option>Agency</option>
+                                </select>
+                                </div>
+                                <div class="mb-3">
+                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Select" name="ctypeOrd">
+                                    <option>Order Type</option>
+                                    <option>Advertising</option>
+                                    <option>Construction</option>
                                 </select>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -9,18 +9,18 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index.php"><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="customerdetails.php"><span>List Of Customer</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.php"><span>DASHBOARD</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="customerdetails.php"><span>LIST OF CUSTOMER</span></a></li>
 
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>List Of Order</span></a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>LIST OF ORDER</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="##">Advertising</a>
                         <a class="dropdown-item" href="##">Construction</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Inventory and Stock</span></a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>INVENTORY AND STOCK</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="browseitem.php">Browse Item</a>
                         <a class="dropdown-item" href="#">Add Item</a>
