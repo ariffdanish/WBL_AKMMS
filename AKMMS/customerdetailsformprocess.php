@@ -58,7 +58,7 @@ include 'headerNav.php';
 </div>
 
 <div style="margin-top: 10px;">
-    <a class="btn btn-danger" href="customerdetails.php">Back</a>
+    <a class="btn btn-danger" href="customerdetailsADV.php">Back</a>
 </div>
 
 
