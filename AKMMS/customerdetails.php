@@ -39,8 +39,8 @@ include 'headerNav.php';
                     echo "<td>" . $row['c_phone'] . "</td>";
                     echo "<td>" . $row['c_address'] . "</td>"; // Adjust column name accordingly
                     echo "<td>";
-                    echo "<a href=' ' class='btn btn-danger'>X</a> ";
-                    echo "<a href=' ' class='btn btn-primary'>Edit</a> ";
+                    echo "<a href='customercancel.php?id=".$row['c_id']."' class='btn btn-danger'>X</a> ";
+                    echo "<a href='customeredit.php?id=".$row['c_id']."'class='btn btn-primary'>Edit</a> ";
                     echo "</td>";
                     echo "</tr>";
                     $count++;
