@@ -16,6 +16,7 @@
 
                     <div class="row">
                     <form method="POST" action="customerdetailsformprocess.php" class="user">
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Customer ID" name="cidnum"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Full Name" name="cname"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Phone No" name="cphone"></div>
                                 <div class="mb-3"><textarea class="form-control form-control-user" type="text" id="exampleTextarea" placeholder="Address" name="caddress" rows="2"></textarea></div>
