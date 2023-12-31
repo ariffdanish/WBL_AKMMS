@@ -15,8 +15,8 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>LIST OF ORDER</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="customerorder.php">Advertising</a>
-                        <a class="dropdown-item" href="customerorder.php">Construction</a>
+                        <a class="dropdown-item" href="customerorderADV.php">Advertising</a>
+                        <a class="dropdown-item" href="customerorderCONS.php">Construction</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown no-arrow">
