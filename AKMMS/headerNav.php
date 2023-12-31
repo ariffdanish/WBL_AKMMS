@@ -15,8 +15,8 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>LIST OF ORDER</span></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="##">Advertising</a>
-                        <a class="dropdown-item" href="##">Construction</a>
+                        <a class="dropdown-item" href="customerorder.php">Advertising</a>
+                        <a class="dropdown-item" href="customerorder.php">Construction</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown no-arrow">
@@ -97,27 +97,27 @@
                 </nav>
 
                 <script>
-        // Function to update clock, time, and date
-        function updateClock() {
-            var now = new Date();
-            var hours = now.getHours();
-            var minutes = now.getMinutes();
-            var seconds = now.getSeconds();
+                // Function to update clock, time, and date
+                function updateClock() {
+                    var now = new Date();
+                    var hours = now.getHours();
+                    var minutes = now.getMinutes();
+                    var seconds = now.getSeconds();
 
-            // Format the time
-            var timeString = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+                    // Format the time
+                    var timeString = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 
-            // Format the date
-            var dateString = now.toDateString();
+                    // Format the date
+                    var dateString = now.toDateString();
 
-            // Update the clock and date elements
-            document.getElementById('clock').textContent = timeString;
-            document.getElementById('date').textContent = dateString;
+                    // Update the clock and date elements
+                    document.getElementById('clock').textContent = timeString;
+                    document.getElementById('date').textContent = dateString;
 
-            // Update every second
-            setTimeout(updateClock, 1000);
-        }
+                    // Update every second
+                    setTimeout(updateClock, 1000);
+                }
 
-        // Call the function to initialize
-        updateClock();
-    </script>
+                // Call the function to initialize
+                updateClock();
+            </script>
