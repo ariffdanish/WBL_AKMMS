@@ -32,6 +32,44 @@ if ($resultYearly) {
     $totalEarningsYearly = 0;
 }
 
+$monthlySalesData = array();
+for ($i = 1; $i <= 12; $i++) {
+    $query = "SELECT SUM(Ord_totalcost) AS monthlyEarnings FROM tb_Order WHERE MONTH(Ord_date) = $i AND YEAR(Ord_date) = $currentYear";
+    $result = mysqli_query($con, $query);
+
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        $monthlyEarnings = $row['monthlyEarnings'];
+        $monthlySalesData[] = $monthlyEarnings ? $monthlyEarnings : 0;
+    } else {
+        // Handle the error if the query fails
+        $monthlySalesData[] = 0;
+    }
+}
+$querys = "SELECT Ord_itemName, COUNT(*) as usageCount
+          FROM tb_Order o
+          JOIN tb_item i ON o.Ord_itemName = i.i_Name
+          WHERE YEAR(Ord_date) = $currentYear
+          GROUP BY Ord_itemName
+          ORDER BY usageCount DESC
+          LIMIT 3";
+
+$results = mysqli_query($con, $querys);
+
+// Check if the query was successful
+if ($results) {
+    $labels = $data = $backgroundColor = array();
+
+    while ($row = mysqli_fetch_assoc($results)) {
+        $labels[] = $row['Ord_itemName'];
+        $data[] = $row['usageCount'];
+        // You can customize the colors as needed
+        $backgroundColor[] = '#' . substr(md5(rand()), 0, 6);
+    }
+} else {
+    // Handle the error if the query fails
+    $labels = $data = $backgroundColor = array();
+}
 
 ?>
 
@@ -75,38 +113,127 @@ if ($resultYearly) {
 
                         
 
-                    <div class="row">
-                        <div class="col-lg-7 col-xl-8">
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                        
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-area"><canvas data-bss-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;10000&quot;,&quot;5000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;20000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;padding&quot;:20}}]}}}"></canvas></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-5 col-xl-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary fw-bold m-0">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                        
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-area"><canvas data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}"></canvas></div>
-                                    <div class="text-center small mt-4"><span class="me-2"><i class="fas fa-circle text-primary"></i>&nbsp;Direct</span><span class="me-2"><i class="fas fa-circle text-success"></i>&nbsp;Social</span><span class="me-2"><i class="fas fa-circle text-info"></i>&nbsp;Refferal</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+    <div class="row">
+    <div class="col-lg-7 col-xl-8">
+        <div class="card shadow mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-primary fw-bold m-0">Earnings Overview</h6>
+                <div class="dropdown no-arrow">
+                    <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
+                        <i class="fas fa-ellipsis-v text-gray-400"></i>
+                    </button>
                 </div>
             </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="monthlySalesChart" data-bss-chart='{
+                        "type": "line",
+                        "data": {
+                            "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                            "datasets": [{
+                                "label": "Earnings",
+                                "fill": true,
+                                "data": <?php echo json_encode($monthlySalesData); ?>,
+                                "backgroundColor": "rgba(78, 115, 223, 0.05)",
+                                "borderColor": "rgba(78, 115, 223, 1)"
+                            }]
+                        },
+                        "options": {
+                            "maintainAspectRatio": false,
+                            "legend": {
+                                "display": false,
+                                "labels": {
+                                    "fontStyle": "normal"
+                                }
+                            },
+                            "title": {
+                                "fontStyle": "normal"
+                            },
+                            "scales": {
+                                "xAxes": [{
+                                    "gridLines": {
+                                        "color": "rgb(234, 236, 244)",
+                                        "zeroLineColor": "rgb(234, 236, 244)",
+                                        "drawBorder": false,
+                                        "drawTicks": false,
+                                        "borderDash": ["2"],
+                                        "zeroLineBorderDash": ["2"],
+                                        "drawOnChartArea": false
+                                    },
+                                    "ticks": {
+                                        "fontColor": "#858796",
+                                        "fontStyle": "normal",
+                                        "padding": 20
+                                    }
+                                }],
+                                "yAxes": [{
+                                    "gridLines": {
+                                        "color": "rgb(234, 236, 244)",
+                                        "zeroLineColor": "rgb(234, 236, 244)",
+                                        "drawBorder": false,
+                                        "drawTicks": false,
+                                        "borderDash": ["2"],
+                                        "zeroLineBorderDash": ["2"]
+                                    },
+                                    "ticks": {
+                                        "fontColor": "#858796",
+                                        "fontStyle": "normal",
+                                        "padding": 20
+                                    }
+                                }]
+                            }
+                        }
+                    }'></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-5 col-xl-4">
+    <div class="card shadow mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="text-primary fw-bold m-0">Top Three Items (<?php echo $currentYear; ?>)</h6>
+            <div class="dropdown no-arrow">
+                <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
+                    <i class="fas fa-ellipsis-v text-gray-400"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="topItemsChart" data-bss-chart='{
+                    "type": "doughnut",
+                    "data": {
+                        "labels": <?php echo json_encode($labels); ?>,
+                        "datasets": [{
+                            "label": "",
+                            "backgroundColor": <?php echo json_encode($backgroundColor); ?>,
+                            "borderColor": "#ffffff",
+                            "data": <?php echo json_encode($data); ?>
+                        }]
+                    },
+                    "options": {
+                        "maintainAspectRatio": false,
+                        "legend": {
+                            "display": false,
+                            "labels": {
+                                "fontStyle": "normal"
+                            }
+                        },
+                        "title": {
+                            "fontStyle": "normal"
+                        }
+                    }
+                }'></canvas>
+            </div>
+            <div class="text-center small mt-4">
+                <?php for ($i = 0; $i < count($labels); $i++) : ?>
+                    <span class="me-2"><i class="fas fa-circle" style="color: <?php echo $backgroundColor[$i]; ?>"></i>&nbsp;<?php echo $labels[$i]; ?></span>
+                <?php endfor; ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php include 'footer.php';?>
