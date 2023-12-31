@@ -47,6 +47,12 @@
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
 
                         <ul class="navbar-nav flex-nowrap ms-auto">
+                            <li class="nav-item">
+                                <span id="clock" class="nav-link"></span>
+                            </li>
+                            <li class="nav-item">
+                                <span id="date" class="nav-link"></span>
+                            </li>
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
                                     <form class="me-auto navbar-search w-100">
@@ -56,6 +62,7 @@
                                     </form>
                                 </div>
                             </li>
+
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
@@ -64,6 +71,7 @@
                                     </div>
                                 </div>
                             </li>
+
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">7</span><i class="fas fa-envelope fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
@@ -87,3 +95,29 @@
                         </ul>
                     </div>
                 </nav>
+
+                <script>
+        // Function to update clock, time, and date
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            // Format the time
+            var timeString = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+            // Format the date
+            var dateString = now.toDateString();
+
+            // Update the clock and date elements
+            document.getElementById('clock').textContent = timeString;
+            document.getElementById('date').textContent = dateString;
+
+            // Update every second
+            setTimeout(updateClock, 1000);
+        }
+
+        // Call the function to initialize
+        updateClock();
+    </script>
