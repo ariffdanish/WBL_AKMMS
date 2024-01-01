@@ -42,7 +42,7 @@
                                 <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Jenis barang" name="imaterial" required>
                                     <option selected>-Sila Pilih-</option>
-                                    <option>Besi</option>
+                                    <option>Kayu</option>
                                     <option>Besi</option>
                                     <option>Plastik</option>
                                     <option>Kaca</option>
