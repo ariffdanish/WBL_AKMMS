@@ -13,7 +13,7 @@
     <div class="row mt-5">
         <div class="col-lg-6 offset-lg-3">
             <div class="card shadow">
-                <div class="card-header bg-primary text-white text-center">
+                <div class="card-header bg-gradient-primary text-white text-center">
                     <h3 class="mb-0">Customer Order Form</h3>
                 </div>
                 <div class="card-body">
@@ -32,7 +32,7 @@
                         <div class="mb-3">
                             <label for="orderType" class="form-label">Order Type:</label>
                             <select id="orderType" name="order_type" class="form-control" required>
-                                <option value="advertising">Advertising</option>
+                                <option value="advertising" disabled selected>Advertising</option>
                                 <option value="construction">Construction</option>
                             </select>
                         </div>

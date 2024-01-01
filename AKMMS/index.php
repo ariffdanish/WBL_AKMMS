@@ -90,6 +90,7 @@ if ($results) {
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
+                        
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1">
                                 <span>Monthly Earnings</span>
                             </div>
