@@ -40,9 +40,9 @@ include 'headerNav.php';
                 while ($row = mysqli_fetch_array($result)) {
 
                     if ($row['i_Code'] == $rowr['i_Code']) {
-                        echo "<option selected ='selected' value '" . $row['i_Code'] . "'>" . $row['i_Code'] . ", ". $row['i_Name'] . ", " . $row['i_Desc'] . ", " . $row['i_Quantity'] . ", RM" . $row['i_Price'] . "</option>";
+                        echo "<option selected ='selected' value '" . $row['i_Code'] . "'>" . $row['i_Code'] . " (". $row['i_Name'] . ") </option>";
                     } else {
-                        echo "<option value = '" . $row['i_Code'] . "'>" . $row['i_Code'] . ", ". $row['i_Name'] . ", " . $row['i_Desc'] . ", " . $row['i_Quantity'] . ", RM" . $row['i_Price'] . "</option>";
+                        echo "<option value = '" . $row['i_Code'] . "'>" . $row['i_Code'] . " (". $row['i_Name'] . ") </option>";
                     }
                 }
                 echo '</select>';
@@ -52,7 +52,7 @@ include 'headerNav.php';
             <div class="form-group">
                 <label for="exampleInputPassword1" class="form-label mt-4">Enter Item Code</label>
                 <?php
-                echo '<input type="text" value="' . $rowr['i_Code'] . '" name="icode" class="form-control" id="ic" placeholder="Item Code" required>'
+                echo '<input type="text" value="' . $rowr['i_Code'] . '" name="icode" class="form-control" id="ic" placeholder="Same as the Selected Item" required>'
                 ?>
             </div>
 
