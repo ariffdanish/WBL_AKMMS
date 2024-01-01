@@ -19,7 +19,7 @@
                     <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Customer ID" name="cidnum"></div>
                     <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Full Name" name="cname"></div>
                     <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Phone No" name="cphone"></div>
-                    <div class="mb-3"><textarea class="form-control form-control-user" type="text" id="exampleTextarea" placeholder="Address" name="caddress" rows="2"></textarea></div>
+                    <div class="mb-3"><textarea class="form-control form-control-user" type="text" id="exampleTextarea" placeholder="Address" name="caddress" rows="1"></textarea></div>
                     <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Email" name="cemail"></div>
                     <div class="mb-3">
                     <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Select" name="ctype">
