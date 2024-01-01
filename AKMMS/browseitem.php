@@ -35,11 +35,11 @@
                         // Display retrieved data
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
-                            echo "<td>" . $row['i_Code'] . "</td>";
+                            echo "<td><a href='viewitemprocess.php?icode=" . $row['i_Code'] . "'>" . $row['i_Code'] . "</a></td>";
                             echo "<td>" . $row['i_Name'] . "</td>";
                             echo "<td>" . $row['i_Desc'] . "</td>";
                             echo "<td>" . $row['i_Quantity'] . "</td>";
-                            echo "<td>" . $row['i_Price'] . "</td>";
+                            echo "<td>" . number_format($row['i_Price'], 2) . "</td>";
                             echo "<td>";
                             echo '<button class="btn btn-warning" onclick="modifyItem(\'' . $row['i_Code'] . '\')">Modify</button>';
                             echo '&nbsp;';
