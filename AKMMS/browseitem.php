@@ -1,37 +1,17 @@
 <?php include 'headerNav.php';?>
 
 <div class="container-fluid">
-    <h3 class="text-dark mb-4">Search for Item Above</h3>
-    <div class="card shadow">
-        <div class="card-header py-3">
-            <p class="text-primary m-0 fw-bold">Item Info</p>
-        </div>
+    
+    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-dark mb-0">Inventory AK MAJU</h3>
+        <a class="btn btn-primary" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>
+    </div>
+    
         <div class="card-body">
+        <div class="card shadow">
             <div class="row">
-                <div class="col-md-6 text-nowrap">
-                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                        <label class="form-label">Show&nbsp;
-                            <select class="d-inline-block form-select form-select-sm">
-                                <option value="10" selected="">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>&nbsp;
-                        </label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                        <label class="form-label">
-                            <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search">
-                            <button class="btn btn-primary btn-sm" onclick="searchItems()">Search</button>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
+            
             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                Item Details
                 <table class="table my-0" id="dataTable">
                     <thead>
                         <tr>
@@ -73,6 +53,7 @@
                         ?>
                     </tbody>
                 </table>
+                    </div>
             </div>
 
         </div>

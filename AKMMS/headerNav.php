@@ -35,26 +35,21 @@
                         <a class="dropdown-item" href="customerorderCONS.php">Construction</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-box-open"></i>
+                <li class="nav-item">
+                    <a class="nav-link" href="browseitem.php">
+                        <i class="fas fa-users"></i>
                         <span>INVENTORY AND STOCK</span>
                     </a>
-                    <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                        <a class="dropdown-item" href="browseitem.php">Browse Item</a>
-                        <a class="dropdown-item" href="additem.php">Add Item</a>
-                        <a class="dropdown-item" href="removeitem.php">Remove Item</a>
-                    </div>
                 </li>
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user-lock"></i>
-                        <span>Authentication</span>
+                        <span>AUTHENTICATION</span>
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                        <a class="dropdown-item" href="login.php"><span>Login</span></a>
-                        <a class="dropdown-item" href="register.php"><span>Register</span></a>
-                        <a class="dropdown-item" href="forgotpassword.php"><span>Reset Password</span></a>
+                        <a class="dropdown-item" href="login.php"><span>LOGIN</span></a>
+                        <a class="dropdown-item" href="register.php"><span>REGISTER</span></a>
+                        <a class="dropdown-item" href="forgotpassword.php"><span>RESET PASSWORD</span></a>
                     </div>
                 </li>
             </ul>
