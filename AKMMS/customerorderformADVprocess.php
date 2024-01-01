@@ -18,11 +18,15 @@ $Ord_itemDepth = $_POST['Ord_itemDepth'];
 $Ord_itemLength = $_POST['Ord_itemLength'];
 $Ord_itemQuantity = $_POST['Ord_itemQuantity'];
 
+$fbid=$_GET['fbid'];
+
+
 // Insert New Customer
 $sql = "INSERT INTO tb_order(Ord_name, Ord_date, Ord_type, Ord_itemName, Ord_itemMaterial, Ord_itemHeight, Ord_itemWidth, Ord_itemDepth, Ord_itemLength, Ord_itemQuantity)
-        VALUES('$Ord_name', '$Ord_date', '$Ord_type', '$Ord_itemName ', '$Ord_itemMaterial', '$Ord_itemHeight', '$Ord_itemWidth', '$Ord_itemDepth', '$Ord_itemLength', '$Ord_itemQuantity')";
+        VALUES('$Ord_name', '$Ord_date', '$Ord_type', '$Ord_itemName ', '$Ord_itemMaterial', '$Ord_itemHeight', '$Ord_itemWidth', '$Ord_itemDepth', '$Ord_itemLength', '$Ord_itemQuantity')
+        WHERE c_id=$fbid";
 
-mysqli_query($con,$sql);
+$result=mysqli_query($con,$sql);
 mysqli_close($con);
 
 // Display Result

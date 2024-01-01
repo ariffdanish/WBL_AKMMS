@@ -18,6 +18,21 @@
                 </div>
                 <div class="card-body">
                     <form method="POST" action="customerorderformADVprocess.php" class="user">
+                        <div class="mb-3">
+                            <label for="orderType" class="form-label">Customer :</label>
+                            <?php 
+                                $sql="SELECT * FROM tb_customer";
+                                $result=mysqli_query($con,$sql);
+                        
+                                echo'<select id="cname" name="cname" class="form-control" required>';
+                                while($row=mysqli_fetch_array($result))
+                                {
+                                  echo"<option value='".$row['c_id']."'>".$row['c_name']."</option>";
+                                }
+                                
+                                echo'</select>';
+                              ?>
+                        </div>
 
                         <div class="mb-3">
                             <label for="orderName" class="form-label">Order Name:</label>
