@@ -1,52 +1,62 @@
 <?php include 'headerNav.php';?>
 
-<body style="background-color: white;">
-    <div class="container">
-        <div class="card shadow-lg o-hidden border-0 my-5">
-            <div class="card-body p-0">
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-flex">
-                        <div class="flex-grow-1 bg-register-image" style="background-image: url(&quot;assets/img/AKMMS/bg.jpg&quot;);"></div>
-                    </div>
+        
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Add Item</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">What Item Do You Want To Add?</p>
+                        </div>
 
-
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h4 class="text-dark mb-4">Add Item</h4>
-                            </div>
+                        <div class="card-body">
+                            
+                            
                             <form method="POST" action="additemprocess.php" class="user">
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Name" name="iname"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Code" name="icode"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="date" id="exampleFirstName" placeholder="Item Date" name="idate"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Description" name="idesc"></div>
+                                <h6>Item Name</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Kayu Jati, etc." name="iname" required></div>
+                                <h6>Item Code</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="WD634-2, etc." name="icode" required></div>
+                                <h6>Item Date</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="date" id="exampleFirstName" placeholder="01/01/2024" name="idate" required></div>
+                                <h6>Item Description</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Keterangan barang" name="idesc" required></div>
+                                <h6>Item Category</h6>
                                 <div class="mb-3">
-                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Item Category" name="icategory">
+                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Kategori" name="icategory" required>
                                     <option>Advertising</option>
                                     <option>Construction</option>
                                 </select>
                                 </div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Height (cm)" name="iheight"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Width (cm)" name="iwidth"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Depth (cm)" name="idepth"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Length (cm)" name="ilength"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Weight (kg)" name="iweight"></div>
+                                <h6>Item Height</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Tinggi (cm)" name="iheight" required></div>
+                                <h6>Item Width</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Lebar (cm)" name="iwidth" required></div>
+                                <h6>Item Depth</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Kedalaman (cm)" name="idepth" required></div>
+                                <h6>Item Length</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Panjang (cm)" name="ilength" required></div>
+                                <h6>Item Weight</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Berat (kg)" name="iweight" required></div>
+                                <h6>Item Material</h6>
                                 <div class="mb-3">
-                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Item Material" name="imaterial">
-                                    <option>Wood</option>
-                                    <option>Steel</option>
+                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Jenis barang" name="imaterial" required>
+                                    <option>Kayu</option>
+                                    <option selected>Besi</option>
+                                    <option>Plastik</option>
+                                    <option>Kaca</option>
                                 </select>
                                 </div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Quantity" name="iquantity"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Price (RM) in 2 decimal places" name="iprice"></div>
+                                <h6>Item Quantity</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Nombor Bulat sahaja" name="iquantity" required></div>
+                                <h6>Item Price</h6>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="(RM, 2 t.p.)" name="iprice" required></div>
+                                    <button class="btn btn-primary d-block btn-user w-100" type="reset">Reset</button><br>
                                     <button class="btn btn-primary d-block btn-user w-100" type="submit">Add Item</button><br>
                             </form>
+                            
 
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
 <?php include 'footer.php';?>
