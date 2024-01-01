@@ -3,56 +3,81 @@
 <body id="page-top">
 
     <div id="wrapper">
-        <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
-            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                    <div class="sidebar-brand-text mx-3"><span>AKMMS</span></div>
+        <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary shadow p-0 navbar-dark">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex align-items-center sidebar-brand m-0" href="#">
+                    <img src="akmaju.jpeg" alt="Profile Picture" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                    <div class="sidebar-brand-text mx-3">
+                        <span>AKMMS</span>
+                    </div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index.php"><span>DASHBOARD</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="customerdetails.php"><span>LIST OF CUSTOMER</span></a></li>
-
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>LIST OF ORDER</span></a>
-                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="customerdetails.php">
+                        <i class="fas fa-users"></i>
+                        <span>LIST OF CUSTOMER</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-list"></i>
+                        <span>LIST OF ORDER</span>
+                    </a>
+                    <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                         <a class="dropdown-item" href="customerorderADV.php">Advertising</a>
                         <a class="dropdown-item" href="customerorderCONS.php">Construction</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>INVENTORY AND STOCK</span></a>
-                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                    </div>
+                </li>
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-box-open"></i>
+                        <span>INVENTORY AND STOCK</span>
+                    </a>
+                    <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                         <a class="dropdown-item" href="browseitem.php">Browse Item</a>
                         <a class="dropdown-item" href="additem.php">Add Item</a>
                         <a class="dropdown-item" href="removeitem.php">Remove Item</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Authentication</span></a>
-                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                    </div>
+                </li>
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-lock"></i>
+                        <span>Authentication</span>
+                    </a>
+                    <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                         <a class="dropdown-item" href="login.php"><span>Login</span></a>
                         <a class="dropdown-item" href="register.php"><span>Register</span></a>
                         <a class="dropdown-item" href="forgotpassword.php"><span>Reset Password</span></a>
-                        </div>
-                    </li>
+                    </div>
+                </li>
+            </ul>
 
-                </ul>
             </div>
         </nav>
 
 
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
+                <nav class="navbar navbar-expand bg-gradient-primary shadow mb-4 topbar static-top navbar-light">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
 
                         <ul class="navbar-nav flex-nowrap ms-auto">
-                            <li class="nav-item">
-                                <span id="clock" class="nav-link"></span>
-                            </li>
-                            <li class="nav-item">
-                                <span id="date" class="nav-link"></span>
-                            </li>
+                        <li class="nav-item ms-auto">
+                            <span class="nav-link font-weight-bold text-white" style="font-size: 18px;">AK MAJU RESOURCES</span>
+                        </li>
+                        <li class="nav-item">
+                            <span id="clock" class="nav-link"></span>
+                        </li>
+                        <li class="nav-item">
+                            <span id="date" class="nav-link"></span>
+                        </li>
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
                                     <form class="me-auto navbar-search w-100">
