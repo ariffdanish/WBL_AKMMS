@@ -18,6 +18,7 @@
                             <form method="POST" action="additemprocess.php" class="user">
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Name" name="iname"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Code" name="icode"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="date" id="exampleFirstName" placeholder="Item Date" name="idate"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Description" name="idesc"></div>
                                 <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Item Category" name="icategory">
@@ -30,12 +31,14 @@
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Depth (cm)" name="idepth"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Length (cm)" name="ilength"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Weight (kg)" name="iweight"></div>
+                                <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Item Material" name="imaterial">
                                     <option>Wood</option>
                                     <option>Steel</option>
                                 </select>
+                                </div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Quantity" name="iquantity"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Price" name="iprice"></div>
+                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Item Price (RM) in 2 decimal places" name="iprice"></div>
                                     <button class="btn btn-primary d-block btn-user w-100" type="submit">Add Item</button><br>
                             </form>
 
