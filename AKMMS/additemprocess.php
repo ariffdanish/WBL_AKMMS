@@ -2,7 +2,7 @@
 //connect to DB
 include('dbconnect.php');
 
-//retrieve data from registration form
+//retrieve data from add item form
 $icode=$_POST['icode'];
 $idate=$_POST['idate'];
 $iname=$_POST['iname'];

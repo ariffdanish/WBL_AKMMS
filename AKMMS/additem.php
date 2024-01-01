@@ -23,6 +23,7 @@
                                 <h6>Item Category</h6>
                                 <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Kategori" name="icategory" required>
+                                    <option selected>-Sila Pilih-</option>
                                     <option>Advertising</option>
                                     <option>Construction</option>
                                 </select>
@@ -40,22 +41,23 @@
                                 <h6>Item Material</h6>
                                 <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Jenis barang" name="imaterial" required>
-                                    <option>Kayu</option>
-                                    <option selected>Besi</option>
+                                    <option selected>-Sila Pilih-</option>
+                                    <option>Besi</option>
+                                    <option>Besi</option>
                                     <option>Plastik</option>
                                     <option>Kaca</option>
                                 </select>
                                 </div>
                                 <h6>Item Quantity</h6>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Nombor Bulat sahaja" name="iquantity" required></div>
-                                <h6>Item Price</h6>
+                                <h6>Item Price per Unit</h6>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="(RM, 2 t.p.)" name="iprice" required></div>
-                                    <button class="btn btn-primary d-block btn-user w-100" type="reset">Reset</button><br>
-                                    <button class="btn btn-primary d-block btn-user w-100" type="submit">Add Item</button><br>
+                                <div class="mb-3 d-flex justify-content-center gap-2">
+                                    <button type="submit" class="btn btn-primary">Add Item</button>
+                                    <button type="reset" class="btn btn-dark mx-2">Reset</button>
+                                    <a type="cancel" class="btn btn-danger" href="browseitem.php">Cancel</a>
+                                </div>
                             </form>
-                            
-
-                        </div>
                     </div>
                 </div>
             </div>
