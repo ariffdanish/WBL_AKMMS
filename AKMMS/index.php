@@ -77,9 +77,21 @@ if ($results) {
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
         <h3 class="text-dark mb-0 dashboard-heading fw-bold">Dashboard</h3>
-        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#">
-            <i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report
-        </a>
+        <button onclick="printDocument()">Print</button>
+
+<script>
+    function printDocument() {
+        // You can replace 'target_file.php' with the filename you want to print
+        var targetFile = 'Invoice.php';
+        
+        var printWindow = window.open(targetFile, '_blank');
+        
+        printWindow.onload = function() {
+            printWindow.print();
+        };
+    }
+</script>
+        
     </div>
 
     <!-- Earnings Cards and User Goals -->
