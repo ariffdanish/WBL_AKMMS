@@ -4,6 +4,10 @@ if (!session_id())
 {
     session_start();
 }
+if(isset($_GET['id']))
+{
+    $fbid=$_GET['id'];
+}
 include('dbconnect.php');
 
 // retrieve data from form and session
@@ -15,14 +19,17 @@ $cemail = $_POST['cemail'];
 $ctype = $_POST['ctype'];
 $ctypeOrd = $_POST['ctypeOrd'];
 
-
-
-
 // Insert New Customer
 $sql = "INSERT INTO tb_customer(c_idnum, c_name, c_phone, c_address, c_email, c_type, c_typeOrd)
         VALUES('$cidnum', '$cname', '$cphone', '$caddress', '$cemail', '$ctype', '$ctypeOrd')";
 
-mysqli_query($con,$sql);
+$result=mysqli_query($con,$sql);
+
+$sqlr ="SELECT c_id, c_idnum, c_name, c_phone, c_address, c_email, c_type, c_typeOrd 
+        FROM tb_customer
+        WHERE c_id=$fbid";
+
+$resultr=mysqli_query($con,$sqlr);
 mysqli_close($con);
 
 // Display Result

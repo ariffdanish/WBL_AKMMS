@@ -10,7 +10,8 @@
         $fbid=$_GET['id'];
     }
     include ('dbconnect.php');
-    $sqlr ="SELECT c_id, c_idnum, c_name, c_phone, c_address, c_email, c_type, c_typeOrd FROM tb_customer
+    $sqlr ="SELECT c_id, c_idnum, c_name, c_phone, c_address, c_email, c_type, c_typeOrd 
+            FROM tb_customer
             WHERE c_id=$fbid";
     
 
