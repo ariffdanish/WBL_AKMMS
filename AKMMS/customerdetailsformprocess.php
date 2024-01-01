@@ -1,13 +1,4 @@
 <?php
-include('mysession.php');
-if (!session_id()) 
-{
-    session_start();
-}
-if(isset($_GET['id']))
-{
-    $fbid=$_GET['id'];
-}
 include('dbconnect.php');
 
 // retrieve data from form and session
@@ -23,13 +14,7 @@ $ctypeOrd = $_POST['ctypeOrd'];
 $sql = "INSERT INTO tb_customer(c_idnum, c_name, c_phone, c_address, c_email, c_type, c_typeOrd)
         VALUES('$cidnum', '$cname', '$cphone', '$caddress', '$cemail', '$ctype', '$ctypeOrd')";
 
-$result=mysqli_query($con,$sql);
-
-$sqlr ="SELECT c_id, c_idnum, c_name, c_phone, c_address, c_email, c_type, c_typeOrd 
-        FROM tb_customer
-        WHERE c_id=$fbid";
-
-$resultr=mysqli_query($con,$sqlr);
+mysqli_query($con,$sql);
 mysqli_close($con);
 
 // Display Result
@@ -69,7 +54,5 @@ include 'headerNav.php';
     </table>
     <a class="btn btn-danger" href="customerdetails.php">Back</a>
 </div>
-
-
 
 <?php include 'footer.php'; ?>

@@ -119,7 +119,7 @@
 
         // Add material options based on the selected item
         if (selectedItem === "clothes") {
-            addOption(materialSelect, "jersy", "Jersey");
+            addOption(materialSelect, "jersey", "Jersey");
             addOption(materialSelect, "cotton", "Cotton");
         } else if (selectedItem === "book") {
             addOption(materialSelect, "A5", "A5");
