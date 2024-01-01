@@ -48,7 +48,7 @@
                                 </div>
                                 <h6>Item Quantity</h6>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Nombor Bulat sahaja" name="iquantity" required></div>
-                                <h6>Item Price</h6>
+                                <h6>Item Price per Unit</h6>
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="(RM, 2 t.p.)" name="iprice" required></div>
                                     <button class="btn btn-primary d-block btn-user w-100" type="reset">Reset</button><br>
                                     <button class="btn btn-primary d-block btn-user w-100" type="submit">Add Item</button><br>
