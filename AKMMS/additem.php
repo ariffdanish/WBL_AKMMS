@@ -23,7 +23,7 @@
                                 <h6>Item Category</h6>
                                 <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Kategori" name="icategory" required>
-                                    <option selected>-Sila Pilih-</option>
+                                    <option disabled selected>-Sila Pilih-</option>
                                     <option>Advertising</option>
                                     <option>Construction</option>
                                 </select>
@@ -41,7 +41,7 @@
                                 <h6>Item Material</h6>
                                 <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Jenis barang" name="imaterial" required>
-                                    <option selected>-Sila Pilih-</option>
+                                    <option disabled selected>-Sila Pilih-</option>
                                     <option>Kayu</option>
                                     <option>Besi</option>
                                     <option>Plastik</option>
