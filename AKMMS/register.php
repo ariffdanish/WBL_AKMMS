@@ -1,4 +1,6 @@
-<?php include 'header.php';?>
+<?php 
+include ('dbconnect.php');
+include 'header.php';?>
 
 <body style="background-color: white;">
     <div class="container">
@@ -22,13 +24,20 @@
                                 <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Telephone No" name="ftel"></div>
                                 <div class="mb-3"><input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Password" name="fpwd"></div>
                                 <div class="mb-3">
-                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Select" name="ftype">
-                                    <option>Role</option>
-                                    <option>Admin</option>
-                                    <option>Staff</option>
-                                </select>
+                                <?php 
+                                $sql="SELECT * FROM tb_emprole";
+                                $result=mysqli_query($con,$sql);
+                        
+                                echo'<select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Select" name="ftype">';
+                                while($row=mysqli_fetch_array($result))
+                                {
+                                  echo"<option value='".$row['role_id']."'>".$row['role_desc']."</option>";
+                                }
+                                
+                                echo'</select>';
+                              ?>
                                 </div>
-                                    <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account</button><br>
+                                <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account</button><br>
                             </form>
                             <div class="text-center"><a class="small" href="forgotpassword.php">Forgot Password?</a></div>
                             <div class="text-center"><a class="small" href="login.php">Already have an account? Login!</a></div>

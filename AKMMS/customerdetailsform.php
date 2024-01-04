@@ -9,18 +9,17 @@
 ?>
 
 
-<div class="container-fluid">
-    <div class="row justify-content-center mt-5">
+<div class="container">
+    <div class="row mt-5 justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow">
-            <div class="card-header text-center bg-primary">
-                <h3 class="text-white mb-0 font-weight-bold">Customer Form</h3>
-            </div>
+                    <div class="card shadow">
+                        <div class="card-header bg-gradient-primary text-white text-center">
+                            <h3 class="mb-0">Customer Information</h3>
 
-
-                <div class="card-body">
-                    <form method="POST" action="customerdetailsformprocess.php" class="user">
-                        <div class="mb-3">
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="customerdetailsformprocess.php" class="user">
+                            <div class="mb-3">
                             <label for="cidnum" class="form-label">Customer ID</label>
                             <input class="form-control" type="text" id="cidnum" placeholder="Enter Customer ID" name="cidnum">
                         </div>
@@ -40,34 +39,31 @@
                             <label for="cemail" class="form-label">Email</label>
                             <input class="form-control" type="text" id="cemail" placeholder="Enter Email" name="cemail">
                         </div>
+
                         <div class="mb-3">
                             <label for="ctype" class="form-label">Customer Type</label>
-                            <select class="form-select" id="ctype" name="ctype">
-                                <option disabled selected>Select Customer Type</option>
-                                <option>Personnel</option>
-                                <option>Agency</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="ctypeOrd" class="form-label">Order Type</label>
-                            <select class="form-select" id="ctypeOrd" name="ctypeOrd">
-                                <option disabled selected>Select Order Type</option>
-                                <option>Advertising</option>
-                                <option>Construction</option>
-                            </select>
+                            <?php 
+                                $sql="SELECT * FROM tb_custtype";
+                                $result=mysqli_query($con,$sql);
+                        
+                                echo'<select class="form-select" id="ctype" placeholder="Select" name="ctype">';
+                                while($row=mysqli_fetch_array($result))
+                                {
+                                  echo"<option value='".$row['CT_id']."'>".$row['CT_desc']."</option>";
+                                }
+                                
+                                echo'</select>';
+                            ?>
                         </div>
                         <div class="mb-3 d-flex justify-content-center gap-2">
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <button type="reset" class="btn btn-dark mx-2">Reset</button>
-                            <a type="cancel" class="btn btn-danger" href="customerdetails.php">Cancel</a>
                         </div>
-                    </form>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
 
 
 <?php include 'footer.php';?>

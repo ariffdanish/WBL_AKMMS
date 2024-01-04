@@ -5,7 +5,9 @@ if (!session_id()) {
 }
 include('dbconnect.php');
 
-$sql = "SELECT c_id, c_name, c_phone, c_address FROM tb_customer";
+$sql = "SELECT c_id, c_idnum, c_name, c_phone, c_address 
+        FROM tb_customer";
+        
 $result = mysqli_query($con, $sql);
 
 // Display Result
@@ -34,14 +36,14 @@ include 'headerNav.php';
                     <tbody>
                         <?php
                         $count = 1;
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        while ($row = mysqli_fetch_array($result)) {
                             echo "<tr>";
                             echo "<td>" . $count . "</td>";
                             echo "<td>" . $row['c_name'] . "</td>";
                             echo "<td>" . $row['c_phone'] . "</td>";
                             echo "<td>" . $row['c_address'] . "</td>"; // Adjust column name accordingly
                             echo "<td class='text-center'>";
-                            echo "<a href='customercancel.php?id=" . $row['c_id'] . "' class='btn btn-danger'><i class='fas fa-times'></i></a> ";
+                            //echo "<a href='customercancel.php?id=" . $row['c_id'] . "' class='btn btn-danger'><i class='fas fa-times'></i></a> ";
                             echo "<a href='customeredit.php?id=" . $row['c_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i> Edit</a> ";
                             echo "</td>";
                             echo "</tr>";
@@ -55,5 +57,5 @@ include 'headerNav.php';
     </div>
 </div>
 
-
+<?php mysqli_close($con);?>
 <?php include 'footer.php'; ?>

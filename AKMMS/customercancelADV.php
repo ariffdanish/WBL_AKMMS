@@ -13,12 +13,12 @@
   include ('dbconnect.php');
 
 
-$sql="DELETE FROM tb_customer, tb_order
-      WHERE c_id='$fcid'";
+$sql="DELETE FROM tb_order
+      WHERE Ord_id='$fcid'";
 
 $result=mysqli_query($con,$sql);
 mysqli_close($con);
 
-header('location:customerdetails.php');
+header('location:customerorderADV.php');
 
 ?>

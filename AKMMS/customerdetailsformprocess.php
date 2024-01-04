@@ -1,4 +1,9 @@
 <?php
+include('mysession.php');
+if (!session_id()) 
+{
+    session_start();
+}
 include('dbconnect.php');
 
 // retrieve data from form and session
@@ -8,11 +13,10 @@ $cphone = $_POST['cphone'];
 $caddress = $_POST['caddress'];
 $cemail = $_POST['cemail'];
 $ctype = $_POST['ctype'];
-$ctypeOrd = $_POST['ctypeOrd'];
 
 // Insert New Customer
-$sql = "INSERT INTO tb_customer(c_idnum, c_name, c_phone, c_address, c_email, c_type, c_typeOrd)
-        VALUES('$cidnum', '$cname', '$cphone', '$caddress', '$cemail', '$ctype', '$ctypeOrd')";
+$sql = "INSERT INTO tb_customer(c_idnum, c_name, c_phone, c_address, c_email, c_type)
+        VALUES('$cidnum', '$cname', '$cphone', '$caddress', '$cemail', '$ctype')";
 
 mysqli_query($con,$sql);
 mysqli_close($con);
@@ -46,10 +50,6 @@ include 'headerNav.php';
         <tr>
             <td><strong>Type:</strong></td>
             <td><?php echo $ctype; ?></td>
-        </tr>
-        <tr>
-            <td><strong>Order:</strong></td>
-            <td><?php echo $ctypeOrd; ?></td>
         </tr>
     </table>
     <a class="btn btn-danger" href="customerdetails.php">Back</a>

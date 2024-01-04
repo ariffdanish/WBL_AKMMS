@@ -12,8 +12,8 @@ $ftype=$_POST['ftype'];
 
 //CRUD Operations
 //CREATE-SQL Insert statement
-$sql="INSERT INTO tb_employee(e_name,e_id,e_email,e_tel,e_pwd,e_type)
-		VALUES('$fname','$fid','$femail','$ftel','$fpwd','$ftype')";
+$sql="INSERT INTO tb_employee(e_id,e_name,e_email,e_tel,e_pwd,e_role)
+		VALUES('$fid','$fname','$femail','$ftel','$fpwd','$ftype')";
 
 //EXECUTE SQL
 mysqli_query($con,$sql);

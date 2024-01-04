@@ -1,42 +1,41 @@
 <?php 
-    include ('mysession.php');
-        if(!session_id())
-        {
-            session_start();
-        }
-    include 'headerNav.php';
-    include ('dbconnect.php');
+include('mysession.php');
+if (!session_id()) {
+    session_start();
+}
+include('headerNav.php');
+include('dbconnect.php');
 ?>
 
-
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-lg-6 offset-lg-3">
-            <div class="card shadow">
-                <div class="card-header bg-gradient-primary text-white text-center">
-                    <h3 class="mb-0">Customer Order Form</h3>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="customerorderformADVprocess.php" class="user">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-lg-12">
+            <div class="row justify-content-center">
+
+                <!-- Order Information Card -->
+                <div class="col-lg-6 ">
+                    <div class="card shadow">
+                        <div class="card-header bg-gradient-primary text-white text-center">
+                            <h3 class="mb-0">Order Information</h3>
+                        </div>
+
+                        <div class="card-body">
+                        <form method="POST" action="customerorderformADVprocess.php" class="user">
+
                         <div class="mb-3">
-                            <label for="orderType" class="form-label">Customer :</label>
+                            <label for="ctype" class="form-label">Customer Type</label>
                             <?php 
                                 $sql="SELECT * FROM tb_customer";
                                 $result=mysqli_query($con,$sql);
                         
-                                echo'<select id="cname" name="cname" class="form-control" required>';
+                                echo'<select class="form-select" id="Ord_cid" placeholder="Select" name="Ord_cid">';
                                 while($row=mysqli_fetch_array($result))
                                 {
                                   echo"<option value='".$row['c_id']."'>".$row['c_name']."</option>";
                                 }
                                 
                                 echo'</select>';
-                              ?>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="orderName" class="form-label">Order Name:</label>
-                            <input class="form-control" type="text" id="Ord_name" name="Ord_name" required>
+                            ?>
                         </div>
 
                         <div class="mb-3">
@@ -45,11 +44,24 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="orderName" class="form-label">Order Name:</label>
+                            <input class="form-control" type="text" id="Ord_name" name="Ord_name" required>
+                        </div>
+                        
+                        <div class="mb-3">
                             <label for="orderType" class="form-label">Order Type:</label>
-                            <select id="Ord_type" name="Ord_type" class="form-control" required>
-                                <option value="advertising">Advertising</option>
-                                <option value="construction" disabled selected>Construction</option>
-                            </select>
+                            <?php 
+                                $sql="SELECT * FROM tb_ordertype";
+                                $result=mysqli_query($con,$sql);
+                        
+                                echo'<select id="Ord_type" name="Ord_type" class="form-control" required>';
+                                while($row=mysqli_fetch_array($result))
+                                {
+                                  echo"<option value='".$row['OT_id']."'>".$row['OT_desc']."</option>";
+                                }
+                                
+                                echo'</select>';
+                            ?>
                         </div>
 
 
@@ -94,19 +106,22 @@
                             <label for="quantity" class="form-label">Quantity:</label>
                             <input class="form-control" type="number" id="Ord_itemQuantity" name="Ord_itemQuantity">
                         </div>
-
-                        <div class="mb-3 d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">Place Order</button>
-                            <button type="reset" class="btn btn-dark mx-2">Reset</button>
-                            <a class="btn btn-danger" href="customerorderADV.php">Cancel</a>
+                                <div class="mb-3 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary">Place Order</button>
+                                    <button type="reset" class="btn btn-dark mx-2">Reset</button>
+                                    <a class="btn btn-danger" href="customerorderADV.php">Cancel</a>
+                                </div>
+                            </form>
                         </div>
-
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <script>
     // Function to update material options based on the selected item

@@ -30,7 +30,7 @@ if($count==1)
 	$_SESSION['suid']=$fid;
 
 	//user available
-	if($row['e_type']=='Admin')  //Staff
+	if($row['e_role']=='Admin')  //Admin
 	{
 		header('Location:index.php');
 	}

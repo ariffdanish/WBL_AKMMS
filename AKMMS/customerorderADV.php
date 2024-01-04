@@ -5,6 +5,12 @@ if (!session_id()) {
 }
 include('dbconnect.php');
 
+
+$sql = "SELECT * FROM tb_order
+        LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id";
+        
+$result = mysqli_query($con, $sql);
+
 // Display Result
 include 'headerNav.php';
 ?>
@@ -24,12 +30,27 @@ include 'headerNav.php';
                             <th scope="col">No</th>
                             <th scope="col">Order Name</th>
                             <th scope="col">Customer</th>
-                            <th scope="col">Status Payment</th>
+                            <!--<th scope="col">Status Payment</th>--> 
                             <th scope="col">Option</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                    <?php
+                        $count = 1;
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<tr>";
+                            echo "<td>" . $count . "</td>";
+                            echo "<td>" . $row['Ord_name'] . "</td>";
+                            echo "<td>" . $row['c_name'] . "</td>";
+                            //echo "<td>" . $row['c_address'] . "</td>"; // Adjust column name accordingly
+                            echo "<td class='text-center'>";
+                            echo "<a href='customercancelADV.php?id=" . $row['Ord_id'] . "' class='btn btn-danger'><i class='fas fa-times'></i></a> ";
+                            echo "<a href='customeredit.php?id=" . $row['Ord_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i> Edit</a> ";
+                            echo "</td>";
+                            echo "</tr>";
+                            $count++;
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
