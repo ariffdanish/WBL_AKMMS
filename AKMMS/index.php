@@ -47,9 +47,9 @@ for ($i = 1; $i <= 12; $i++) {
         $monthlySalesData[] = 0;
     }
 }
-$querys = "SELECT Ord_itemName, COUNT(*) as usageCount
+$querys = "SELECT Ord_itemMaterial, COUNT(*) as usageCount
           FROM tb_Order o
-          JOIN tb_item i ON o.Ord_itemName = i.i_Name
+          JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name
           WHERE YEAR(Ord_date) = $currentYear
           GROUP BY Ord_itemName
           ORDER BY usageCount DESC
@@ -62,7 +62,7 @@ if ($results) {
     $labels = $data = $backgroundColor = array();
 
     while ($row = mysqli_fetch_assoc($results)) {
-        $labels[] = $row['Ord_itemName'];
+        $labels[] = $row['Ord_itemMaterial'];
         $data[] = $row['usageCount'];
         // You can customize the colors as needed
         $backgroundColor[] = '#' . substr(md5(rand()), 0, 6);
