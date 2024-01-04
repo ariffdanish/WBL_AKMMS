@@ -1,7 +1,6 @@
 <?php
 include('mysession.php');
-if (!session_id()) 
-{
+if (!session_id()) {
     session_start();
 }
 include('dbconnect.php');
@@ -15,15 +14,18 @@ $caddress = $_POST['caddress'];
 $cemail = $_POST['cemail'];
 $ctype = $_POST['ctype'];
 
-$sql="UPDATE tb_customer
-      SET c_idnum='$cidnum', c_name='$cname', c_phone='$cphone', c_address='$caddress', c_email='$cemail', c_type='$ctype';
-      WHERE c_id='$fbid'";
+// Update or Insert based on the presence of $fbid
+if (!empty($fbid)) {
+    $sql = "UPDATE tb_customer
+            SET c_idnum='$cidnum', c_name='$cname', c_phone='$cphone', c_address='$caddress', c_email='$cemail', c_type='$ctype'
+            WHERE c_id='$fbid'";
+} else {
+    $sql = "INSERT INTO tb_customer(c_idnum, c_name, c_phone, c_address, c_email, c_type)
+            VALUES('$cidnum', '$cname', '$cphone', '$caddress', '$cemail', '$ctype')";
+}
 
-// Insert New Customer
-$sql = "INSERT INTO tb_customer(c_idnum, c_name, c_phone, c_address, c_email, c_type)
-        VALUES('$cidnum', '$cname', '$cphone', '$caddress', '$cemail', '$ctype')";
+mysqli_query($con, $sql);
 
-mysqli_query($con,$sql);
 mysqli_close($con);
 
 // Display Result

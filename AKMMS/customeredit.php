@@ -32,6 +32,7 @@
 
         <div class="card-body">
         <form method="POST" action="customereditprocess.php" class="user">
+            <?php echo'<input type="hidden" value="'.$rowr['c_id'].'" name="fbid">';?>
 
                     <div class="mb-3"><label for="cidnum" class="form-label">Customer ID</label>
                         <?php echo'<input class="form-control " type="text" value="'.$rowr['c_idnum'].'" id="exampleFirstName" placeholder="Customer ID" name="cidnum">'?>
