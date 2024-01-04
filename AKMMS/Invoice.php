@@ -171,7 +171,7 @@ include 'dbconnect.php';
 
             <?php
             $total = 0;
-            $vat = 21;
+            $vat = 0.06;
 
             // Use the existing connection from your connection file
             $query = "SELECT Ord_name, Ord_itemName, Ord_itemQuantity, Ord_itemPrice FROM tb_order";
@@ -199,11 +199,11 @@ include 'dbconnect.php';
             echo("</tr>");
             echo("<tr>");
             echo("<td colspan='3' class='text-right'>VAT</td>");
-            echo("<td class='text-right'>RM" . number_format(($total * $vat) / 100, 2) . "</td>");
+            echo("<td class='text-right'>RM" . number_format(($total * (1+$vat) , 2)) . "</td>");
             echo("</tr>");
             echo("<tr>");
             echo("<td colspan='3' class='text-right'><b>TOTAL</b></td>");
-            echo("<td class='text-right'><b>RM" . number_format((($total * $vat) / 100) + $total, 2) . "</b></td>");
+            echo("<td class='text-right'><b>RM" . number_format((($total * (1+$vat) ) + $total, 2)) . "</b></td>");
             echo("</tr>");
 
             // Close the result set
