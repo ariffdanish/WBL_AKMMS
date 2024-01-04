@@ -7,15 +7,13 @@ if (!session_id())
 include('dbconnect.php');
 
 // retrieve data from form and session
-//$fbid = $_POST['fbid'];
+$fbid = $_POST['fbid'];
 $cidnum = $_POST['cidnum'];
 $cname = $_POST['cname'];
 $cphone = $_POST['cphone'];
 $caddress = $_POST['caddress'];
 $cemail = $_POST['cemail'];
 $ctype = $_POST['ctype'];
-
-
 
 $sql="UPDATE tb_customer
       SET c_idnum='$cidnum', c_name='$cname', c_phone='$cphone', c_address='$caddress', c_email='$cemail', c_type='$ctype';
@@ -61,6 +59,5 @@ include 'headerNav.php';
     </table>
     <a class="btn btn-danger" href="customerdetails.php">Back</a>
 </div>
-
 
 <?php include 'footer.php'; ?>
