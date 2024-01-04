@@ -74,15 +74,35 @@ if ($results) {
 
 ?>
 
+
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
         <h3 class="text-dark mb-0 dashboard-heading fw-bold">Dashboard</h3>
-        <button onclick="printDocument()">Print</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Report
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#" onclick="printDocument('inventoryreport.php')">Inventory Report</a>
+                <a class="dropdown-item" href="#" onclick="printDocument('salesreport.php')">Sales Report</a>
+            </div>
+        </div>
+    </div>
 
 <script>
-    function printDocument() {
+    function printDocument1() {
         // You can replace 'target_file.php' with the filename you want to print
-        var targetFile = 'Invoice.php';
+        var targetFile = 'inventoryreport.php';
+        
+        var printWindow = window.open(targetFile, '_blank');
+        
+        printWindow.onload = function() {
+            printWindow.print();
+        };
+    }
+    function printDocument2() {
+        // You can replace 'target_file.php' with the filename you want to print
+        var targetFile = 'salesreport.php';
         
         var printWindow = window.open(targetFile, '_blank');
         
