@@ -1,6 +1,7 @@
 <?php
 // Include your database connection file
 include 'dbconnect.php';
+$ordId = isset($_GET['ord_id']) ? intval($_GET['ord_id']) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -123,11 +124,12 @@ include 'dbconnect.php';
         <div class="details-container">
             <div class="customer-address">
                 <?php
-                $query = "SELECT DISTINCT Ord_address FROM tb_order";
-                $result = mysqli_query($con, $query);
+                // Fetch customer address for the specified Ord_id
+                $queryCustomerAddress = "SELECT DISTINCT Ord_address FROM tb_order WHERE Ord_id = $ordId";
+                $resultCustomerAddress = mysqli_query($con, $queryCustomerAddress);
 
-                if ($result && mysqli_num_rows($result) > 0) {
-                    $row = mysqli_fetch_assoc($result);
+                if ($resultCustomerAddress && mysqli_num_rows($resultCustomerAddress) > 0) {
+                    $row = mysqli_fetch_assoc($resultCustomerAddress);
                     $customer_address = $row['Ord_address'];
 
                     echo "To:<br />";
@@ -140,11 +142,12 @@ include 'dbconnect.php';
 
             <div class="invoice-details">
                 <?php
-                $query = "SELECT Ord_id, DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS formatted_date FROM tb_order ORDER BY Ord_id DESC LIMIT 1";
-                $result = mysqli_query($con, $query);
+                // Fetch invoice details for the specified Ord_id
+                $queryInvoiceDetails = "SELECT Ord_id, DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS formatted_date FROM tb_order WHERE Ord_id = $ordId ORDER BY Ord_id DESC LIMIT 1";
+                $resultInvoiceDetails = mysqli_query($con, $queryInvoiceDetails);
 
-                if ($result && mysqli_num_rows($result) > 0) {
-                    $row = mysqli_fetch_assoc($result);
+                if ($resultInvoiceDetails && mysqli_num_rows($resultInvoiceDetails) > 0) {
+                    $row = mysqli_fetch_assoc($resultInvoiceDetails);
                     $invoice_number = $row['Ord_id'];
                     $invoice_date = $row['formatted_date'];
 
@@ -174,11 +177,11 @@ include 'dbconnect.php';
             $vat = 0.06;
 
             // Use the existing connection from your connection file
-            $query = "SELECT Ord_name, Ord_itemName, Ord_itemQuantity, Ord_itemPrice FROM tb_order";
-            $result = mysqli_query($con, $query);
+            $queryItems = "SELECT Ord_name, Ord_itemName, Ord_itemQuantity, Ord_itemPrice FROM tb_order WHERE Ord_id = $ordId";
+            $resultItems = mysqli_query($con, $queryItems);
 
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
+            if ($resultItems && mysqli_num_rows($resultItems) > 0) {
+                while ($row = mysqli_fetch_assoc($resultItems)) {
                     $description = $row['Ord_name'] . " - " . $row['Ord_itemName'];
                     $amount = $row['Ord_itemQuantity'];
                     $unit_price = number_format($row['Ord_itemPrice'], 2);
@@ -187,8 +190,8 @@ include 'dbconnect.php';
                     echo("<tr>");
                     echo("<td>$description</td>");
                     echo("<td class='text-center'>$amount</td>");
-                    echo("<td class='text-right'>€$unit_price</td>");
-                    echo("<td class='text-right'>€$total_price</td>");
+                    echo("<td class='text-right'>RM $unit_price</td>");
+                    echo("<td class='text-right'>RM $total_price</td>");
                     echo("</tr>");
                 }
             }
@@ -199,16 +202,18 @@ echo("<td class='text-right'>RM" . number_format($total, 2) . "</td>");
 echo("</tr>");
 echo("<tr>");
 echo("<td colspan='3' class='text-right'>VAT</td>");
-echo("<td class='text-right'>RM" . number_format(($total * (1 + $vat)), 2) . "</td>"); // Corrected line
+echo("<td class='text-right'>RM" . number_format(($total * (1 + $vat))-$total, 2) . "</td>"); // Corrected line
 echo("</tr>");
 echo("<tr>");
 echo("<td colspan='3' class='text-right'><b>TOTAL</b></td>");
-echo("<td class='text-right'><b>RM" . number_format((($total * (1 + $vat)) + $total), 2) . "</b></td>"); // Corrected line
+echo("<td class='text-right'><b>RM" . number_format((($total * (1 + $vat))), 2) . "</b></td>"); // Corrected line
 echo("</tr>");
 
 
             // Close the result set
-            mysqli_free_result($result);
+            mysqli_free_result($resultCustomerAddress);
+            mysqli_free_result($resultInvoiceDetails);
+            mysqli_free_result($resultItems);
 
             // Close the database connection
             mysqli_close($con);

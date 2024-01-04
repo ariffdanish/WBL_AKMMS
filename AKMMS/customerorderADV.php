@@ -46,6 +46,10 @@ include 'headerNav.php';
                             echo "<td class='text-center'>";
                             echo "<a href='customercancelADV.php?id=" . $row['Ord_id'] . "' class='btn btn-danger'><i class='fas fa-times'></i></a> ";
                             echo "<a href='customeredit.php?id=" . $row['Ord_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i> Edit</a> ";
+                            echo "<a href='Quotation.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-edit'></i> Quotation</a> ";
+                            echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-edit'></i> Invoice</a> ";
+
+
                             echo "</td>";
                             echo "</tr>";
                             $count++;
