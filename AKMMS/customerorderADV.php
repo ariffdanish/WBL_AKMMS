@@ -50,6 +50,8 @@ include 'headerNav.php';
                             echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-edit'></i> Invoice</a> ";
 
 
+                            echo "<a href='customercancelADV.php?id=" . $row['Ord_id'] . "' class='btn btn-danger' onclick='return confirmDelete()'><i class='fas fa-times'></i></a> ";
+                            echo "<a href='customereditADV.php?id=" . $row['Ord_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i> Edit</a> ";
                             echo "</td>";
                             echo "</tr>";
                             $count++;
@@ -61,5 +63,12 @@ include 'headerNav.php';
         </div>
     </div>
 </div>
+
+<script>
+function confirmDelete() {
+    return confirm("Are you sure you want to delete?");
+}
+</script>
+
 
 <?php include 'footer.php'; ?>
