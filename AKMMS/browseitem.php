@@ -17,11 +17,12 @@
                     </div>
                 </div>
             </div>
+            
         <div class="col-md-6">
             <div class="text-md-end dataTables_filter" id="dataTable_filter">
                 <label class="form-label">
                     <input type="search" class="form-control, justify-content-center gap-2" id="searchInput" placeholder="Find An Item">
-                    <button class="btn btn-primary" onclick="searchItems()">Search</button>
+                    <a class="btn btn-primary" onclick="searchItems()">Search</a>
                 </label>
             </div>
         </div>

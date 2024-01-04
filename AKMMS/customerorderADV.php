@@ -39,18 +39,15 @@ include 'headerNav.php';
                         $count = 1;
                         while ($row = mysqli_fetch_array($result)) {
                             echo "<tr>";
-                            echo "<td>" . $count . "</td>";
+                            echo "<td style='text-align: center;'>" . $count . "</td>";
                             echo "<td>" . $row['Ord_name'] . "</td>";
                             echo "<td>" . $row['c_name'] . "</td>";
                             //echo "<td>" . $row['c_address'] . "</td>"; // Adjust column name accordingly
                             echo "<td class='text-center'>";
                             echo "<a href='customercancelADV.php?id=" . $row['Ord_id'] . "' class='btn btn-danger' onclick='return confirmDelete()'><i class='fas fa-times'></i></a> ";
                             echo "<a href='customereditADV.php?id=" . $row['Ord_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i> Edit</a> ";
-                            echo "<a href='Quotation.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-edit'></i> Quotation</a> ";
-                            echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-edit'></i> Invoice</a> ";
-
-
-                           
+                            echo "<a href='Quotation.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-file-alt'></i> Quotation</a> ";
+                            echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-file-invoice'></i> Invoice</a> ";
                             echo "</td>";
                             echo "</tr>";
                             $count++;

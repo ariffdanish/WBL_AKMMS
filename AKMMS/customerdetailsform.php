@@ -18,26 +18,26 @@
 
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="customerdetailsformprocess.php" class="user">
-                            <div class="mb-3">
+                        <form method="POST" action="customerdetailsformprocess.php" class="user">
+                        <div class="mb-3">
                             <label for="cidnum" class="form-label">Customer ID</label>
-                            <input class="form-control" type="text" id="cidnum" placeholder="Enter Customer ID" name="cidnum">
+                            <input class="form-control" type="text" id="cidnum" placeholder="Enter Customer ID" name="cidnum" required>
                         </div>
                         <div class="mb-3">
                             <label for="cname" class="form-label">Full Name</label>
-                            <input class="form-control" type="text" id="cname" placeholder="Enter Full Name" name="cname">
+                            <input class="form-control" type="text" id="cname" placeholder="Enter Full Name" name="cname" required>
                         </div>
                         <div class="mb-3">
                             <label for="cphone" class="form-label">Phone No</label>
-                            <input class="form-control" type="text" id="cphone" placeholder="Enter Phone No" name="cphone">
+                            <input class="form-control" type="text" id="cphone" placeholder="Enter Phone No" name="cphone" required>
                         </div>
                         <div class="mb-3">
                             <label for="caddress" class="form-label">Address</label>
-                            <textarea class="form-control" id="caddress" placeholder="Enter Address" name="caddress" rows="2"></textarea>
+                            <textarea class="form-control" id="caddress" placeholder="Enter Address" name="caddress" rows="2" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="cemail" class="form-label">Email</label>
-                            <input class="form-control" type="text" id="cemail" placeholder="Enter Email" name="cemail">
+                            <input class="form-control" type="text" id="cemail" placeholder="Enter Email" name="cemail" required>
                         </div>
 
                         <div class="mb-3">
@@ -46,17 +46,17 @@
                                 $sql="SELECT * FROM tb_custtype";
                                 $result=mysqli_query($con,$sql);
                         
-                                echo'<select class="form-select" id="ctype" placeholder="Select" name="ctype">';
+                                echo'<select class="form-select" id="ctype" placeholder="Select" name="ctype" required>';
                                 while($row=mysqli_fetch_array($result))
                                 {
-                                  echo"<option value='".$row['CT_id']."'>".$row['CT_desc']."</option>";
+                                    echo"<option value='".$row['CT_id']."'>".$row['CT_desc']."</option>";
                                 }
                                 
                                 echo'</select>';
                             ?>
                         </div>
                         <div class="mb-3 d-flex justify-content-center gap-2">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" onclick="confirmSubmit()">Submit</button>
                             <button type="reset" class="btn btn-dark mx-2">Reset</button>
                         </div>
                             </form>
@@ -65,5 +65,10 @@
                 </div>
             </div>
 
+            <script>
+                function confirmSubmit() {
+                var confirmation = confirm("Are you sure you want to submit?");
+                }
+            </script>   
 
 <?php include 'footer.php';?>

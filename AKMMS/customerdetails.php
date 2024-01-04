@@ -16,7 +16,7 @@ include 'headerNav.php';
 
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-dark mb-0">Customer Details</h3>
+    <h3 class="text-dark mb-0 bold-and-centered">Customer Details</h3>
         <a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>
     </div>
 
