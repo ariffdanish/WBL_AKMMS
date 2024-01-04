@@ -5,7 +5,7 @@
 $servername="localhost";
 $username="root";
 $password="";
-$dbname="db_akmms";
+$dbname="akmms_db";
 
 
 //connection

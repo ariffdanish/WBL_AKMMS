@@ -27,21 +27,19 @@
         </div>
         <a class="btn btn-primary" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>
     </div>
-    
-    <div class="card-body">
-        <div class="card shadow">
-            
 
-            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                <table class="table my-0" id="dataTable">
-                    <thead>
+    <div class="row mt-4">
+        <div class="card shadow p-3">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="table-primary text-center">
                         <tr>
-                            <th>Code</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Quantity</th>
-                            <th>Price (RM)</th>
-                            <th>Action</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price (RM)</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,9 +64,9 @@
                             echo "<td><a href='viewitemprocess.php?icode=" . $row['i_Code'] . "'>" . $row['i_Code'] . "</a></td>";
                             echo "<td>" . $row['i_Name'] . "</td>";
                             echo "<td>" . $row['i_Desc'] . "</td>";
-                            echo "<td>" . $row['i_Quantity'] . "</td>";
-                            echo "<td>" . number_format($row['i_Price'], 2) . "</td>";
-                            echo "<td>";
+                            echo "<td class='text-center'>" . $row['i_Quantity'] . "</td>";
+                            echo "<td class='text-center'>" . number_format($row['i_Price'], 2) . "</td>";
+                            echo "<td class='text-center'>";
                             echo '<button class="btn btn-warning" onclick="modifyItem(\'' . $row['i_Code'] . '\')">Modify</button>';
                             echo '&nbsp;';
                             echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $row['i_Code'] . '\')">Delete</button>';
@@ -96,8 +94,23 @@
     function deleteItem(itemCode) {
         var confirmDelete = confirm("Are you sure you want to delete this item?");
         if (confirmDelete) {
-            // If user confirms, redirect to deleteitem.php with the item code
-            window.location.href = 'deleteitem.php?icode=' + itemCode;
+            // If user confirms, send an AJAX request to deleteitem.php
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'deleteitem.php?icode=' + itemCode, true);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Item successfully deleted
+                    alert("Item with code " + itemCode + " has been removed.");
+                    // Reload the page to reflect the changes
+                    location.reload();
+                } else {
+                    // Display an error message if deletion fails
+                    alert("Error: Unable to delete the item.");
+                }
+            };
+
+            xhr.send();
         }
     }
 
@@ -113,5 +126,6 @@
         window.location.href = 'browseitem.php?search=' + searchInput;
     }
 </script>
+
 
 <?php include 'footer.php';?>

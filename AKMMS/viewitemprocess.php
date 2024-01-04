@@ -37,6 +37,8 @@
                     echo '<button class="btn btn-warning" onclick="modifyItem(\'' . $row['i_Code'] . '\')">Modify</button>';
                     echo '&nbsp;';
                     echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $row['i_Code'] . '\')">Delete</button>';
+                    echo '&nbsp;';
+                    echo '<a type="cancel" class="btn btn-dark" href="browseitem.php">Back</a>';
                     echo '</div>';
                 } else {
                     echo "<p>Item not found.</p>";
