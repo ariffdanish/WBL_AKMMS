@@ -12,8 +12,9 @@ if (isset($_GET['icode'])) {
 include('dbconnect.php');
 
 //Retrieve booking data
-$sqlr = "SELECT * FROM tb_item LEFT JOIN tb_order ON tb_item.i_Code = tb_order.i_Code";
-
+$sqlr ="SELECT i_Code, i_Name, i_Desc, i_Quantity, i_Price
+            FROM tb_item
+            WHERE i_Code= '$icode'";
 //Execute
 $resultr = mysqli_query($con, $sqlr);
 $rowr = mysqli_fetch_array($resultr);
@@ -29,56 +30,41 @@ include 'headerNav.php';
 
         <form method="POST" action="itemmodifyprocess.php">
 
+            <?php
+            $sql = "SELECT * FROM tb_item";
+            $result = mysqli_query($con, $sql);
+            ?>
+
             <div class="form-group">
-                <label for="exampleInputEmail1" class="form-label mt-4">Select item</label>
-                <?php
-                echo '<input type="hidden" value="' . $rowr['i_Code'] . '"name"icode">';
-                $sql = "SELECT * FROM tb_item";
-                $result = mysqli_query($con, $sql);
-
-                echo '<select class="form-select" name="icode" id="exampleSelect1">';
-                while ($row = mysqli_fetch_array($result)) {
-
-                    if ($row['i_Code'] == $rowr['i_Code']) {
-                        echo "<option selected ='selected' value '" . $row['i_Code'] . "'>" . $row['i_Code'] . " (". $row['i_Name'] . ") </option>";
-                    } else {
-                        echo "<option value = '" . $row['i_Code'] . "'>" . $row['i_Code'] . " (". $row['i_Name'] . ") </option>";
-                    }
-                }
-                echo '</select>';
-                ?>
-
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1" class="form-label mt-4">Enter Item Code</label>
+                <label for="icode" class="form-label mt-4">Enter Item Code</label>
                 <?php
                 echo '<input type="text" value="' . $rowr['i_Code'] . '" name="icode" class="form-control" id="ic" placeholder="Same as the Selected Item" required>'
                 ?>
             </div>
 
             <div class="form-group">
-                <label for="exampleInputPassword1" class="form-label mt-4">Enter Item New Name</label>
+                <label for="iname" class="form-label mt-4">Enter Item New Name</label>
                 <?php
                 echo '<input type="text" value="' . $rowr['i_Name'] . '" name="iname" class="form-control" id="ic" placeholder="New Item Name" required>'
                 ?>
             </div>
 
             <div class="form-group">
-                <label for="exampleInputPassword1" class="form-label mt-4">Enter Item New Description</label>
+                <label for="idesc" class="form-label mt-4">Enter Item New Description</label>
                 <?php
                 echo '<input type="text" value="' . $rowr['i_Desc'] . '" name="idesc" class="form-control" id="ic" placeholder="New Item Description" required>'
                 ?>
             </div>
 
             <div class="form-group">
-                <label for="exampleInputPassword1" class="form-label mt-4">Add Item Quantity</label>
-                <?php
-                echo '<input type="text" value="' . $rowr['i_Quantity'] . '" name="iquantity" class="form-control" id="ic" placeholder="Add Quantity to the Item" required>'
-                ?>
+            <label for="iquantity" class="form-label mt-4">Add Item Quantity</label>
+            <?php
+                echo '<input type="text" value="0" name="iquantity" class="form-control" id="ic" placeholder="Add Quantity to the Item" oninput="validateQuantity(this)" required>';
+            ?>
             </div>
 
             <div class="form-group">
-                <label for="exampleInputPassword1" class="form-label mt-4">Update Item Price</label>
+                <label for="iprice" class="form-label mt-4">Update Item Price</label>
                 <?php
                 echo '<input type="text" value="' . $rowr['i_Price'] . '" name="iprice" class="form-control" id="ic" placeholder="Update Price of Item" required>'
                 ?>
@@ -95,3 +81,16 @@ include 'headerNav.php';
         </div>
 </div><br><br><br>
 <?php include 'footer.php';?>
+
+<script>
+    function validateQuantity(input) {
+        // Parse the input value as a number
+        var quantity = parseInt(input.value);
+
+        // Check if the quantity is a number and not negative
+        if (isNaN(quantity) || quantity < 0) {
+            // If it's negative or not a number, set the value to 0
+            input.value = 0;
+        }
+    }
+</script>
