@@ -124,46 +124,64 @@ include 'dbconnect.php';
         <!-- ... Previous code ... -->
 
         <table border='1' cellspacing='0'>
-            <tr>
-                <th width=250>Description</th>
-                <th width=80>Amount</th>
-                <th width=80>Remaining Quantity</th>
-            </tr>
+    <tr>
+        <th width=250>Description</th>
+        <th width=80>Quantity Sold</th>
+        <th width=80>Total Amount</th>
+        <th width=80>Remaining Quantity</th>
+    </tr>
 
-            <?php
-            $total = 0;
-            $vat = 21;
+    <?php
+    $totalSales = 0;
+    $vat = 21;
 
-            // Use the existing connection from your connection file
-            $query = "SELECT o.Ord_name, o.Ord_itemName, o.Ord_itemQuantity, o.Ord_materialQuantity, i.i_Name, i.i_Quantity
-                      FROM tb_order o
-                      INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name";
+    // Use the existing connection from your connection file
+    $query = "SELECT o.Ord_name, o.Ord_itemName, o.Ord_itemQuantity, o.Ord_materialQuantity, i.i_Name, i.i_Quantity, i.i_Price
+              FROM tb_order o
+              INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name";
 
-            $result = mysqli_query($con, $query);
+    $result = mysqli_query($con, $query);
 
-            if ($result && mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $description = $row['Ord_name'] . " - " . $row['Ord_itemName'];
-                    $amount = $row['Ord_itemQuantity'];
-                    $remainingQuantity = $row['i_Quantity'] - $row['Ord_materialQuantity'];
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $description = $row['Ord_name'] . " - " . $row['Ord_itemName'];
+            $quantitySold = $row['Ord_itemQuantity'];
+            $remainingQuantity = $row['i_Quantity'] - $row['Ord_materialQuantity'];
+            $totalAmount = $row['i_Price'] * $quantitySold;
 
-                    echo("<tr>");
-                    echo("<td>$description</td>");
-                    echo("<td class='text-center'>$amount</td>");
-                    echo("<td class='text-center'>$remainingQuantity</td>");
-                    echo("</tr>");
-                }
-            } else {
-                echo("<tr><td colspan='3'>No data available</td></tr>");
-            }
+            echo("<tr>");
+            echo("<td>$description</td>");
+            echo("<td class='text-center'>$quantitySold</td>");
+            echo("<td class='text-center'>$totalAmount</td>");
+            echo("<td class='text-center'>$remainingQuantity</td>");
+            echo("</tr>");
 
-            // Close the result set
-            mysqli_free_result($result);
+            // Accumulate total sales
+            $totalSales += $totalAmount;
+        }
 
-            // Close the database connection
-            mysqli_close($con);
-            ?>
-        </table>
+        // Display total sales and apply VAT
+        $vatAmount = ($vat / 100) * $totalSales;
+        $finalAmount = $totalSales + $vatAmount;
+
+        echo("<tr>");
+        echo("<td colspan='2' class='text-right'><b>Total Sales:</b></td>");
+        echo("<td class='text-center'><b>$totalSales</b></td>");
+        echo("<td class='text-center'><b>Final Amount:</b></td>");
+        echo("<td class='text-center'><b>$finalAmount</b></td>");
+        echo("</tr>");
+    } else {
+        echo("<tr><td colspan='4'>No data available</td></tr>");
+    }
+
+    // Close the result set
+    mysqli_free_result($result);
+
+    // Close the database connection
+    mysqli_close($con);
+    ?>
+</table>
+
     </div>
 </body>
 
