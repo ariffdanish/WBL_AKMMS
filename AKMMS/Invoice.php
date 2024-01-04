@@ -194,17 +194,18 @@ include 'dbconnect.php';
             }
 
             echo("<tr>");
-            echo("<td colspan='3' class='text-right'>Sub total</td>");
-            echo("<td class='text-right'>RM" . number_format($total, 2) . "</td>");
-            echo("</tr>");
-            echo("<tr>");
-            echo("<td colspan='3' class='text-right'>VAT</td>");
-            echo("<td class='text-right'>RM" . number_format(($total * (1+$vat) , 2)) . "</td>");
-            echo("</tr>");
-            echo("<tr>");
-            echo("<td colspan='3' class='text-right'><b>TOTAL</b></td>");
-            echo("<td class='text-right'><b>RM" . number_format((($total * (1+$vat) ) + $total, 2)) . "</b></td>");
-            echo("</tr>");
+echo("<td colspan='3' class='text-right'>Sub total</td>");
+echo("<td class='text-right'>RM" . number_format($total, 2) . "</td>");
+echo("</tr>");
+echo("<tr>");
+echo("<td colspan='3' class='text-right'>VAT</td>");
+echo("<td class='text-right'>RM" . number_format(($total * (1 + $vat)), 2) . "</td>"); // Corrected line
+echo("</tr>");
+echo("<tr>");
+echo("<td colspan='3' class='text-right'><b>TOTAL</b></td>");
+echo("<td class='text-right'><b>RM" . number_format((($total * (1 + $vat)) + $total), 2) . "</b></td>"); // Corrected line
+echo("</tr>");
+
 
             // Close the result set
             mysqli_free_result($result);
