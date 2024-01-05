@@ -17,7 +17,7 @@ include 'headerNav.php';
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
     <h3 class="text-dark mb-0 bold-and-centered">Customer Details</h3>
-        <a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>
+        <a class="btn btn-primary" type="add" href="customerdetailsform.php?="><i class="fas fa-plus"></i> Add Customer</a>
     </div>
 
     <div class="row mt-4">
@@ -43,8 +43,8 @@ include 'headerNav.php';
                             echo "<td style='text-align: center;'>" . $row['c_phone'] . "</td>";
                             echo "<td>" . $row['c_address'] . "</td>"; // Adjust column name accordingly
                             echo "<td class='text-center'>";
-                            //echo "<a href='customercancel.php?id=" . $row['c_id'] . "' class='btn btn-danger'><i class='fas fa-times'></i></a> ";
-                            echo "<a href='customeredit.php?id=" . $row['c_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i> Edit</a> ";
+                            echo "<a href='customerorderADV.php?id=" . $row['c_id'] . "' class='btn btn-primary'><i class='fas fa-file'></i> Order</a> ";
+                            echo "<a href='customeredit.php?id=" . $row['c_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                             echo "</td>";
                             echo "</tr>";
                             $count++;

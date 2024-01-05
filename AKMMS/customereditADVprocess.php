@@ -13,21 +13,18 @@ include('dbconnect.php');
     $Ord_type = $_POST['Ord_type'];
     $Ord_itemName = $_POST['Ord_itemName'];
     $Ord_itemMaterial = $_POST['Ord_itemMaterial'];
-    $Ord_itemHeight = $_POST['Ord_itemHeight'];
-    $Ord_itemWidth = $_POST['Ord_itemWidth'];
-    $Ord_itemDepth = $_POST['Ord_itemDepth'];
-    $Ord_itemLength = $_POST['Ord_itemLength'];
     $Ord_itemQuantity = $_POST['Ord_itemQuantity'];
+    $Ord_itemDiscount = $_POST['Ord_itemDiscount'];
+    $Ord_itemTax = $_POST['Ord_itemTax'];
 
     if (!empty($fbid)) {
         $sql = "UPDATE tb_order
                 SET Ord_name='$Ord_name', Ord_cid='$Ord_cid', Ord_date='$Ord_date', Ord_type='$Ord_type', Ord_itemName='$Ord_itemName', 
-                    Ord_itemMaterial='$Ord_itemMaterial', Ord_itemHeight='$Ord_itemHeight',Ord_itemWidth='$Ord_itemWidth', Ord_itemDepth='$Ord_itemDepth', 
-                    Ord_itemLength='$Ord_itemLength', Ord_itemQuantity='$Ord_itemQuantity'
+                    Ord_itemMaterial='$Ord_itemMaterial', Ord_itemQuantity='$Ord_itemQuantity', Ord_itemDiscount='$Ord_itemDiscount', Ord_itemTax='$Ord_itemTax'
                 WHERE Ord_id='$fbid'";
     } else {
-        $sql = "INSERT INTO tb_order (Ord_name, Ord_cid, Ord_date, Ord_type, Ord_itemName, Ord_itemMaterial, Ord_itemHeight, Ord_itemWidth, Ord_itemDepth, Ord_itemLength, Ord_itemQuantity) 
-                VALUES ('$Ord_name', '$Ord_cid', '$Ord_date', '$Ord_type', '$Ord_itemName', '$Ord_itemMaterial', '$Ord_itemHeight', '$Ord_itemWidth', '$Ord_itemDepth', '$Ord_itemLength', '$Ord_itemQuantity')";
+        $sql = "INSERT INTO tb_order (Ord_name, Ord_cid, Ord_date, Ord_type, Ord_itemName, Ord_itemMaterial, Ord_itemQuantity, Ord_itemDiscount, Ord_itemTax) 
+                VALUES ('$Ord_name', '$Ord_cid', '$Ord_date', '$Ord_type', '$Ord_itemName', '$Ord_itemMaterial', '$Ord_itemQuantity', '$Ord_itemDiscount', '$Ord_itemTax')";
     }
 
 mysqli_query($con, $sql);
@@ -41,7 +38,7 @@ include 'headerNav.php';
 
 <div class="container" style="margin-top: 20px; padding: 20px;">
     <table class="table">
-        <tr>
+    <tr>
             <td><strong>Order Name :</strong></td>
             <td><?php echo $Ord_name; ?></td>
         </tr>
@@ -64,6 +61,14 @@ include 'headerNav.php';
         <tr>
             <td><strong>Quantity :</strong></td>
             <td><?php echo $Ord_itemQuantity; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Discount (RM) :</strong></td>
+            <td><?php echo $Ord_itemDiscount; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Tax Amount (RM) :</strong></td>
+            <td><?php echo $Ord_itemTax; ?></td>
         </tr>
     </table>
     <a class="btn btn-danger" href="customerorderADV.php">Back</a>

@@ -37,8 +37,9 @@ include 'headerNav.php';
                         <form method="POST" action="customereditADVprocess.php" class="user">
                             <?php echo'<input type="hidden" value="'.$rowr['Ord_id'].'" name="fbid">';?>
 
-                        <div class="mb-3">
-                            <label for="ctype" class="form-label">Customer Type</label>
+                        <div class="row mb-3">
+                            <label for="ctype" class="col-sm-3 col-form-label">Customer Type:</label>
+                            <div class="col-sm-9">
                             <?php 
                                 $sql="SELECT * FROM tb_customer";
                                 $result=mysqli_query($con,$sql);
@@ -51,20 +52,26 @@ include 'headerNav.php';
                                 
                                 echo'</select>';
                             ?>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="orderDate" class="form-label">Order Date:</label>
+                        <div class="row mb-3">
+                            <label for="orderDate" class="col-sm-3 col-form-label">Order Date:</label>
+                            <div class="col-sm-9">
                             <?php echo'<input class="form-control" type="date" value="'.$rowr['Ord_date'].'" id="Ord_date" name="Ord_date" required>';?>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="orderName" class="form-label">Order Name:</label>
+                        <div class="row mb-3">
+                            <label for="orderName" class="col-sm-3 col-form-label">Order Name:</label>
+                            <div class="col-sm-9">
                             <?php echo'<input class="form-control" type="text" value="'.$rowr['Ord_name'].'" id="Ord_name" name="Ord_name" required>';?>
+                            </div>
                         </div>
                         
-                        <div class="mb-3">
-                            <label for="orderType" class="form-label">Order Type:</label>
+                        <div class="row mb-3">
+                            <label for="orderType" class="col-sm-3 col-form-label">Order Type:</label>
+                            <div class="col-sm-9">
                             <?php 
                                 $sql="SELECT * FROM tb_ordertype";
                                 $result=mysqli_query($con,$sql);
@@ -77,11 +84,13 @@ include 'headerNav.php';
                                 
                                 echo'</select>';
                             ?>
+                            </div>
                         </div>
 
 
-                        <div class="mb-3">
-                            <label for="item" class="form-label">Select Item:</label>
+                        <div class="row mb-3">
+                            <label for="item" class="col-sm-3 col-form-label">Select Item:</label>
+                            <div class="col-sm-9">
                             <?php
                                 $sql="SELECT * FROM tb_order";
                                 $result=mysqli_query($con,$sql);
@@ -93,49 +102,54 @@ include 'headerNav.php';
                             }
                             echo'</select>';
                             ?>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="material" class="form-label">Select Material:</label>
+                        <div class="row mb-3">
+                            <label for="material" class="col-sm-3 col-form-label">Select Material:</label>
+                            <div class="col-sm-9">
                             <?php
                                 $sql="SELECT * FROM tb_order";
                                 $result=mysqli_query($con,$sql);
                         
-                                echo'<select id="Ord_itemMaterial" name="Ord_itemMaterial" class="form-control" required>';
+                                echo'<select id="Ord_itemMaterial" name="Ord_itemMaterial" class="form-control">';
                                 while($row=mysqli_fetch_array($result))
                                 {
                                 echo"<option value='".$row['Ord_id']."'>".$row['Ord_itemMaterial']."</option>";
                                 }
                             echo'</select>';
                             ?>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label for="height" class="form-label">Height (cm):</label>
-                                <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemHeight'].'" id="Ord_itemHeight" name="Ord_itemHeight">';?>
-                            </div>
-
-                            <div class="col-md-4 mb-3">
-                                <label for="width" class="form-label">Width (cm):</label>
-                                <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemWidth'].'" id="Ord_itemWidth" name="Ord_itemWidth">';?>
-                            </div>
-
-                            <div class="col-md-4 mb-3">
-                                <label for="depth" class="form-label">Depth (cm):</label>
-                                <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemDepth'].'" id="Ord_itemDepth" name="Ord_itemDepth">';?>
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="length" class="form-label">Length (cm):</label>
-                            <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemLength'].'" id="Ord_itemLength" name="Ord_itemLength">';?>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity:</label>
+                        <div class="row mb-3">
+                            <label for="quantity" class="col-sm-3 col-form-label">Quantity:</label>
+                            <div class="col-sm-9">
                             <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemQuantity'].'" id="Ord_itemQuantity" name="Ord_itemQuantity">';?>
+                            </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="price" class="col-sm-3 col-form-label">Unit Price (RM):</label>
+                            <div class="col-sm-9">
+                            <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemPrice'].'" id="Ord_itemPrice" name="Ord_itemPrice">';?>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="discount" class="col-sm-3 col-form-label">Discount % (RM):</label>
+                            <div class="col-sm-9">
+                            <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemDiscount'].'" id="Ord_itemDiscount" name="Ord_itemDiscount">';?>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="tax" class="col-sm-3 col-form-label">Tax Amount % (RM):</label>
+                            <div class="col-sm-9">
+                            <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemTax'].'" id="Ord_itemTax" name="Ord_itemTax">';?>
+                            </div>
+                        </div>
+
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
                                     <button type="reset" class="btn btn-dark mx-2">Reset</button>
@@ -150,9 +164,6 @@ include 'headerNav.php';
     </div>
 </div>
 
-
-
-
 <script>
     // Function to update material options based on the selected item
     function updateMaterialOptions() {
@@ -163,16 +174,16 @@ include 'headerNav.php';
         materialSelect.innerHTML = "";
 
         // Add material options based on the selected item
-        if (selectedItem === "clothes") {
-            addOption(materialSelect, "jersey", "Jersey");
-            addOption(materialSelect, "cotton", "Cotton");
-        } else if (selectedItem === "book") {
+        if (selectedItem === "Clothes") {
+            addOption(materialSelect, "Jersey", "Jersey");
+            addOption(materialSelect, "Cotton", "Cotton");
+        } else if (selectedItem === "Book") {
             addOption(materialSelect, "A5", "A5");
             addOption(materialSelect, "B5", "B5");
             addOption(materialSelect, "F4", "F4");
-        } else if (selectedItem === "banner" || selectedItem === "signboard") {
+        } else if (selectedItem === "Banner" || selectedItem === "Signboard" || selectedItem === "Bag" || selectedItem === "Sport Bottle") {
             // For banner and signboard, add a default option with value "-"
-            addOption(materialSelect, "-", "-");
+            addOption(materialSelect, "-", "-", "-", "-");
         }
 
         // You can add more conditions for additional items
