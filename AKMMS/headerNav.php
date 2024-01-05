@@ -65,14 +65,18 @@
 
                         <ul class="navbar-nav flex-nowrap ms-auto">
                         <li class="nav-item ms-auto">
-                            <span class="nav-link font-weight-bold text-white" style="font-size: 18px;">AK MAJU RESOURCES</span>
+                            <span class="nav-link font-weight-bold text-black-bold" style="font-size: 18px;">AK MAJU RESOURCES</span>
                         </li>
                         <li class="nav-item">
                             <span id="clock" class="nav-link"></span>
                         </li>
                         <li class="nav-item">
-                            <span id="date" class="nav-link"></span>
+                            <span id="date-gregorian" class="nav-link"></span>
                         </li>
+                        <li class="nav-item">
+                            <span id="date-islamic" class="nav-link"></span>
+                        </li>
+
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
                                     <form class="me-auto navbar-search w-100">
@@ -110,27 +114,37 @@
                 </nav>
 
                 <script>
-                // Function to update clock, time, and date
-                function updateClock() {
-                    var now = new Date();
-                    var hours = now.getHours();
-                    var minutes = now.getMinutes();
-                    var seconds = now.getSeconds();
+    // Function to update clock, time, and date
+    function updateClock() {
+        var now = new Date();
 
-                    // Format the time
-                    var timeString = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+        // Format the time in 12-hour format with 'am' or 'pm'
+        var hours = now.getHours();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // 12-hour clock, so 0 becomes 12
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var timeString = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' ' + ampm;
 
-                    // Format the date
-                    var dateString = now.toDateString();
+        // Format the Gregorian date in English
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var gregorianDateString = now.toLocaleDateString('en-US', options);
 
-                    // Update the clock and date elements
-                    document.getElementById('clock').textContent = timeString;
-                    document.getElementById('date').textContent = dateString;
+        // Format the Islamic (Hijri) date in Bahasa Melayu
+        var islamicDate = new Intl.DateTimeFormat('ms-MY-u-ca-islamic', { day: 'numeric', month: 'long', year: 'numeric' }).format(now);
 
-                    // Update every second
-                    setTimeout(updateClock, 1000);
-                }
+        // Update the clock, Gregorian date, and Islamic date elements
+        document.getElementById('clock').textContent = timeString;
+        document.getElementById('date-gregorian').textContent = gregorianDateString;
+        document.getElementById('date-islamic').textContent = islamicDate;
 
-                // Call the function to initialize
-                updateClock();
-                </script>
+        // Update every second
+        setTimeout(updateClock, 1000);
+    }
+
+    // Call the function to initialize
+    updateClock();
+</script>
+
+

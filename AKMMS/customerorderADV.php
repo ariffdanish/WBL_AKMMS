@@ -5,9 +5,10 @@ if (!session_id()) {
 }
 include('dbconnect.php');
 
-
 $sql = "SELECT * FROM tb_order
-        LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id";
+        LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id
+        WHERE tb_order.Ord_type = '1'";
+
         
 $result = mysqli_query($con, $sql);
 
@@ -17,7 +18,7 @@ include 'headerNav.php';
 
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-dark mb-0">Customer Order Details</h3>
+        <h3 class="text-dark mb-0 bold-and-centered">Customer Order Details</h3>
         <a class="btn btn-primary" type="add" href="customerorderformADV.php"><i class="fas fa-plus"></i> Add Order</a>
     </div>
 

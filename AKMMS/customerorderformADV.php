@@ -51,17 +51,20 @@ include('dbconnect.php');
                         <div class="mb-3">
                             <label for="orderType" class="form-label">Order Type:</label>
                             <?php 
-                                $sql="SELECT * FROM tb_ordertype";
-                                $result=mysqli_query($con,$sql);
-                        
-                                echo'<select id="Ord_type" name="Ord_type" class="form-control" required>';
-                                while($row=mysqli_fetch_array($result))
-                                {
-                                  echo"<option value='".$row['OT_id']."'>".$row['OT_desc']."</option>";
-                                }
+                                $sql = "SELECT * FROM tb_ordertype";
+                                $result = mysqli_query($con, $sql);
                                 
-                                echo'</select>';
+                                echo '<select id="Ord_type" name="Ord_type" class="form-control" required>';
+                                while ($row = mysqli_fetch_array($result)) {
+                                    if ($row['OT_id'] == '1') {
+                                        echo "<option value='" . $row['OT_id'] . "' selected>" . $row['OT_desc'] . "</option>";
+                                    } else {
+                                        echo "<option value='" . $row['OT_id'] . "'>" . $row['OT_desc'] . "</option>";
+                                    }
+                                }
+                                echo '</select>';
                             ?>
+
                         </div>
 
 

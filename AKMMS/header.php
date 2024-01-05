@@ -15,7 +15,7 @@
     /* Clock and Date styles */
     .clock,
     .date {
-        color: white; /* Set text color to white */
+        color: black; /* Set text color to white */
         margin-right: 10px; /* Adjust margin as needed */
         font-weight: bold; /* Make text bold */
         animation: fadeIn 1s ease-in-out; /* Add fade-in animation */
@@ -35,10 +35,12 @@
         background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
     }
 
-    /* Navbar Styles */
-    .bg-gradient-primary.topbar {
-        background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
-    }
+/* Navbar Styles */
+.bg-gradient-primary.topbar {
+    background: linear-gradient(to right, #ffffff, #ffffff); /* White gradient */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow at the bottom */
+}
+
 
     /* Navigation Links */
     #accordionSidebar .nav-link {
@@ -52,7 +54,7 @@
 
     /* Dropdown Styles */
     .dropdown-menu {
-        background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
+        background: linear-gradient(to right, #87CEEB, #00BFFF); /* Light Blue gradient */
         animation: fadeInDown 0.5s ease;
         color: white; /* Set the font color to white */
     }

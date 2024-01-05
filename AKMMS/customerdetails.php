@@ -38,9 +38,9 @@ include 'headerNav.php';
                         $count = 1;
                         while ($row = mysqli_fetch_array($result)) {
                             echo "<tr>";
-                            echo "<td>" . $count . "</td>";
+                            echo "<td style='text-align: center;'>" . $count . "</td>";
                             echo "<td>" . $row['c_name'] . "</td>";
-                            echo "<td>" . $row['c_phone'] . "</td>";
+                            echo "<td style='text-align: center;'>" . $row['c_phone'] . "</td>";
                             echo "<td>" . $row['c_address'] . "</td>"; // Adjust column name accordingly
                             echo "<td class='text-center'>";
                             //echo "<a href='customercancel.php?id=" . $row['c_id'] . "' class='btn btn-danger'><i class='fas fa-times'></i></a> ";
