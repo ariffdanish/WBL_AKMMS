@@ -7,8 +7,7 @@
   include ('dbconnect.php');
 
 $sql = "SELECT * FROM tb_order
-        LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id
-        WHERE tb_order.Ord_type = '1'";
+        LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id";
 
 $result = mysqli_query($con, $sql);
 
