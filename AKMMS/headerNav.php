@@ -90,14 +90,45 @@
                            
 
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">7</span><i class="fas fa-envelope fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                                    </div>
-                                </div>
-                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
-                            </li>
+    <div class="nav-item dropdown no-arrow">
+        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+            <span class="badge bg-danger badge-counter" id="notificationCount">0</span>
+            <i class="fas fa-envelope fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="notificationDropdown">
+            <h6 class="dropdown-header">Notification Center</h6>
+            <?php
+            // Replace these with your actual database credentials
+            include 'dbconnect.php';
+
+            // Display all notifications from tb_inbox
+            $query = "SELECT * FROM tb_inbox ORDER BY inb_timestamp DESC LIMIT 5";
+$result = $con->query($query);
+
+echo '<div id="notificationList">';
+
+while ($row = $result->fetch_assoc()) {
+    echo '<a class="dropdown-item d-flex align-items-center" href="#">
+            <div class="dropdown-list-image me-3">
+                <!-- Add an image/icon if needed -->
+            </div>
+            <div class="fw-bold">
+                <div class="text-gray-600 small">' . $row['inb_timestamp'] . '</div>
+                <span class="text-gray-900">' . $row['inb_decs'] . '</span>
+            </div>
+        </a>';
+}
+
+echo '</div>';
+
+            ?>
+
+            <a class="dropdown-item text-center small text-gray-500" href="notification.php">Show All Notifications</a>
+        </div>
+    </div>
+    <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
+</li>
+
 
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">

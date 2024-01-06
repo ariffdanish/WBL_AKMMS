@@ -126,7 +126,8 @@ include 'dbconnect.php';
         <table border='1' cellspacing='0'>
             <tr>
                 <th width=250>Description</th>
-                <th width=80>Amount</th>
+               
+                <th width=80>Used Quantity</th>
                 <th width=80>Remaining Quantity</th>
             </tr>
 
@@ -135,7 +136,7 @@ include 'dbconnect.php';
             $vat = 21;
 
             // Use the existing connection from your connection file
-            $query = "SELECT o.Ord_name, o.Ord_itemName, o.Ord_itemQuantity, o.Ord_materialQuantity, i.i_Name, i.i_Quantity
+            $query = "SELECT o.Ord_name, o.Ord_itemName, o.Ord_itemQuantity, o.Ord_materialQuantity, i.i_Name, i.i_Quantity,i.i_Material
                       FROM tb_order o
                       INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name";
 
@@ -143,13 +144,15 @@ include 'dbconnect.php';
 
             if ($result && mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $description = $row['Ord_name'] . " - " . $row['Ord_itemName'];
-                    $amount = $row['Ord_itemQuantity'];
+                    $description = $row['i_Material'];
+                    $usedQuantity = $row['Ord_materialQuantity'];
                     $remainingQuantity = $row['i_Quantity'] - $row['Ord_materialQuantity'];
 
                     echo("<tr>");
+                    echo("<br>");
                     echo("<td>$description</td>");
-                    echo("<td class='text-center'>$amount</td>");
+                 
+                    echo("<td class='text-center'>$usedQuantity</td>");
                     echo("<td class='text-center'>$remainingQuantity</td>");
                     echo("</tr>");
                 }

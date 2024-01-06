@@ -128,15 +128,16 @@ include 'dbconnect.php';
         <th width=250>Description</th>
         <th width=80>Quantity Sold</th>
         <th width=80>Total Amount</th>
-        <th width=80>Remaining Quantity</th>
+       
     </tr>
+
 
     <?php
     $totalSales = 0;
-    $vat = 21;
+    $vat = 0.06;
 
     // Use the existing connection from your connection file
-    $query = "SELECT o.Ord_name, o.Ord_itemName, o.Ord_itemQuantity, o.Ord_materialQuantity, i.i_Name, i.i_Quantity, i.i_Price
+    $query = "SELECT o.Ord_name, o.Ord_itemName, o.Ord_itemQuantity, o.Ord_materialQuantity,o.Ord_totalcost, i.i_Name, i.i_Quantity, i.i_Price
               FROM tb_order o
               INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name";
 
@@ -146,14 +147,12 @@ include 'dbconnect.php';
         while ($row = mysqli_fetch_assoc($result)) {
             $description = $row['Ord_name'] . " - " . $row['Ord_itemName'];
             $quantitySold = $row['Ord_itemQuantity'];
-            $remainingQuantity = $row['i_Quantity'] - $row['Ord_materialQuantity'];
-            $totalAmount = $row['i_Price'] * $quantitySold;
+            $totalAmount = $row['Ord_totalcost'];
 
             echo("<tr>");
             echo("<td>$description</td>");
             echo("<td class='text-center'>$quantitySold</td>");
             echo("<td class='text-center'>$totalAmount</td>");
-            echo("<td class='text-center'>$remainingQuantity</td>");
             echo("</tr>");
 
             // Accumulate total sales
@@ -161,10 +160,11 @@ include 'dbconnect.php';
         }
 
         // Display total sales and apply VAT
-        $vatAmount = ($vat / 100) * $totalSales;
+        $vatAmount = ($vat *1) * $totalSales;
         $finalAmount = $totalSales + $vatAmount;
 
         echo("<tr>");
+       echo("<br>");
         echo("<td colspan='2' class='text-right'><b>Total Sales:</b></td>");
         echo("<td class='text-center'><b>$totalSales</b></td>");
         echo("<td class='text-center'><b>Final Amount:</b></td>");
