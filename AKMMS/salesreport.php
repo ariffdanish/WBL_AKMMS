@@ -137,17 +137,18 @@ include 'dbconnect.php';
     $vat = 0.06;
 
     // Use the existing connection from your connection file
-    $query = "SELECT o.Ord_name, o.Ord_itemName, o.Ord_itemQuantity, o.Ord_materialQuantity,o.Ord_totalcost, i.i_Name, i.i_Quantity, i.i_Price
-              FROM tb_order o
-              INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name";
+    $query = "SELECT o.Ord_name, q.q_quantity,q_itemDesc,q_totalcost, i.i_Name, i.i_Quantity, i.i_Material
+            FROM tb_order o
+            INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name
+            INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID";
 
     $result = mysqli_query($con, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $description = $row['Ord_name'] . " - " . $row['Ord_itemName'];
-            $quantitySold = $row['Ord_itemQuantity'];
-            $totalAmount = $row['Ord_totalcost'];
+            $description = $row['Ord_name'] . " - " . $row['q_itemDesc'];
+            $quantitySold = $row['q_quantity'];
+            $totalAmount = $row['q_totalcost'];
 
             echo("<tr>");
             echo("<td>$description</td>");
