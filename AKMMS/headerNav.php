@@ -92,7 +92,7 @@
                             <li class="nav-item dropdown no-arrow mx-1">
     <div class="nav-item dropdown no-arrow">
         <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-            <span class="badge bg-danger badge-counter" id="notificationCount">0</span>
+            <span class="badge bg-danger badge-counter" id="notificationCount">5</span>
             <i class="fas fa-envelope fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="notificationDropdown">
