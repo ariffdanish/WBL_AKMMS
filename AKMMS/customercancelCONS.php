@@ -13,12 +13,12 @@
   include ('dbconnect.php');
 
 
-$sql="DELETE FROM tb_quotation
-      WHERE q_id='$fcid'";
+$sql="DELETE FROM tb_order
+      WHERE Ord_id='$fcid'";
 
 $result=mysqli_query($con,$sql);
 mysqli_close($con);
 
-header('location:customerQuotationCONS.php');
+header('location:customerorderCONS.php');
 
 ?>

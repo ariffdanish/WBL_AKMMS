@@ -4,17 +4,14 @@ if (!session_id()) {
     session_start();
 }
 include('dbconnect.php');
+// Display Result
+include 'headerNav.php';
 
 $sql = "SELECT * FROM tb_order
         LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id
         WHERE tb_order.Ord_type = '2'";
 
-        
 $result = mysqli_query($con, $sql);
-
-
-// Display Result
-include 'headerNav.php';
 ?>
 
 <div class="container-fluid">
@@ -58,8 +55,7 @@ include 'headerNav.php';
                             // echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary mr-2'><i class='fas fa-file-invoice'></i> Invoice</a>";
                             echo "</div>";
                             echo "</td>";
-                            
-                            
+        
                             echo "</tr>";
                             $count++;
                         }

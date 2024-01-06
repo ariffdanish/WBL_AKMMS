@@ -1,18 +1,21 @@
 <?php
+
   include ('mysession.php');
   if(!session_id())
   {
     session_start();
   }
   include ('dbconnect.php');
+  // Display Result
+include 'headerNav.php';
 
 $sql = "SELECT * FROM tb_order
-        LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id";
+        LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id
+        WHERE tb_order.Ord_type = '1'";
 
 $result = mysqli_query($con, $sql);
 
-// Display Result
-include 'headerNav.php';
+
 ?>
 
 <div class="container-fluid">
@@ -48,9 +51,10 @@ include 'headerNav.php';
                           echo"<td>".$row['Ord_date']. "</td>";
                           echo "<td>";
                             echo "<a href='customercancelADV.php?id=".$row['Ord_id']. "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
-                            echo "<a href='customereditADV.php?id=".$row['Ord_id']. "' class='btn btn-primary'><i class='fas fa-edit'></i>Cancel</a> ";
+                            echo "<a href='customereditADV.php?id=".$row['Ord_id']. "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                           echo "</td>";
                           echo "</tr>";
+                          $count++;
                         }
                         ?>
                 </tbody>
