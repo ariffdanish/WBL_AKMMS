@@ -22,7 +22,7 @@ function generateOrderNotifications($con) {
     $lastProcessedOrderTimestamp = $lastProcessedOrderTimestampResult->fetch_assoc()['lastProcessedOrderTimestamp'];
 
     // Retrieve orders placed after the last processed order
-    $newOrdersQuery = "SELECT * FROM tb_order WHERE Ord_timestamp > '$lastProcessedOrderTimestamp' ORDER BY Ord_id";
+    $newOrdersQuery = "SELECT * FROM tb_order WHERE Ord_date > '$lastProcessedOrderTimestamp' ORDER BY Ord_id";
     $newOrdersResult = $con->query($newOrdersQuery);
 
     while ($row = $newOrdersResult->fetch_assoc()) {

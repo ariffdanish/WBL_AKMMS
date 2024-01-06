@@ -170,7 +170,7 @@ include 'dbconnect.php';
 
             <?php
             $total = 0;
-            $vat = 21;
+    
 
             // Use the existing connection from your connection file
             $query = "SELECT Ord_name, Ord_itemName, Ord_itemQuantity, Ord_itemPrice FROM tb_order";
