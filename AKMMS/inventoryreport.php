@@ -133,7 +133,7 @@ include 'dbconnect.php';
 
             <?php
             $total = 0;
-            $vat = 21;
+          
 
             // Use the existing connection from your connection file
             $query = "SELECT o.Ord_name, q.q_quantity, i.i_Name, i.i_Quantity, i.i_Material
@@ -143,17 +143,24 @@ include 'dbconnect.php';
   
   $result = mysqli_query($con, $query);
   
+  $latestItems = array(); // To keep track of the latest occurrence of each item
+
   if ($result && mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
           $description = $row['i_Material'];
-          $usedQuantity = $row['q_quantity']; // Updated to use q_quantity from tb_quotation
-          $remainingQuantity = $row['i_Quantity'] - $row['q_quantity'];
   
+          // Update values for the latest occurrence of the item
+          $latestItems[$description] = [
+              'usedQuantity' => $row['q_quantity'],
+              'remainingQuantity' => $row['i_Quantity'] - $row['q_quantity'],
+          ];
+      }
+  
+      foreach ($latestItems as $description => $values) {
           echo("<tr>");
-          echo("<br>");
           echo("<td>$description</td>");
-          echo("<td class='text-center'>$usedQuantity</td>");
-          echo("<td class='text-center'>$remainingQuantity</td>");
+          echo("<td class='text-center'>" . $values['usedQuantity'] . "</td>");
+          echo("<td class='text-center'>" . $values['remainingQuantity'] . "</td>");
           echo("</tr>");
       }
   } else {
