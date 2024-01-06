@@ -20,7 +20,6 @@ include('dbconnect.php');
         $sql = "INSERT INTO tb_order (Ord_name, Ord_cid, Ord_date, Ord_type) 
                 VALUES ('$Ord_name', '$Ord_cid', '$Ord_date', '$Ord_type')";
     }
-
 mysqli_query($con, $sql);
 
 mysqli_close($con);
