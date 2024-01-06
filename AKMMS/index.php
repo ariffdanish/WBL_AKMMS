@@ -8,7 +8,10 @@ $currentMonth = date('m');
 $currentYear = date('Y');
 
 // Query to get the total earnings for the current month
-$queryMonthly = "SELECT SUM(Ord_totalcost) AS totalEarnings FROM tb_Order WHERE MONTH(Ord_date) = $currentMonth AND YEAR(Ord_date) = $currentYear";
+$queryMonthly = "SELECT SUM(q_totalcost) AS totalEarnings FROM tb_quotation 
+                 WHERE MONTH((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $currentMonth 
+                 AND YEAR((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $currentYear";
+
 $resultMonthly = mysqli_query($con, $queryMonthly);
 
 // Check if the query was successful
@@ -21,7 +24,8 @@ if ($resultMonthly) {
 }
 
 // Query to get the total earnings for the current year
-$queryYearly = "SELECT SUM(Ord_totalcost) AS totalEarnings FROM tb_Order WHERE YEAR(Ord_date) = $currentYear";
+$queryYearly = "SELECT SUM(q_totalcost) AS totalEarnings FROM tb_quotation 
+                WHERE YEAR((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $currentYear";
 $resultYearly = mysqli_query($con, $queryYearly);
 
 // Check if the query was successful
@@ -35,7 +39,10 @@ if ($resultYearly) {
 
 $monthlySalesData = array();
 for ($i = 1; $i <= 12; $i++) {
-    $query = "SELECT SUM(Ord_totalcost) AS monthlyEarnings FROM tb_Order WHERE MONTH(Ord_date) = $i AND YEAR(Ord_date) = $currentYear";
+    $query = "SELECT SUM(q_totalcost) AS monthlyEarnings FROM tb_quotation 
+              WHERE MONTH((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $i 
+              AND YEAR((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $currentYear";
+
     $result = mysqli_query($con, $query);
 
     if ($result) {
@@ -47,11 +54,12 @@ for ($i = 1; $i <= 12; $i++) {
         $monthlySalesData[] = 0;
     }
 }
+
 $querys = "SELECT Ord_itemMaterial, COUNT(*) as usageCount
-          FROM tb_Order o
+          FROM tb_order o
           JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name
-          WHERE YEAR(Ord_date) = $currentYear
-          GROUP BY Ord_itemName
+          WHERE YEAR(o.Ord_date) = $currentYear
+          GROUP BY Ord_itemMaterial
           ORDER BY usageCount DESC
           LIMIT 3";
 
@@ -71,8 +79,9 @@ if ($results) {
     // Handle the error if the query fails
     $labels = $data = $backgroundColor = array();
 }
-
 ?>
+
+
 
 
 <div class="container-fluid">
