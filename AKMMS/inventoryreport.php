@@ -136,29 +136,30 @@ include 'dbconnect.php';
             $vat = 21;
 
             // Use the existing connection from your connection file
-            $query = "SELECT o.Ord_name, o.Ord_itemName, o.Ord_itemQuantity, o.Ord_materialQuantity, i.i_Name, i.i_Quantity,i.i_Material
-                      FROM tb_order o
-                      INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name";
-
-            $result = mysqli_query($con, $query);
-
-            if ($result && mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $description = $row['i_Material'];
-                    $usedQuantity = $row['Ord_materialQuantity'];
-                    $remainingQuantity = $row['i_Quantity'] - $row['Ord_materialQuantity'];
-
-                    echo("<tr>");
-                    echo("<br>");
-                    echo("<td>$description</td>");
-                 
-                    echo("<td class='text-center'>$usedQuantity</td>");
-                    echo("<td class='text-center'>$remainingQuantity</td>");
-                    echo("</tr>");
-                }
-            } else {
-                echo("<tr><td colspan='3'>No data available</td></tr>");
-            }
+            $query = "SELECT o.Ord_name, q.q_quantity, i.i_Name, i.i_Quantity, i.i_Material
+            FROM tb_order o
+            INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name
+            INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID";
+  
+  $result = mysqli_query($con, $query);
+  
+  if ($result && mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+          $description = $row['i_Material'];
+          $usedQuantity = $row['q_quantity']; // Updated to use q_quantity from tb_quotation
+          $remainingQuantity = $row['i_Quantity'] - $row['q_quantity'];
+  
+          echo("<tr>");
+          echo("<br>");
+          echo("<td>$description</td>");
+          echo("<td class='text-center'>$usedQuantity</td>");
+          echo("<td class='text-center'>$remainingQuantity</td>");
+          echo("</tr>");
+      }
+  } else {
+      echo("<tr><td colspan='3'>No data available</td></tr>");
+  }
+  
 
             // Close the result set
             mysqli_free_result($result);
