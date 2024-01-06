@@ -96,7 +96,7 @@
             <i class="fas fa-envelope fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="notificationDropdown">
-            <h6 class="dropdown-header">Notification Center</h6>
+            <h6 class="dropdown-header">Notification Centers</h6>
             <?php
             // Replace these with your actual database credentials
             include 'dbconnect.php';
