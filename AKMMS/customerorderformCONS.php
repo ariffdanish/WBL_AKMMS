@@ -22,8 +22,9 @@ include('dbconnect.php');
                         <div class="card-body">
                         <form method="POST" action="customerorderformCONSprocess.php" class="user">
 
-                        <div class="mb-3">
-                            <label for="ctype" class="form-label">Customer Type</label>
+                        <div class="row mb-3">
+                            <label for="ctype" class="col-sm-3 col-form-label">Customer Type:</label>
+                            <div class="col-sm-9">
                             <?php 
                                 $sql="SELECT * FROM tb_customer";
                                 $result=mysqli_query($con,$sql);
@@ -36,20 +37,26 @@ include('dbconnect.php');
                                 
                                 echo'</select>';
                             ?>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="orderDate" class="form-label">Order Date:</label>
+                        <div class="row mb-3">
+                            <label for="orderDate" class="col-sm-3 col-form-label">Order Date:</label>
+                            <div class="col-sm-9">
                             <input class="form-control" type="date" id="Ord_date" name="Ord_date" required>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="orderName" class="form-label">Order Name:</label>
+                        <div class="row mb-3">
+                            <label for="orderName" class="col-sm-3 col-form-label">Order Name:</label>
+                            <div class="col-sm-9">
                             <input class="form-control" type="text" id="Ord_name" name="Ord_name" required>
+                            </div>
                         </div>
                         
-                        <div class="mb-3">
-                            <label for="orderType" class="form-label">Order Type:</label>
+                        <div class="row mb-3">
+                            <label for="orderType" class="col-sm-3 col-form-label">Order Type:</label>
+                            <div class="col-sm-9">
                             <?php 
                                 $sql = "SELECT * FROM tb_ordertype";
                                 $result = mysqli_query($con, $sql);
@@ -64,50 +71,7 @@ include('dbconnect.php');
                                 }
                                 echo '</select>';
                             ?>
-
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="item" class="form-label">Select Item:</label>
-                            <select id="Ord_itemName" name="Ord_itemName" class="form-control" required onchange="updateMaterialOptions()">
-                                <option value="clothes">Clothes</option>
-                                <option value="book">Book</option>
-                                <option value="banner">Banner</option>
-                                <option value="signboard">Signboard</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="material" class="form-label">Select Material:</label>
-                            <select id="Ord_itemMaterial" name="Ord_itemMaterial" class="form-control" required>
-                                <!-- Options will be dynamically added based on the selected item -->
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label for="height" class="form-label">Height (cm):</label>
-                                <input class="form-control" type="number" id="Ord_itemHeight" name="Ord_itemHeight">
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="width" class="form-label">Width (cm):</label>
-                                <input class="form-control" type="number" id="Ord_itemWidth" name="Ord_itemWidth">
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="depth" class="form-label">Depth (cm):</label>
-                                <input class="form-control" type="number" id="Ord_itemDepth" name="Ord_itemDepth">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="length" class="form-label">Length (cm):</label>
-                            <input class="form-control" type="number" id="Ord_itemLength" name="Ord_itemLength">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity:</label>
-                            <input class="form-control" type="number" id="Ord_itemQuantity" name="Ord_itemQuantity">
+                                </div>
                         </div>
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
@@ -138,14 +102,14 @@ include('dbconnect.php');
         // Add material options based on the selected item
         if (selectedItem === "clothes") {
             addOption(materialSelect, "jersey", "Jersey");
-            addOption(materialSelect, "cotton", "Cotton");
+            addOption(materialSelect, "botton", "Cotton");
         } else if (selectedItem === "book") {
             addOption(materialSelect, "A5", "A5");
             addOption(materialSelect, "B5", "B5");
             addOption(materialSelect, "F4", "F4");
-        } else if (selectedItem === "banner" || selectedItem === "signboard") {
+        } else if (selectedItem === "banner" || selectedItem === "signboard" || selectedItem === "bag" || selectedItem === "sport bottle") {
             // For banner and signboard, add a default option with value "-"
-            addOption(materialSelect, "-", "-");
+            addOption(materialSelect, "-", "-", "-", "-");
         }
 
         // You can add more conditions for additional items

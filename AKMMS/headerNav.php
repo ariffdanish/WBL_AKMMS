@@ -25,7 +25,7 @@
                         <span>LIST OF CUSTOMER</span>
                     </a>
                 </li>
-                <!--<li class="nav-item dropdown no-arrow">
+                <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-list"></i>
                         <span>LIST OF ORDER</span>
@@ -34,7 +34,7 @@
                         <a class="dropdown-item" href="customerorderADV.php">Advertising</a>
                         <a class="dropdown-item" href="customerorderCONS.php">Construction</a>
                     </div>
-                </li>-->
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="browseitem.php">
                         <i class="fas fa-users"></i>

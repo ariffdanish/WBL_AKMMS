@@ -11,20 +11,14 @@ include('dbconnect.php');
     $Ord_cid = $_POST['Ord_cid'];
     $Ord_date = $_POST['Ord_date'];
     $Ord_type = $_POST['Ord_type'];
-    $Ord_itemName = $_POST['Ord_itemName'];
-    $Ord_itemMaterial = $_POST['Ord_itemMaterial'];
-    $Ord_itemQuantity = $_POST['Ord_itemQuantity'];
-    $Ord_itemDiscount = $_POST['Ord_itemDiscount'];
-    $Ord_itemTax = $_POST['Ord_itemTax'];
 
     if (!empty($fbid)) {
         $sql = "UPDATE tb_order
-                SET Ord_name='$Ord_name', Ord_cid='$Ord_cid', Ord_date='$Ord_date', Ord_type='$Ord_type', Ord_itemName='$Ord_itemName', 
-                    Ord_itemMaterial='$Ord_itemMaterial', Ord_itemQuantity='$Ord_itemQuantity', Ord_itemDiscount='$Ord_itemDiscount', Ord_itemTax='$Ord_itemTax'
+                SET Ord_name='$Ord_name', Ord_cid='$Ord_cid', Ord_date='$Ord_date', Ord_type='$Ord_type'
                 WHERE Ord_id='$fbid'";
     } else {
-        $sql = "INSERT INTO tb_order (Ord_name, Ord_cid, Ord_date, Ord_type, Ord_itemName, Ord_itemMaterial, Ord_itemQuantity, Ord_itemDiscount, Ord_itemTax) 
-                VALUES ('$Ord_name', '$Ord_cid', '$Ord_date', '$Ord_type', '$Ord_itemName', '$Ord_itemMaterial', '$Ord_itemQuantity', '$Ord_itemDiscount', '$Ord_itemTax')";
+        $sql = "INSERT INTO tb_order (Ord_name, Ord_cid, Ord_date, Ord_type) 
+                VALUES ('$Ord_name', '$Ord_cid', '$Ord_date', '$Ord_type')";
     }
 
 mysqli_query($con, $sql);
@@ -50,26 +44,7 @@ include 'headerNav.php';
             <td><strong>Order Type:</strong></td>
             <td><?php echo $Ord_type; ?></td>
         </tr>
-        <tr>
-            <td><strong>Item :</strong></td>
-            <td><?php echo $Ord_itemName; ?></td>
-        </tr>
-        <tr>
-            <td><strong>Material :</strong></td>
-            <td><?php echo $Ord_itemMaterial; ?></td>
-        </tr>
-        <tr>
-            <td><strong>Quantity :</strong></td>
-            <td><?php echo $Ord_itemQuantity; ?></td>
-        </tr>
-        <tr>
-            <td><strong>Discount (RM) :</strong></td>
-            <td><?php echo $Ord_itemDiscount; ?></td>
-        </tr>
-        <tr>
-            <td><strong>Tax Amount (RM) :</strong></td>
-            <td><?php echo $Ord_itemTax; ?></td>
-        </tr>
+        
     </table>
     <a class="btn btn-danger" href="customerorderADV.php">Back</a>
 </div>

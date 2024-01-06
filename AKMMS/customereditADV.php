@@ -1,7 +1,6 @@
 <?php 
     include ('mysession.php');
-    if(!session_id())
-    {
+    if(!session_id()){
         session_start();
     }
 //Get Booking ID from URL
@@ -87,68 +86,6 @@ include 'headerNav.php';
                             </div>
                         </div>
 
-
-                        <div class="row mb-3">
-                            <label for="item" class="col-sm-3 col-form-label">Select Item:</label>
-                            <div class="col-sm-9">
-                            <?php
-                                $sql="SELECT * FROM tb_order";
-                                $result=mysqli_query($con,$sql);
-
-                            echo'<select id="Ord_itemName" name="Ord_itemName" class="form-control" required onchange="updateMaterialOptions()">';
-                            while($row=mysqli_fetch_array($result))
-                            {
-                            echo"<option value='".$row['Ord_id']."'>".$row['Ord_itemName']."</option>";
-                            }
-                            echo'</select>';
-                            ?>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="material" class="col-sm-3 col-form-label">Select Material:</label>
-                            <div class="col-sm-9">
-                            <?php
-                                $sql="SELECT * FROM tb_order";
-                                $result=mysqli_query($con,$sql);
-                        
-                                echo'<select id="Ord_itemMaterial" name="Ord_itemMaterial" class="form-control">';
-                                while($row=mysqli_fetch_array($result))
-                                {
-                                echo"<option value='".$row['Ord_id']."'>".$row['Ord_itemMaterial']."</option>";
-                                }
-                            echo'</select>';
-                            ?>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="quantity" class="col-sm-3 col-form-label">Quantity:</label>
-                            <div class="col-sm-9">
-                            <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemQuantity'].'" id="Ord_itemQuantity" name="Ord_itemQuantity">';?>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="price" class="col-sm-3 col-form-label">Unit Price (RM):</label>
-                            <div class="col-sm-9">
-                            <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemPrice'].'" id="Ord_itemPrice" name="Ord_itemPrice">';?>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="discount" class="col-sm-3 col-form-label">Discount % (RM):</label>
-                            <div class="col-sm-9">
-                            <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemDiscount'].'" id="Ord_itemDiscount" name="Ord_itemDiscount">';?>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="tax" class="col-sm-3 col-form-label">Tax Amount % (RM):</label>
-                            <div class="col-sm-9">
-                            <?php echo'<input class="form-control" type="number" value="'.$rowr['Ord_itemTax'].'" id="Ord_itemTax" name="Ord_itemTax">';?>
-                            </div>
-                        </div>
 
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
