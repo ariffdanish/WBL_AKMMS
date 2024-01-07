@@ -20,7 +20,7 @@ include('dbconnect.php');
                         </div>
 
                         <div class="card-body">
-                        <form method="POST" action="customerQuotationformADVprocess.php" class="user">
+                        <form method="POST" action="customerQuotationformCONSprocess.php" class="user">
 
                         <div class="row mb-3">
                             <label for="ctype" class="col-sm-3 col-form-label">Customer Type:</label>
@@ -109,7 +109,7 @@ include('dbconnect.php');
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
                                     <button type="reset" class="btn btn-dark mx-2">Reset</button>
-                                    <a class="btn btn-danger" href="customerQuotationADV.php">Cancel</a>
+                                    <a class="btn btn-danger" href="customerQuotationCONS.php">Cancel</a>
                                 </div>
                             </form>
                         </div>

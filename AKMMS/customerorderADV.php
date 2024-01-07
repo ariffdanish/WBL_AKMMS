@@ -1,5 +1,4 @@
 <?php
-
   include ('mysession.php');
   if(!session_id())
   {
@@ -14,8 +13,6 @@ $sql = "SELECT * FROM tb_order
         WHERE tb_order.Ord_type = '1'";
 
 $result = mysqli_query($con, $sql);
-
-
 ?>
 
 <div class="container-fluid">
@@ -36,6 +33,7 @@ $result = mysqli_query($con, $sql);
                         <th scope="col">Customer Name</th>
                         <th scope="col">Order</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Payment</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -48,6 +46,7 @@ $result = mysqli_query($con, $sql);
                           echo"<td>" .$count. "</td>";
                           echo"<td>".$row['c_name']. "</td>";
                           echo"<td>".$row['Ord_name']. "</td>";
+                          echo"<td>".$row['Ord_date']. "</td>";
                           echo"<td>".$row['Ord_date']. "</td>";
                           echo "<td style='text-align: center;'>";
                             echo "<a href='customercancelADV.php?id=".$row['Ord_id']. "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";

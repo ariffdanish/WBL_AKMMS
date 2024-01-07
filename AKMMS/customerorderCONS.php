@@ -1,6 +1,7 @@
 <?php
 include('mysession.php');
-if (!session_id()) {
+if (!session_id()) 
+{
     session_start();
 }
 include('dbconnect.php');
@@ -34,6 +35,7 @@ $result = mysqli_query($con, $sql);
                             <th scope="col">Customer Name</th>
                             <th scope="col">Order</th>
                             <th scope="col">Date</th>  
+                            <th scope="col">Payment</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -46,7 +48,7 @@ $result = mysqli_query($con, $sql);
                             echo "<td>" . $row['c_name'] . "</td>";
                             echo "<td>" . $row['Ord_name'] . "</td>";
                             echo "<td>" . $row['Ord_date'] . "</td>"; 
-
+                            echo "<td>" . $row['Ord_date'] . "</td>"; 
                             echo "<td style='text-align: center;'>";
                             echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
                             echo "<a href='customereditCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i> </a>";
@@ -68,21 +70,6 @@ $result = mysqli_query($con, $sql);
 <script>
 function confirmDelete() {
     return confirm("Are you sure you want to delete?");
-}
-
-function loadOrders() {
-    var customerId = document.getElementById("Ord_cid").value;
-    var url = "get_orders.php?customerId=" + customerId; // Replace with the actual PHP file to fetch orders
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("orderTableBody").innerHTML = this.responseText;
-        }
-    };
-
-    xhttp.open("GET", url, true);
-    xhttp.send();
 }
 </script>
 
