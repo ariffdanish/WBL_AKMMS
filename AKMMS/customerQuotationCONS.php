@@ -68,13 +68,11 @@ $result = mysqli_query($con, $sql);
                             echo "<td>" . $row['q_tax'] . "</td>"; 
                             echo "<td>" . $row['q_totalcost'] . "</td>";  
 
-                            echo "<td>";
-                            echo "<div class='btn-group'>";
-                            echo "<a href='customercancelCONS.php?id=" . $row['q_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a> ";
-                            echo "<a href='customereditQuotationCONS.php?id=" . $row['q_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
-                            echo "</div>";                            
-                            //echo "<a href='Quotation.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-file-alt'></i> Quotation</a> ";
-                            //echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-file-invoice'></i> Invoice</a> ";
+                            echo "<td style='text-align: center;'>";
+                                echo "<a href='customercancelQuotationCONS.php?id=" . $row['q_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a>&nbsp ";
+                                echo "<a href='customereditQuotationCONS.php?id=" . $row['q_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";                     
+                                //echo "<a href='Quotation.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-file-alt'></i> Quotation</a> ";
+                                //echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-file-invoice'></i> Invoice</a> ";
                             echo "</td>";
 
                             echo "</tr>";
