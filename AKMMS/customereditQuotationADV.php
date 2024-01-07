@@ -121,7 +121,7 @@ include('headerNav.php');
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
                                     <button type="reset" class="btn btn-dark mx-2">Reset</button>
-                                    <a class="btn btn-danger" href="customerorderADV.php">Cancel</a>
+                                    <a class="btn btn-danger" href="customerQuotationADV.php">Cancel</a>
                                 </div>
                             </form>
                         </div>

@@ -90,6 +90,13 @@ $result = mysqli_query($con, $sql);
 function confirmDelete() {
     return confirm("Are you sure you want to delete?");
 }
+
+    // JavaScript function to search items
+    function searchItems() {
+        var searchInput = document.getElementById('searchInput').value;
+        // Redirect to browseitem.php with search query as a parameter
+        window.location.href = 'browseitem.php?search=' + searchInput;
+    }
 </script>
 
 
