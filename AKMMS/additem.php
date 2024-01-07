@@ -33,25 +33,17 @@
                                 </select>
                                 </div>
                                 
-                                <h6>Item Height</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Tinggi (cm)" name="iheight" required></div>
-                                
-                                <h6>Item Width</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Lebar (cm)" name="iwidth" required></div>
-                                
-                                <h6>Item Depth</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Kedalaman (cm)" name="idepth" required></div>
-                                
-                                <h6>Item Length</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Panjang (cm)" name="ilength" required></div>
-                                
-                                <h6>Item Weight</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Berat (kg)" name="iweight" required></div>
-                                
-                                <h6>Item Material</h6>
+                                <h6>Item Type</h6>
                                 <div class="mb-3">
                                 <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Jenis barang" name="imaterial" required>
                                     <option disabled selected>-Sila Pilih-</option>
+                                    <option>I- PENDAWAIAN</option>
+                                    <option>II- PAPAN AGIHAN, PEMUTUS LITAR DAN PERALATAN PERLINDUNGAN</option>
+                                    <option>III- ALAT-ALAT LENGKAP PENDAWAIAN ELEKTRIK</option>
+                                    <option>IV- LENGKAPAN PENCAHAYAAN, LAMPU, KOMPONEN-KOMPONEN LAMPU DAN KIPAS</option>
+                                    <option>V- PEMASANGAN LUAR - LAMPU JALAN, LAMPU ISYARAT, DAN LAMPU KAWASAN</option>
+                                    <option>VI- KABEL BAWAH TANAH DAN AKSESORI</option>
+                                    <option>VII - PELBAGAI</option>
                                     <option>Kayu</option>
                                     <option>Besi</option>
                                     <option>Plastik</option>

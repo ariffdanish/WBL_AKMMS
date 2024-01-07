@@ -8,6 +8,8 @@ include('dbconnect.php');
 $icode = $_POST['icode'];
 $iname = $_POST['iname'];
 $idesc = $_POST['idesc'];
+$icategory = $_POST['icategory'];
+$imaterial = $_POST['imaterial'];
 $iquantity = $_POST['iquantity'];
 $iprice = $_POST['iprice'];
 
@@ -38,13 +40,13 @@ $totalquantity = $updquantity + $iquantity;
 
 // CRUD: Update Current Item
 $sql = "UPDATE tb_item
-        SET i_Name = ?, i_Desc = ?, i_Quantity = ?, i_Price = ?
+        SET i_Name = ?, i_Desc = ?, i_Category = ?, i_Material = ?, i_Quantity = ?, i_Price = ?
         WHERE i_Code = ?";
 
 $stmt = mysqli_prepare($con, $sql);
 
 // Bind parameters
-mysqli_stmt_bind_param($stmt, "ssids", $iname, $idesc, $totalquantity, $iprice, $icode);
+mysqli_stmt_bind_param($stmt, "ssssids", $iname, $idesc, $icategory, $imaterial, $totalquantity, $iprice, $icode);
 
 // Execute statement
 mysqli_stmt_execute($stmt);
@@ -62,6 +64,8 @@ header('Location:browseitem.php');
     <h5>Code: <?php echo $icode; ?></h5>
     <h5>Name: <?php echo $iname; ?></h5>
     <h5>Description: <?php echo $idesc; ?></h5>
+    <h5>Item Category: <?php echo $icategory; ?></h5>
+    <h5>Item Material: <?php echo $imaterial; ?></h5>
     <h5>New Quantity: <?php echo $totalquantity; ?></h5>
     <h5>New Price: <?php echo $iprice; ?></h5>
     <h5>Status: Complete</h5>

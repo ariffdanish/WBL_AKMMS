@@ -59,26 +59,6 @@ mysqli_close($con);
                 <td><?php echo $itemDetails['i_Category']; ?></td>
             </tr>
             <tr>
-                <th>Item Height (cm)</th>
-                <td><?php echo $itemDetails['i_Height']; ?></td>
-            </tr>
-            <tr>
-                <th>Item Width (cm)</th>
-                <td><?php echo $itemDetails['i_Width']; ?></td>
-            </tr>
-            <tr>
-                <th>Item Depth (cm)</th>
-                <td><?php echo $itemDetails['i_Depth']; ?></td>
-            </tr>
-            <tr>
-                <th>Item Length (cm)</th>
-                <td><?php echo $itemDetails['i_Length']; ?></td>
-            </tr>
-            <tr>
-                <th>Item Weight (kg)</th>
-                <td><?php echo $itemDetails['i_Weight']; ?></td>
-            </tr>
-            <tr>
                 <th>Item Material</th>
                 <td><?php echo $itemDetails['i_Material']; ?></td>
             </tr>

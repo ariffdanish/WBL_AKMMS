@@ -23,7 +23,7 @@ $result = mysqli_query($con, $sql);
         <h3 class="text-dark mb-0 bold-and-centered">Customer Order Details (Advertisement)</h3>
         <div class="d-flex">
             <a class="btn btn-primary mr-4" href="customerorderformADV.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
-            <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i> Quotation</a>
+            <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
         </div>
     </div>
 

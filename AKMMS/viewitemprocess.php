@@ -23,11 +23,6 @@
                     echo "<p><strong>Name :</strong> " . $row['i_Name'] . "</p>";
                     echo "<p><strong>Description :</strong> " . $row['i_Desc'] . "</p>";
                     echo "<p><strong>Category :</strong> " . $row['i_Category'] . "</p>";
-                    echo "<p><strong>Height :</strong> " . number_format($row['i_Height'], 2) . " cm</p>";
-                    echo "<p><strong>Width :</strong> " . number_format($row['i_Width'], 2) . " cm</p>";
-                    echo "<p><strong>Depth :</strong> " . number_format($row['i_Depth'], 2) . " cm</p>";
-                    echo "<p><strong>Length :</strong> " . number_format($row['i_Length'], 2) . " cm</p>";
-                    echo "<p><strong>Weight :</strong> " . number_format($row['i_Weight'], 2) . " kg</p>";
                     echo "<p><strong>Material :</strong> " . $row['i_Material'] . "</p>";
                     echo "<p><strong>Quantity :</strong> " . $row['i_Quantity'] . "</p>";
                     echo "<p><strong>Price :</strong> RM" . number_format($row['i_Price'], 2) . " per unit</p>";
