@@ -72,8 +72,6 @@ $result = mysqli_query($con, $sql);
 function confirmDelete() {
     return confirm("Are you sure you want to delete?");
 }
-<<<<<<< Updated upstream
-=======
 
 function loadOrders() {
     var customerId = document.getElementById("Ord_cid").value;
@@ -98,7 +96,6 @@ function printDocument(targetFile, Ord_cid) {
             printWindow.print();
         };
     }
->>>>>>> Stashed changes
 </script>
 
 

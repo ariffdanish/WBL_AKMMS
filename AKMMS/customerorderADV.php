@@ -53,12 +53,7 @@ $result = mysqli_query($con, $sql);
                           echo"<td>".$row['c_name']. "</td>";
                           echo"<td>".$row['Ord_name']. "</td>";
                           echo"<td>".$row['Ord_date']. "</td>";
-<<<<<<< Updated upstream
-                          echo"<td>".$row['Ord_date']. "</td>";
-                          echo "<td style='text-align: center;'>";
-=======
                           echo "<td style='text-align: initial;'>";
->>>>>>> Stashed changes
                             echo "<a href='customercancelADV.php?id=".$row['Ord_id']. "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
                             echo "<a href='customereditADV.php?id=".$row['Ord_id']. "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                             echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Quotation.php\', ' . $row['Ord_cid'] . ')">Quotation</button></a>';
