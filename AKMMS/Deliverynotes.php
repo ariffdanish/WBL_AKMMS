@@ -1,6 +1,7 @@
 <?php
 // Include your database connection file
 include 'dbconnect.php';
+$ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -124,7 +125,7 @@ include 'dbconnect.php';
         <div class="details-container">
             <div class="customer-address">
                 <?php
-                $query = "SELECT DISTINCT c_address FROM tb_customer";
+                $query = "SELECT DISTINCT c_address FROM tb_customer WHERE c_id = $ordId";
                 $result = mysqli_query($con, $query);
 
                 if ($result && mysqli_num_rows($result) > 0) {
@@ -141,7 +142,7 @@ include 'dbconnect.php';
 
             <div class="invoice-details">
                 <?php
-               $query = "SELECT Ord_id, Ord_date FROM tb_order ORDER BY Ord_id DESC LIMIT 1";
+               $query = "SELECT Ord_id, Ord_date FROM tb_order WHERE Ord_id = $ordId ORDER BY Ord_id DESC LIMIT 1";
                $result = mysqli_query($con, $query);
                
                if ($result && mysqli_num_rows($result) > 0) {
@@ -176,7 +177,7 @@ include 'dbconnect.php';
             // Use the existing connection from your connection file
             $query = "SELECT o.Ord_name, q.q_quantity 
           FROM tb_order o
-          JOIN tb_quotation q ON o.Ord_id = q.q_ordID";
+          JOIN tb_quotation q ON o.Ord_id = q.q_ordID WHERE Ord_id = $ordId";
 
 $result = mysqli_query($con, $query);
 
