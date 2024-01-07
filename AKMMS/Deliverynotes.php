@@ -97,6 +97,7 @@ include 'dbconnect.php';
         .text-right {
             text-align: right;
         }
+        
     </style>
 </head>
 
@@ -140,15 +141,15 @@ include 'dbconnect.php';
 
             <div class="invoice-details">
                 <?php
-                $query = "SELECT Ord_id, DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS formatted_date FROM tb_order ORDER BY Ord_id DESC LIMIT 1";
-                $result = mysqli_query($con, $query);
+               $query = "SELECT Ord_id, Ord_date FROM tb_order ORDER BY Ord_id DESC LIMIT 1";
+               $result = mysqli_query($con, $query);
+               
+               if ($result && mysqli_num_rows($result) > 0) {
+                   $row = mysqli_fetch_assoc($result);
+                   $invoice_number = $row['Ord_id'];
+                   $invoice_date = $row['Ord_date'];
 
-                if ($result && mysqli_num_rows($result) > 0) {
-                    $row = mysqli_fetch_assoc($result);
-                    $invoice_number = $row['Ord_id'];
-                    $invoice_date = $row['formatted_date'];
-
-                    echo "Invoice N°: $invoice_number<br />";
+                    echo "Order N°: $invoice_number<br />";
                     echo "Date: $invoice_date";
                 } else {
                     echo "No invoice data available";
@@ -164,7 +165,7 @@ include 'dbconnect.php';
         <table border='1' cellspacing='0'>
         <tr>
                 <th width=250>Description</th>
-                <th width=80>Amount</th>
+                <th class='text-right' width=320>Amount</th>
                 
             </tr>
 
@@ -173,21 +174,35 @@ include 'dbconnect.php';
     
 
             // Use the existing connection from your connection file
-            $query = "SELECT Ord_name, Ord_itemName, Ord_itemQuantity, Ord_itemPrice FROM tb_order";
-            $result = mysqli_query($con, $query);
+            $query = "SELECT o.Ord_name, q.q_quantity 
+          FROM tb_order o
+          JOIN tb_quotation q ON o.Ord_id = q.q_ordID";
 
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $description = $row['Ord_name'] . " - " . $row['Ord_itemName'];
-                    $amount = $row['Ord_itemQuantity'];
-                    
-                    echo("<tr>");
-                    echo("<td>$description</td>");
-                    echo("<td class='text-center'>$amount</td>");
-                    
-                    echo("</tr>");
-                }
-            }
+$result = mysqli_query($con, $query);
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $total = 0; // Initialize total outside the while loop
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $description = $row['Ord_name'];
+        $amount = $row['q_quantity'];
+        $total_price = number_format($amount, 2); // Format the amount
+
+        $total += $amount; // Accumulate the total without formatting
+
+        echo("<tr>");
+        echo("<td class='text-left'>$description</td>");
+        echo("<td class='text-right'>$amount</td>");
+        echo("</tr>");
+    }
+
+    // Display the grand total row outside the while loop
+    echo("<tr>");
+    echo("<td colspan='3' class='text-right'><b>GRAND TOTAL</b></td>");
+    echo("<td class='text-right'><b>" . number_format($total) . "</b></td>");
+    echo("</tr>");
+}
+            
 
        
 
