@@ -20,7 +20,7 @@ $result = mysqli_query($con, $sql);
         <h3 class="text-dark mb-0 bold-and-centered">Customer Order Details (Advertisement)</h3>
         <div class="d-flex">
             <a class="btn btn-primary mr-4" href="customerorderformADV.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
-            <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i> Quotation</a>
+            <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
         </div>
     </div>
 
@@ -49,7 +49,7 @@ $result = mysqli_query($con, $sql);
                           echo"<td>".$row['Ord_date']. "</td>";
                           echo"<td>".$row['Ord_date']. "</td>";
                           echo "<td style='text-align: center;'>";
-                            echo "<a href='customercancelADV.php?id=".$row['Ord_id']. "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
+                            //echo "<a href='customercancelADV.php?id=".$row['Ord_id']. "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
                             echo "<a href='customereditADV.php?id=".$row['Ord_id']. "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                           echo "</td>";
                           echo "</tr>";

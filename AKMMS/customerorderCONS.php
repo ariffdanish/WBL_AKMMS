@@ -50,7 +50,7 @@ $result = mysqli_query($con, $sql);
                             echo "<td>" . $row['Ord_date'] . "</td>"; 
                             echo "<td>" . $row['Ord_date'] . "</td>"; 
                             echo "<td style='text-align: center;'>";
-                            echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
+                            //echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
                             echo "<a href='customereditCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i> </a>";
                             // echo "<a href='customerQuotationADV.php?ord_id={$row['Ord_id']}' class='btn btn-primary mr-2'><i class='fas fa-file-alt'></i> Quotation</a>";
                             // echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary mr-2'><i class='fas fa-file-invoice'></i> Invoice</a>";
