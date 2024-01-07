@@ -148,7 +148,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
 
                 if ($resultInvoiceDetails && mysqli_num_rows($resultInvoiceDetails) > 0) {
                     $row = mysqli_fetch_assoc($resultInvoiceDetails);
-                    $invoice_number = $row['Ord_cid'];
+                    $invoice_number = $row['Ord_id'];
                     $invoice_date = $row['formatted_date'];
 
                     echo "Invoice N°: $invoice_number<br />";
@@ -168,8 +168,8 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
         <tr>
                 <th width=250>Description</th>
                 <th width=80>Amount</th>
-                <th width=100>Unit price</th>
-                <th width=100>Total price</th>
+                <th class='text-right'width=100>Unit price</th>
+                <th class='text-right'width=100>Total price</th>
             </tr>
 
             <?php
@@ -177,15 +177,18 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             $vat = 0.06;
 
             // Use the existing connection from your connection file
-            $queryItems = "SELECT q_itemDesc, q_quantity, q_price FROM tb_quotation WHERE q_ordID = $ordId";
+            $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price 
+               FROM tb_quotation q
+               JOIN tb_order o ON q.q_ordID = o.Ord_id
+               WHERE o.Ord_cid = $ordId";
             $resultItems = mysqli_query($con, $queryItems);
 
             if ($resultItems && mysqli_num_rows($resultItems) > 0) {
                 while ($row = mysqli_fetch_assoc($resultItems)) {
                     $description = $row['q_itemDesc'];
                     $amount = $row['q_quantity'];
-                    $unit_price = number_format($row['q_price'], 2);
-                    $total_price = number_format($amount * $unit_price, 2);
+                    $unit_price = ($row['q_price']);
+                    $total_price = ($amount * $unit_price);
                     $total += $total_price;
                     echo("<tr>");
                     echo("<td>$description</td>");
