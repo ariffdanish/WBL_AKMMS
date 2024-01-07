@@ -1,11 +1,8 @@
 <?php
 include('mysession.php');
-
-// Start session if not already started
 if (!session_id()) {
     session_start();
 }
-
 include('headerNav.php');
 include('dbconnect.php');
 ?>
@@ -64,7 +61,8 @@ include('dbconnect.php');
                                     <label for="orderType" class="col-sm-3 col-form-label">Order Type:</label>
                                     <div class="col-sm-9">
                                         <?php
-                                        $sql = "SELECT * FROM tb_ordertype";
+                                        $sql = "SELECT * FROM tb_ordertype
+                                                WHERE tb_ordertype.OT_id='1'";
                                         $result = mysqli_query($con, $sql);
 
                                         echo '<select id="Ord_type" name="Ord_type" class="form-control" required>';

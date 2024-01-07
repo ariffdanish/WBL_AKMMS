@@ -142,19 +142,19 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
 
             <div class="invoice-details">
                 <?php
-               $query = "SELECT Ord_id, Ord_date FROM tb_order WHERE Ord_id = $ordId ORDER BY Ord_id DESC LIMIT 1";
-               $result = mysqli_query($con, $query);
-               
-               if ($result && mysqli_num_rows($result) > 0) {
-                   $row = mysqli_fetch_assoc($result);
-                   $invoice_number = $row['Ord_id'];
-                   $invoice_date = $row['Ord_date'];
+               $queryInvoiceDetails = "SELECT Ord_id, DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS formatted_date FROM tb_order WHERE Ord_cid = $ordId ORDER BY Ord_id DESC LIMIT 1";
+               $resultInvoiceDetails = mysqli_query($con, $queryInvoiceDetails);
 
-                    echo "Order N°: $invoice_number<br />";
-                    echo "Date: $invoice_date";
-                } else {
-                    echo "No invoice data available";
-                }
+               if ($resultInvoiceDetails && mysqli_num_rows($resultInvoiceDetails) > 0) {
+                   $row = mysqli_fetch_assoc($resultInvoiceDetails);
+                   $invoice_number = $row['Ord_id'];
+                   $invoice_date = $row['formatted_date'];
+
+                   echo "Order N°: $invoice_number<br />";
+                   echo "Date: $invoice_date";
+               } else {
+                   echo "No invoice data available";
+               }
                 ?>
             </div>
         </div>
@@ -176,8 +176,10 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
 
             // Use the existing connection from your connection file
             $query = "SELECT o.Ord_name, q.q_quantity 
-          FROM tb_order o
-          JOIN tb_quotation q ON o.Ord_id = q.q_ordID WHERE Ord_id = $ordId";
+            FROM tb_order o
+            JOIN tb_quotation q ON o.Ord_id = q.q_ordID 
+            WHERE o.Ord_cid = $ordId";
+  
 
 $result = mysqli_query($con, $query);
 

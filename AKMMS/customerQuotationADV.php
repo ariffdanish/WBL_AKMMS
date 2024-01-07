@@ -10,7 +10,7 @@ include('headerNav.php');
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
         <h3 class="text-dark mb-0 bold-and-centered">Customer Order Details</h3>
-        <a class="btn btn-primary" type="add" href="customerQuotationformADV.php"><i class="fas fa-plus"></i> Add Quotation</a>
+        <a class="btn btn-primary" type="add" href="customerQuotationformADV.php"><i class="fas fa-plus"></i> Add Item</a>
     </div>
 
 
@@ -21,7 +21,8 @@ include('headerNav.php');
                 <label for="ctype" class="col-sm-3 col-form-label">Select Order:</label>
                 <div class="col-sm-6">
                     <?php
-                    $sql = "SELECT * FROM tb_order";
+                    $sql = "SELECT * FROM tb_order
+                            WHERE tb_order.Ord_type = '1'";
                     $result = mysqli_query($con, $sql);
 
                     echo '<form method="post" action="">';
@@ -74,7 +75,7 @@ include('headerNav.php');
                                 echo "<td>" . $row['q_tax'] . "</td>";
                                 echo "<td>" . $row['q_totalcost'] . "</td>";
 
-                                echo "<td>";
+                                echo "<td style='text-align: center;'>";
                                 echo "<a href='customercancelQuotationADV.php?id=" . $row['q_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a>&nbsp ";
                                 echo "<a href='customereditQuotationADV.php?id=" . $row['q_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                                 echo "</td>";
@@ -88,7 +89,8 @@ include('headerNav.php');
                 </table>
             </div>
         </div>
-    </div>
+    </div><br>
+    <a class="btn btn-danger" href="customerorderADV.php">Back</a>
 </div>
 
 <script>

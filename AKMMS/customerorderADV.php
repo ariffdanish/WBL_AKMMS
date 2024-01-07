@@ -1,5 +1,4 @@
 <?php
-
   include ('mysession.php');
   if(!session_id())
   {
@@ -14,6 +13,7 @@ $sql = "SELECT * FROM tb_order
         WHERE tb_order.Ord_type = '1'";
 
 $result = mysqli_query($con, $sql);
+
 
 
 ?>
@@ -36,6 +36,7 @@ $result = mysqli_query($con, $sql);
                         <th scope="col">Customer Name</th>
                         <th scope="col">Order</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Payment</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -49,14 +50,21 @@ $result = mysqli_query($con, $sql);
                           echo"<td>".$row['c_name']. "</td>";
                           echo"<td>".$row['Ord_name']. "</td>";
                           echo"<td>".$row['Ord_date']. "</td>";
-                          echo "<td style='text-align: center;'>";
-                            echo "<a href='customercancelADV.php?id=".$row['Ord_id']. "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
+                          echo "<td style='text-align: initial;'>";
+                           // echo "<a href='customercancelADV.php?id=".$row['Ord_id']. "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
                             echo "<a href='customereditADV.php?id=".$row['Ord_id']. "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
-                          echo "</td>";
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Quotation.php\', ' . $row['Ord_cid'] . ')">Quotation</button></a>';
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Invoice.php\', ' . $row['Ord_cid'] . ')">Invoice</button></a>';
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Deliverynotes.php\', ' . $row['Ord_cid'] . ')">Delivery Notes</button></a>';
+
+
+                            
+                            echo "</td>";
                           echo "</tr>";
                           $count++;
                         }
                         ?>
+                        
                 </tbody>
             </table>
         </div>
@@ -67,6 +75,16 @@ $result = mysqli_query($con, $sql);
     function confirmDelete() {
         return confirm("Are you sure you want to delete?");
     }
+    function printDocument(targetFile, Ord_cid) {
+        // You can include other necessary parameters here
+        var targetUrl = targetFile + '?Ord_cid=' + Ord_cid;
+        var printWindow = window.open(targetUrl, '_blank');
+
+        printWindow.onload = function() {
+            printWindow.print();
+        };
+    }
 </script>
+
 
 <?php include 'footer.php'; ?>

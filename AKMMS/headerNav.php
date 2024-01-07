@@ -41,6 +41,13 @@
                         </a>
                     </div>
                 </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="payment.php">
+                        <i class="fas fa-money-bill"></i>
+                        <span>STATUS & PAYMENT</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="browseitem.php">
                         <i class="fas fa-users"></i>
