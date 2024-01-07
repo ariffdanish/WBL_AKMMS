@@ -147,7 +147,7 @@ include 'dbconnect.php';
 
   if ($result && mysqli_num_rows($result) > 0) {
       while ($row = mysqli_fetch_assoc($result)) {
-          $description = $row['i_Material'];
+          $description = $row['i_Name'];
   
           // Update values for the latest occurrence of the item
           $latestItems[$description] = [
