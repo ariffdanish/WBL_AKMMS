@@ -48,14 +48,20 @@ $result = mysqli_query($con, $sql);
                             echo "<td>" . $row['c_name'] . "</td>";
                             echo "<td>" . $row['Ord_name'] . "</td>";
                             echo "<td>" . $row['Ord_date'] . "</td>"; 
+<<<<<<< Updated upstream
                             echo "<td>" . $row['Ord_date'] . "</td>"; 
                             echo "<td style='text-align: center;'>";
+=======
+
+                            echo "<td style='text-align: initial;'>";
+>>>>>>> Stashed changes
                             echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
                             echo "<a href='customereditCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i> </a>";
-                            // echo "<a href='customerQuotationADV.php?ord_id={$row['Ord_id']}' class='btn btn-primary mr-2'><i class='fas fa-file-alt'></i> Quotation</a>";
-                            // echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary mr-2'><i class='fas fa-file-invoice'></i> Invoice</a>";
+                            
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Quotation.php\', ' . $row['Ord_cid'] . ')">Quotation</button></a>';
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Invoice.php\', ' . $row['Ord_cid'] . ')">Invoice</button></a>';
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Deliverynotes.php\', ' . $row['Ord_cid'] . ')">Delivery Notes</button></a>';
                             echo "</td>";
-        
                             echo "</tr>";
                             $count++;
                         }
@@ -71,6 +77,33 @@ $result = mysqli_query($con, $sql);
 function confirmDelete() {
     return confirm("Are you sure you want to delete?");
 }
+<<<<<<< Updated upstream
+=======
+
+function loadOrders() {
+    var customerId = document.getElementById("Ord_cid").value;
+    var url = "get_orders.php?customerId=" + customerId; // Replace with the actual PHP file to fetch orders
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("orderTableBody").innerHTML = this.responseText;
+        }
+    };
+
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+function printDocument(targetFile, Ord_cid) {
+        // You can include other necessary parameters here
+        var targetUrl = targetFile + '?Ord_cid=' + Ord_cid;
+        var printWindow = window.open(targetUrl, '_blank');
+
+        printWindow.onload = function() {
+            printWindow.print();
+        };
+    }
+>>>>>>> Stashed changes
 </script>
 
 
