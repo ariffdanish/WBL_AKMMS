@@ -4,12 +4,10 @@ if (!session_id()) {
     session_start();
 }
 include('dbconnect.php');
+include 'headerNav.php';
 
 $sql = "SELECT * FROM tb_quotation";
 $result = mysqli_query($con, $sql);
-
-// Display Result
-include 'headerNav.php';
 ?>
 
 <div class="container-fluid">
@@ -72,8 +70,8 @@ include 'headerNav.php';
 
                             echo "<td>";
                             echo "<div class='btn-group'>";
-                            echo "<a href='customercancelQuotationADV.php?id=" . $row['q_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a> ";
-                            echo "<a href='customereditQuotationADV.php?id=" . $row['q_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
+                            echo "<a href='customercancelCONS.php?id=" . $row['q_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a> ";
+                            echo "<a href='customereditQuotationCONS.php?id=" . $row['q_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                             echo "</div>";                            
                             //echo "<a href='Quotation.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-file-alt'></i> Quotation</a> ";
                             //echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary'><i class='fas fa-file-invoice'></i> Invoice</a> ";

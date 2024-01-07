@@ -18,8 +18,8 @@ $result = mysqli_query($con, $sql);
 <div class="d-sm-flex justify-content-between align-items-center mb-4">
     <h3 class="text-dark mb-0 bold-and-centered">Customer Order Details (Construction)</h3>
     <div class="d-flex">
-    <a class="btn btn-primary mr-4" type="add" href="customerorderformCONS.php"><i class="fas fa-plus"></i> Add Order</a>
-    <a class="btn btn-primary" type="add" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
+    <a class="btn btn-primary mr-4" type="add" href="customerorderformCONS.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
+    <a class="btn btn-primary" type="add" href="customerQuotationCONS.php"><i class="fas fa"></i>Quotation</a>
     </div>
 </div>
 
@@ -48,12 +48,10 @@ $result = mysqli_query($con, $sql);
                             echo "<td>" . $row['Ord_date'] . "</td>"; 
 
                             echo "<td style='text-align: center;'>";
-                            echo "<div>";
-                            echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>";
+                            echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
                             echo "<a href='customereditCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i> </a>";
                             // echo "<a href='customerQuotationADV.php?ord_id={$row['Ord_id']}' class='btn btn-primary mr-2'><i class='fas fa-file-alt'></i> Quotation</a>";
                             // echo "<a href='Invoice.php?ord_id={$row['Ord_id']}' class='btn btn-primary mr-2'><i class='fas fa-file-invoice'></i> Invoice</a>";
-                            echo "</div>";
                             echo "</td>";
         
                             echo "</tr>";
@@ -64,8 +62,6 @@ $result = mysqli_query($con, $sql);
                 </table>
             </div>
         </div>
-
-        <br><a class="btn btn-primary" type="add" href="customerdetails.php"><i class="fas fa-arrow"></i>Back</a>
     </div>
 </div>
 

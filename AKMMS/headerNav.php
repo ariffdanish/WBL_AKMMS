@@ -31,8 +31,14 @@
                         <span>LIST OF ORDER</span>
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                        <a class="dropdown-item" href="customerorderADV.php">Advertising</a>
-                        <a class="dropdown-item" href="customerorderCONS.php">Construction</a>
+                        <a class="nav-link dropdown-toggle" href="customerorderADV.php">
+                            <i class="fas fa-bullhorn"></i> <!-- Symbol for Advertising -->
+                            Advertising
+                        </a>
+                        <a class="nav-link dropdown-toggle" href="customerorderCONS.php">
+                            <i class="fas fa-hard-hat"></i> <!-- Symbol for Construction -->
+                            Construction
+                        </a>
                     </div>
                 </li>
                 <li class="nav-item">
