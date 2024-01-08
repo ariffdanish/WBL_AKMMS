@@ -76,7 +76,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
             <div class="fw-bold">
                 <div class="text-gray-600 small">' . $row['inb_timestamp'] . '</div>
-                <span class="text-gray-900">' . $row['inb_decs'] . '</span>
+                <span class="text-white-900">' . $row['inb_decs'] . '</span>
             </div>
         </a>';
 }

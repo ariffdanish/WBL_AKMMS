@@ -100,8 +100,8 @@ if ($results) {
                 Report
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#" onclick="printDocument1('inventoryreport.php')">Inventory Report</a>
-                <a class="dropdown-item" href="#" onclick="printDocument2('salesreport.php')">Sales Report</a>
+                <a class="dropdown-item text-black" href="#" onclick="printDocument1('inventoryreport.php')">Inventory Report</a>
+                <a class="dropdown-item text-black" href="#" onclick="printDocument2('salesreport.php')">Sales Report</a>
             </div>
         </div>
     </div>
