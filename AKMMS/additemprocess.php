@@ -1,4 +1,9 @@
 <?php
+include ('mysession.php');
+if(!session_id())
+{
+	session_start();
+}
 //connect to DB
 include('dbconnect.php');
 

@@ -1,4 +1,9 @@
 <?php
+include ('mysession.php');
+if(!session_id())
+{
+    session_start();
+}
 // Include your database connection file
 include 'dbconnect.php';
 $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;

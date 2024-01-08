@@ -1,4 +1,10 @@
-<?php include 'headerNav.php'; ?>
+<?php 
+include ('mysession.php');
+if(!session_id())
+{
+    session_start();
+}
+include 'headerNav.php'; ?>
 
 <div class="container-fluid">
     <h3 class="text-dark mb-4">View Item Details</h3>

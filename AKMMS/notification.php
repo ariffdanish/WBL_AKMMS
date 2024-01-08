@@ -1,4 +1,9 @@
 <?php
+include ('mysession.php');
+if(!session_id())
+{
+    session_start();
+}
 
 // Replace these with your actual database credentials
 include 'dbconnect.php';

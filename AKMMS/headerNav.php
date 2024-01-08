@@ -80,17 +80,18 @@
                 </button>
 
                 <ul class="navbar-nav flex-nowrap ms-auto">
-                    <li class="nav-item ms-auto">
+                    <!--<li class="nav-item ms-auto">
                         <span class="nav-link font-weight-bold text-dark" style="font-size: 18px;">AK MAJU RESOURCES</span>
-                    </li>
-                    <li class="nav-item">
-                        <span id="clock" class="nav-link text-dark"></span>
-                    </li>
+                    </li>--> 
+
                     <li class="nav-item">
                         <span id="date-gregorian" class="nav-link text-dark"></span>
                     </li>
                     <li class="nav-item">
                         <span id="date-islamic" class="nav-link text-dark"></span>
+                    </li>
+                    <li class="nav-item">
+                        <span id="clock" class="nav-link text-dark"></span>
                     </li>
 
                     <li class="nav-item dropdown d-sm-none no-arrow">
@@ -181,9 +182,9 @@
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow">
                                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                    <img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                                    <img class="border rounded-circle img-profile" src="akmaju.jpeg"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                        <a class="dropdown-item" href="login.php"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                        <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
                             </li>
@@ -198,7 +199,7 @@
 
         // Format the time in 12-hour format with 'am' or 'pm'
         var hours = now.getHours();
-        var ampm = hours >= 12 ? 'pm' : 'am';
+        var ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12;
         hours = hours ? hours : 12; // 12-hour clock, so 0 becomes 12
         var minutes = now.getMinutes();

@@ -15,7 +15,8 @@
     $q_price = $_POST['q_price'];
     $q_discount = $_POST['q_discount'];
     $q_tax = $_POST['q_tax'];
-    $q_totalcost = $_POST['q_totalcost'];
+    
+    $q_totalcost=(($q_quantity*$q_price)-$q_discount-$q_tax);
 
     if (!empty($fbid)) {
         $sql = "UPDATE tb_quotation

@@ -89,12 +89,7 @@ $rowr=mysqli_fetch_array($resultr);
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="tax" class="col-sm-3 col-form-label">Total Cost Inc. Tax (RM):</label>
-                            <div class="col-sm-9">
-                            <?php echo'<input class="form-control" type="number" value="'.$rowr['q_totalcost'].'" id="q_totalcost" name="q_totalcost">';?>
-                            </div>
-                        </div>
+
 
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
