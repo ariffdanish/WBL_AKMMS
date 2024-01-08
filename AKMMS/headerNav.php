@@ -54,7 +54,7 @@
                         <span>INVENTORY AND STOCK</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown no-arrow">
+                <!--<li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user-lock"></i>
                         <span>AUTHENTICATION</span>
@@ -64,9 +64,8 @@
                         <a class="dropdown-item" href="register.php"><span>REGISTER</span></a>
                         <a class="dropdown-item" href="forgotpassword.php"><span>RESET PASSWORD</span></a>
                     </div>
-                </li>
+                </li>--> 
             </ul>
-
             </div>
         </nav>
 
