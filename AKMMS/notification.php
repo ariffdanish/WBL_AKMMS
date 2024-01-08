@@ -9,7 +9,7 @@ function generateItemNotifications($con) {
     $result = $con->query($query);
 
     while ($row = $result->fetch_assoc()) {
-        $notification = "Low stock for item: " . $row['i_Material'];
+        $notification = "Low stock for item: " . $row['i_Name']. "_".$row['i_Code'];
         insertNotification($con, $notification);
         echo "Generated notification: $notification<br>";
     }
@@ -90,6 +90,7 @@ echo '<script>
       </script>';
 
 // Close the database connection
+
 $con->close();
 
 ?>
