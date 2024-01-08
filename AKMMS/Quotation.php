@@ -167,7 +167,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
         <table border='1' cellspacing='0'>
         <tr>
                 <th width=250>Description</th>
-                <th width=80>Amount</th>
+                <th width=80>Quantity</th>
                 <th class='text-right'width=100>Unit price (RM)</th>
                 <th class='text-right'width=100>Total price (RM)</th>
             </tr>
