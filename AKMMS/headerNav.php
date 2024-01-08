@@ -14,7 +14,7 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">
+                    <a class="nav-link" href="dashboard.php">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>DASHBOARD</span>
                     </a>
@@ -60,7 +60,7 @@
                         <span>AUTHENTICATION</span>
                     </a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                        <a class="dropdown-item" href="login.php"><span>LOGIN</span></a>
+                        <a class="dropdown-item" href="index.php"><span>LOGIN</span></a>
                         <a class="dropdown-item" href="register.php"><span>REGISTER</span></a>
                         <a class="dropdown-item" href="forgotpassword.php"><span>RESET PASSWORD</span></a>
                     </div>
@@ -72,31 +72,42 @@
 
 
         <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
-                <nav class="navbar navbar-expand bg-gradient-primary shadow mb-4 topbar static-top navbar-light">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+    <div id="content">
+        <nav class="navbar navbar-expand bg-gradient-primary shadow mb-4 topbar static-top navbar-light">
+            <div class="container-fluid">
+                <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
+                    <i class="fas fa-bars text-dark"></i>
+                </button>
 
-                        <ul class="navbar-nav flex-nowrap ms-auto">
-                        <li class="nav-item ms-auto">
-                            <span class="nav-link font-weight-bold text-black-bold" style="font-size: 18px;">AK MAJU RESOURCES</span>
-                        </li>
-                        <li class="nav-item">
-                            <span id="clock" class="nav-link"></span>
-                        </li>
-                        <li class="nav-item">
-                            <span id="date-gregorian" class="nav-link"></span>
-                        </li>
-                        <li class="nav-item">
-                            <span id="date-islamic" class="nav-link"></span>
-                        </li>
+                <ul class="navbar-nav flex-nowrap ms-auto">
+                    <li class="nav-item ms-auto">
+                        <span class="nav-link font-weight-bold text-dark" style="font-size: 18px;">AK MAJU RESOURCES</span>
+                    </li>
+                    <li class="nav-item">
+                        <span id="clock" class="nav-link text-dark"></span>
+                    </li>
+                    <li class="nav-item">
+                        <span id="date-gregorian" class="nav-link text-dark"></span>
+                    </li>
+                    <li class="nav-item">
+                        <span id="date-islamic" class="nav-link text-dark"></span>
+                    </li>
 
-                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="me-auto navbar-search w-100">
-                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                                        </div>
-                                    </form>
+                    <li class="nav-item dropdown d-sm-none no-arrow">
+                        <a class="dropdown-toggle nav-link text-dark" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                            <i class="fas fa-search text-dark"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                            <form class="me-auto navbar-search w-100">
+                                <div class="input-group">
+                                    <input class="bg-light form-control border-0 small text-dark" type="text" placeholder="Search for ...">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary py-0" type="button">
+                                            <i class="fas fa-search text-dark"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                                 </div>
                             </li>
 
@@ -114,31 +125,32 @@
             // Replace these with your actual database credentials
             include 'dbconnect.php';
 
-            // Display all notifications from tb_inbox
-            $query = "SELECT * FROM tb_inbox ORDER BY inb_timestamp DESC LIMIT 5";
-$result = $con->query($query);
+                            // Display all notifications from tb_inbox
+                $query = "SELECT * FROM tb_inbox ORDER BY inb_timestamp DESC LIMIT 5";
+                $result = $con->query($query);
 
-echo '<div id="notificationList">';
+                echo '<div id="notificationList">';
 
-while ($row = $result->fetch_assoc()) {
-    echo '<a class="dropdown-item d-flex align-items-center" href="#">
-            <div class="dropdown-list-image me-3">
-                <!-- Add an image/icon if needed -->
-            </div>
-            <div class="fw-bold">
-                <div class="text-gray-600 small">' . $row['inb_timestamp'] . '</div>
-                <span class="text-gray-900">' . $row['inb_decs'] . '</span>
-            </div>
-        </a>';
-}
+                while ($row = $result->fetch_assoc()) {
+                    echo '<a class="dropdown-item d-flex align-items-center" href="#">
+                            <div class="dropdown-list-image me-3">
+                                <!-- Add an image/icon if needed -->
+                            </div>
+                            <div class="fw-bold">
+                                <div class="text-gray-600 small">' . $row['inb_timestamp'] . '</div>
+                                <span class="text-gray-900">' . $row['inb_decs'] . '</span>
+                            </div>
+                        </a>';
+                }
 
-echo '</div>';
+                echo '</div>';
 
             ?>
 
             <a class="dropdown-item text-center small text-gray-500" href="notification.php">Show All Notifications</a>
         </div>
     </div>
+    
     <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
 </li>
 

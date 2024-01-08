@@ -58,6 +58,7 @@ include('dbconnect.php');
                         <div class="mb-3 d-flex justify-content-center gap-2">
                             <button type="submit" class="btn btn-primary" onclick="return confirmSubmit()">Submit</button>
                             <button type="reset" class="btn btn-dark mx-2">Reset</button>
+                            <a class="btn btn-danger" href="customerdetails.php">Cancel</a>
                         </div>
                     </form>
                 </div>

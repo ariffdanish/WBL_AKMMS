@@ -32,18 +32,18 @@ if($count==1)
 	//user available
 	if($row['e_role']=='Admin')  //Admin
 	{
-		header('Location:index.php');
+		header('Location:dashboard.php');
 	}
 	else
 	{
-		header('Location:index.php');
+		header('Location:dashboard.php');
 	}
 }
 else
 {
 	//User not available/exist
 	//Add script to let user know either username or password wrong
-	header('Location:login.php');
+	header('Location:index.php');
 }
 
 //CLOSE DB Connection

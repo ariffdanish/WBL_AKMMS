@@ -57,13 +57,13 @@
     color: #333;
     text-decoration: none;
     display: block;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.1s ease;
 }
 
     /* Dropdown Styles */
     .dropdown-menu {
         background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
-        animation: fadeInDown 0.5s ease;
+        animation: fadeInDown 0.2s ease;
         color: white; /* Set the font color to white */
     }
 
