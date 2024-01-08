@@ -89,7 +89,34 @@ if ($results) {
 }
 ?>
 
+<style>
+        
 
+        .payment-list {
+            width: 385px;
+            height: 200px;
+            overflow-y: auto;
+            margin: 20px;
+            border: 1px solid #D3D3D3;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse #000000;
+        }
+
+        th, td {
+            border: 1px  #000000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 
 
 <div class="container-fluid">
@@ -174,63 +201,46 @@ if ($results) {
             </div>
         </div>
 
-        <!-- User Goals -->
-        <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card shadow border-start-primary py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>User Goals</span>
+        
+        <div class="payment-list">
+            
+        <div class="text-uppercase text-primary fw-bold text-xs mb-1">
+                                <h4><b>Pending Payments</b></h4>
                             </div>
-                            <!-- Goals List -->
-                            <ul class="list-group" id="userGoalsList">
-                                <!-- Example Goal (You can loop through user goals here) -->
-                                <li class="list-group-item d-flex justify-content-between align-items-center" id="goal1">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="goalCheckbox1" onchange="toggleGoal('goal1')">
-                                        <label class="form-check-label" for="goalCheckbox1">Example Goal 1</label>
-                                    </div>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteGoal('goal1')"><i class="fas fa-trash"></i></button>
-                                </li>
-                                <!-- Add more goal items here -->
-                            </ul>
+   
+    <table>
+        <thead>
+            <tr>
+                
+                <th><b>Order ID</b></th>
+                <th><b>Customer Name</b></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+            // Assuming you have a database connection established
+            
 
-                            <!-- Add New Goal Form -->
-                            <form class="mt-3">
-    <div class="input-group">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGoalsModal">
-            Add New Goals
-        </button>
-    </div>
-</form>
+            $queryPendingPayments = "SELECT o.Ord_id, c.c_name
+                                    FROM tb_order o
+                                    LEFT JOIN tb_customer c ON o.Ord_cid = c.c_id
+                                    WHERE o.Ord_id NOT IN (SELECT p_ordID FROM tb_payment)";
+            $resultPendingPayments = mysqli_query($con, $queryPendingPayments);
 
-                        </div>
-                       
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="addGoalsModal" tabindex="-1" aria-labelledby="addGoalsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addGoalsModalLabel">Add New Goals</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form onsubmit="addGoal(); return false;">
-                    <div class="mb-3">
-                        <label for="newGoalInput" class="form-label">New Goal</label>
-                        <input type="text" class="form-control" id="newGoalInput" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Goal</button>
-                </form>
-            </div>
-        </div>
-    </div>
+            if ($resultPendingPayments) {
+                while ($row = mysqli_fetch_assoc($resultPendingPayments)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['Ord_id'] . "</td>";
+                    echo "<td>" . $row['c_name'] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='2'>Error fetching pending payments</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
 </div>
-
 
     <!-- Charts -->
     <div class="row">
