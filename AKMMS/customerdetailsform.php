@@ -1,14 +1,10 @@
 <?php
 include('mysession.php');
-
-// Start session if not already started
 if (!session_id()) {
     session_start();
 }
-
 include('headerNav.php');
 include('dbconnect.php');
-
 ?>
 
 <div class="container">
