@@ -57,7 +57,7 @@ for ($i = 1; $i <= 12; $i++) {
 
 $querys = "SELECT Ord_itemMaterial, COUNT(*) as usageCount
           FROM tb_order o
-          JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name
+          JOIN tb_item i ON o.Ord_itemMaterial = i.i_Code
           WHERE YEAR(o.Ord_date) = $currentYear
           GROUP BY Ord_itemMaterial
           ORDER BY usageCount DESC
