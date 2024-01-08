@@ -72,7 +72,7 @@
         </tr>
 
     </table>
-    <a class="btn btn-danger" href="customerQuotationADV.php">Back</a>
+    <a class="btn btn-danger" href="customerQuotationCONS.php">Back</a>
 </div>
 
 

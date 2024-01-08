@@ -64,7 +64,7 @@ include('headerNav.php');
                                 echo "<td>" . $row['p_amount'] . "</td>";
                                 echo "<td>" . $row['p_date'] . "</td>";
                                 echo "<td style='text-align: center;'>";
-                                echo "<a href='customereditCONS.php?id=" . $row['p_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i> </a>";
+                                echo "<a href='paymentedit.php?id=" . $row['p_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i> </a>";
                                 echo "</td>";
                                 echo "</tr>";
                                 $count++;

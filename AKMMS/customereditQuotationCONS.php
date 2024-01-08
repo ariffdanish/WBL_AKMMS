@@ -32,7 +32,7 @@ $rowr=mysqli_fetch_array($resultr);
                         </div>
 
                         <div class="card-body">
-                        <form method="POST" action="customereditQuotationADVprocess.php" class="user">
+                        <form method="POST" action="customereditQuotationCONSprocess.php" class="user">
                         <?php echo'<input type="hidden" value="'.$rowr['q_id'].'" name="fbid">';?>
 
                         <div class="row mb-3">
@@ -99,7 +99,7 @@ $rowr=mysqli_fetch_array($resultr);
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
                                     <button type="reset" class="btn btn-dark mx-2">Reset</button>
-                                    <a class="btn btn-danger" href="customerQuotationADV.php">Cancel</a>
+                                    <a class="btn btn-danger" href="customerQuotationCONS.php">Cancel</a>
                                 </div>
                             </form>
                         </div>
