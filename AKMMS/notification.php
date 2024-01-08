@@ -11,7 +11,7 @@ function generateItemNotifications($con) {
     while ($row = $result->fetch_assoc()) {
         $notification = "Low stock for item: " . $row['i_Name']. "_".$row['i_Code'];
         insertNotification($con, $notification);
-        echo "Generated notification: $notification<br>";
+        
     }
 }
 
@@ -28,12 +28,10 @@ function generateOrderNotifications($con) {
     while ($row = $newOrdersResult->fetch_assoc()) {
         $notification = "New order placed with ID: " . $row['Ord_id'];
         insertNotification($con, $notification);
-        echo "Generated notification: $notification<br>";
+        
     }
 
-    if ($newOrdersResult->num_rows === 0) {
-        echo "No new orders found<br>";
-    }
+    
 }
 
 
@@ -49,9 +47,7 @@ function insertNotification($con, $notification) {
         $timestamp = date('Y-m-d H:i:s');
         $query = "INSERT INTO tb_inbox (inb_timestamp, inb_decs) VALUES ('$timestamp', '$notification')";
         $con->query($query);
-    } else {
-        echo "Notification already exists: $notification<br>";
-    }
+    } 
 }
 
 // Generate notifications for tb_item
@@ -61,7 +57,9 @@ generateItemNotifications($con);
 generateOrderNotifications($con);
 
 // Display all unique notifications from tb_inbox
-$query = "SELECT * FROM tb_inbox GROUP BY inb_decs ORDER BY inb_timestamp DESC";
+
+$query = "SELECT * FROM tb_inbox GROUP BY inb_decs ORDER BY inb_timestamp DESC LIMIT 5";
+
 $result = $con->query($query);
 
 echo '<div id="notificationList">';

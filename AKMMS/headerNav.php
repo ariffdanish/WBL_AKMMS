@@ -147,7 +147,29 @@
 
             ?>
 
-            <a class="dropdown-item text-center small text-gray-500" href="notification.php">Show All Notifications</a>
+<a id="showNotificationsLink" class="dropdown-item text-center small text-gray-500" href="#">Reload Notifications</a>
+<script>
+    document.getElementById("showNotificationsLink").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default behavior of following the link
+
+        // Use AJAX to reload the content of notification.php
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Update the content of the notificationList div with the reloaded content
+                document.getElementById("notificationList").innerHTML = xhr.responseText;
+
+                // Update the notification count
+                var notificationCount = xhr.getResponseHeader("X-Notification-Count");
+                document.getElementById("notificationCount").innerText = notificationCount;
+            }
+        };
+        xhr.open("GET", "notification.php", true);
+        xhr.send();
+    });
+</script>
+
+
         </div>
     </div>
     

@@ -17,89 +17,88 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
 
     <style type="text/css">
-        body {
-            font-family: Verdana;
-        }
+    body {
+        font-family: Verdana;
+    }
 
-        div.invoice {
-            border: 1px solid #ccc;
-            padding: 10px;
-            width: 570pt;
-            margin: auto; /* Center the invoice */
-        }
+    div.invoice {
+        border: 1px solid #ccc;
+        padding: 10px;
+        max-width: 570pt; /* Set a maximum width for the invoice */
+        margin: auto; /* Center the invoice */
+    }
 
-        .logo-and-company {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .logo-and-company {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .logo-container {
-            text-align: center;
-            margin-right: 20px;
-        }
+    .logo-container {
+        text-align: center;
+        margin-right: 20px;
+    }
 
-        .logo {
-            max-width: 100px; /* Set the maximum width of your logo */
-        }
+    .logo {
+        max-width: 100px; /* Set the maximum width of your logo */
+    }
 
-        .company-address {
-            flex-grow: 1;
-        }
+    .company-address {
+        flex-grow: 1;
+    }
 
-        .invoice-title {
-            font-weight: bold;
-            text-align: center;
-            margin-top: 10px;
-        }
+    .invoice-title {
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+    }
 
-        .line {
-            border-top: 2px solid #000;
-            margin-top: 5px;
-        }
+    .line {
+        border-top: 2px solid #000;
+        margin-top: 5px;
+    }
 
-        .details-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-top: 20px;
-        }
+    .details-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
 
-        div.customer-address,
-        div.invoice-details {
-            border: 1px solid #ccc;
-            width: 48%; /* Adjust the width as needed */
-            padding: 10px;
-        }
+    div.customer-address,
+    div.invoice-details {
+        border: 1px solid #ccc;
+        width: 48%; /* Adjust the width as needed */
+        padding: 10px;
+    }
 
-        .clear-fix {
-            clear: both;
-            float: none;
-        }
+    .clear-fix {
+        clear: both;
+        float: none;
+    }
 
-        table {
-            width: 100%;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse; /* Add this line to collapse table borders */
+        margin-top: 20px; /* Add margin to the table */
+    }
 
-        th {
-            text-align: left;
-        }
+    th,
+    td {
+        border: 1px solid #ccc; /* Add border to table cells */
+        padding: 8px;
+        text-align: left;
+    }
 
-        td {}
+    .text-center,
+    .text-right {
+        text-align: center;
+    }
 
-        .text-left {
-            text-align: left;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .text-right {
-            text-align: right;
-        }
-        
-    </style>
+    .text-right {
+        text-align: right;
+    }
+</style>
 </head>
 
 <body>
@@ -166,7 +165,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
         <table border='1' cellspacing='0'>
         <tr>
                 <th width=250>Description</th>
-                <th class='text-right' width=320>Quantity</th>
+                <th class='text-center' width=320>Quantity</th>
                 
             </tr>
 
@@ -195,14 +194,14 @@ if ($result && mysqli_num_rows($result) > 0) {
 
         echo("<tr>");
         echo("<td class='text-left'>$description</td>");
-        echo("<td class='text-right'>$amount</td>");
+        echo("<td class='text-center'>$amount</td>");
         echo("</tr>");
     }
 
     // Display the grand total row outside the while loop
     echo("<tr>");
-    echo("<td colspan='3' class='text-right'><b>GRAND TOTAL</b></td>");
-    echo("<td class='text-right'><b>" . number_format($total) . "</b></td>");
+    echo("<td colspan='3' class='text-center'><b>GRAND TOTAL: " . number_format($total) . "</b></td>");
+   
     echo("</tr>");
 }
             

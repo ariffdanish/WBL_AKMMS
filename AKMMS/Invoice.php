@@ -17,88 +17,88 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
 
     <style type="text/css">
-        body {
-            font-family: Verdana;
-        }
+    body {
+        font-family: Verdana;
+    }
 
-        div.invoice {
-            border: 1px solid #ccc;
-            padding: 10px;
-            width: 570pt;
-            margin: auto; /* Center the invoice */
-        }
+    div.invoice {
+        border: 1px solid #ccc;
+        padding: 10px;
+        max-width: 570pt; /* Set a maximum width for the invoice */
+        margin: auto; /* Center the invoice */
+    }
 
-        .logo-and-company {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .logo-and-company {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .logo-container {
-            text-align: center;
-            margin-right: 20px;
-        }
+    .logo-container {
+        text-align: center;
+        margin-right: 20px;
+    }
 
-        .logo {
-            max-width: 100px; /* Set the maximum width of your logo */
-        }
+    .logo {
+        max-width: 100px; /* Set the maximum width of your logo */
+    }
 
-        .company-address {
-            flex-grow: 1;
-        }
+    .company-address {
+        flex-grow: 1;
+    }
 
-        .invoice-title {
-            font-weight: bold;
-            text-align: center;
-            margin-top: 10px;
-        }
+    .invoice-title {
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+    }
 
-        .line {
-            border-top: 2px solid #000;
-            margin-top: 5px;
-        }
+    .line {
+        border-top: 2px solid #000;
+        margin-top: 5px;
+    }
 
-        .details-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-top: 20px;
-        }
+    .details-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
 
-        div.customer-address,
-        div.invoice-details {
-            border: 1px solid #ccc;
-            width: 48%; /* Adjust the width as needed */
-            padding: 10px;
-        }
+    div.customer-address,
+    div.invoice-details {
+        border: 1px solid #ccc;
+        width: 48%; /* Adjust the width as needed */
+        padding: 10px;
+    }
 
-        .clear-fix {
-            clear: both;
-            float: none;
-        }
+    .clear-fix {
+        clear: both;
+        float: none;
+    }
 
-        table {
-            width: 100%;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse; /* Add this line to collapse table borders */
+        margin-top: 20px; /* Add margin to the table */
+    }
 
-        th {
-            text-align: left;
-        }
+    th,
+    td {
+        border: 1px solid #ccc; /* Add border to table cells */
+        padding: 8px;
+        text-align: left;
+    }
 
-        td {}
+    .text-center,
+    .text-right {
+        text-align: center;
+    }
 
-        .text-left {
-            text-align: left;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .text-right {
-            text-align: right;
-        }
-    </style>
+    .text-right {
+        text-align: right;
+    }
+</style>
 </head>
 
 <body>
@@ -167,20 +167,23 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
         <table border='1' cellspacing='0'>
         <tr>
                 <th width=250>Description</th>
-                <th width=80>Quantity</th>
-                <th class='text-right'width=100>Unit price (RM)</th>
-                <th class='text-right'width=100>Total price (RM)</th>
+                <th width=50>Quantity</th>
+                <th class='text-center'width=50>Unit price (RM)</th>
+                <th class='text-center'width=50>DISC AMOUNT (RM)</th>
+                <th class='text-center'width=50>TAX AMOUNT (RM)</th>
+                <th class='text-center'width=50>Total INCL. TAX (RM)</th>
             </tr>
 
             <?php
             $total = 0;
-            $vat = 0.06;
+            
 
             // Use the existing connection from your connection file
-            $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price 
+            $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price,q.q_discount,q.q_tax 
                FROM tb_quotation q
                JOIN tb_order o ON q.q_ordID = o.Ord_id
                WHERE o.Ord_cid = $ordId";
+
             $resultItems = mysqli_query($con, $queryItems);
 
             if ($resultItems && mysqli_num_rows($resultItems) > 0) {
@@ -188,41 +191,63 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
                     $description = $row['q_itemDesc'];
                     $amount = $row['q_quantity'];
                     $unit_price = ($row['q_price']);
-                    $total_price = ($amount * $unit_price);
+                    $disc = ($row['q_discount']);
+                    $tax = ($row['q_tax']);
+                    $total_price = (($amount * $unit_price)-$disc+$tax);
                     $total += $total_price;
                     echo("<tr>");
                     echo("<td>$description</td>");
                     echo("<td class='text-center'>$amount</td>");
-                    echo("<td class='text-right'>$unit_price</td>");
-                    echo("<td class='text-right'>$total_price</td>");
+                    echo("<td class='text-right'> $unit_price</td>");
+                    echo("<td class='text-right'> $disc</td>");
+                    echo("<td class='text-right'> $tax</td>");
+                    echo("<td class='text-right'> $total_price</td>");
                     echo("</tr>");
                 }
             }
 
             
 echo("<tr>");
+echo("<td></td>");
+echo("<td></td>");
 echo("<td colspan='3' class='text-right'><b>TOTAL: </b></td>");
-echo("<td class='text-right'><b>" . number_format((($total * (1 + $vat))), 2) . "</b></td>");
+echo("<td class='text-right'><b>RM" . number_format((($total)), 2) . "</b></td>");
 echo("</tr>");
 
-// Amount Payable
-echo("<tr>");
-echo("<td colspan='3' class='text-right'><b>Amount Payable: </b></td>");
-echo("<td class='text-right'>" . number_format(($total * (1 + $vat)), 2) . "</td>");
-echo("</tr>");
+
 
 // Upfront (Replace '0.00' with the actual upfront amount)
-$upfrontAmount = 0.00; // Replace with your logic to calculate upfront amount
+// Assuming $ordId is the order ID from your existing logic
+$upfrontAmount = 0.00; // Default value
+
+// Fetch the upfront amount from tb_payment
+$queryUpfrontAmount = "SELECT p_amount FROM tb_payment p
+                       JOIN tb_order o ON p.p_ordID = o.Ord_id
+                       WHERE o.Ord_cid = $ordId";
+$resultUpfrontAmount = mysqli_query($con, $queryUpfrontAmount);
+
+if ($resultUpfrontAmount && mysqli_num_rows($resultUpfrontAmount) > 0) {
+    $rowUpfrontAmount = mysqli_fetch_assoc($resultUpfrontAmount);
+    $upfrontAmount = $rowUpfrontAmount['p_amount'];
+}
+
+// Output the table row with the calculated upfront amount
 echo("<tr>");
+echo("<td></td>");echo("<td></td>");
 echo("<td colspan='3' class='text-right'><b>Upfront: </b></td>");
-echo("<td class='text-right'>" . number_format($upfrontAmount, 2) . "</td>");
+echo("<td class='text-right'><b>RM" . number_format($upfrontAmount, 2) . "</b></td>");
 echo("</tr>");
 
+// Free the result set
+mysqli_free_result($resultUpfrontAmount);
+
+
 // Balance (Calculate the balance by subtracting upfront from total amount payable)
-$balanceAmount = ($total * (1 + $vat)) - $upfrontAmount;
+$balanceAmount = ($total ) - $upfrontAmount;
 echo("<tr>");
+echo("<td></td>");echo("<td></td>");
 echo("<td colspan='3' class='text-right'><b>Balance: </b></td>");
-echo("<td class='text-right'><b>" . number_format($balanceAmount, 2) . "</b></td>");
+echo("<td class='text-right'><b>RM" . number_format($balanceAmount, 2) . "</b></td>");
 echo("</tr>");
 
 
