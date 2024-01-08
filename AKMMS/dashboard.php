@@ -1,5 +1,13 @@
-<?php include 'headerNav.php';?>
-<?php include 'dbconnect.php'; ?>
+<?php 
+    include ('mysession.php');
+    if(!session_id())
+    {
+      session_start();
+    }
+include 'headerNav.php';
+include 'dbconnect.php';
+?>
+
 <?php
 // Assuming you have a database connection established
 
@@ -86,7 +94,7 @@ if ($results) {
 
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-dark mb-0 dashboard-heading fw-bold">Dashboard</h3>
+        <h3 class="text-dark mb-0 dashboard-heading fw-bold">DASHBOARD AK MAJU RESOURCES</h3>
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Report
@@ -123,6 +131,8 @@ if ($results) {
         
     </div>
 
+    <div class="card shadow p-3">
+    
     <!-- Earnings Cards and User Goals -->
     <div class="row">
         <!-- Monthly Earnings -->
@@ -355,6 +365,9 @@ if ($results) {
         </div>
     </div>
 </div>
+                       
+            
+                  
 
 
 

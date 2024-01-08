@@ -1,4 +1,9 @@
 <?php
+include ('mysession.php');
+if(!session_id())
+{
+    session_start();
+}
     include 'headerNav.php';
     include('dbconnect.php');
 
@@ -9,10 +14,8 @@
     $q_price = $_POST['q_price'];
     $q_discount = $_POST['q_discount'];
     $q_tax = $_POST['q_tax'];
-    $q_totalcost = $_POST['q_totalcost'];
 
-
-
+    $q_totalcost=(($q_quantity*$q_price)-$q_discount+$q_tax);
 
 // Insert into tb_order using the obtained c_idnum
 $sql = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_quantity, q_price, q_discount, q_tax, q_totalcost) 

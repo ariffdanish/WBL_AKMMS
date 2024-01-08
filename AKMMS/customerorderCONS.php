@@ -35,7 +35,6 @@ $result = mysqli_query($con, $sql);
                             <th scope="col">Customer Name</th>
                             <th scope="col">Order</th>
                             <th scope="col">Date</th>  
-                            <th scope="col">Payment</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -48,14 +47,14 @@ $result = mysqli_query($con, $sql);
                             echo "<td>" . $row['c_name'] . "</td>";
                             echo "<td>" . $row['Ord_name'] . "</td>";
                             echo "<td>" . $row['Ord_date'] . "</td>"; 
-
-                            echo "<td style='text-align: initial;'>";
-                           // echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
+                            echo "<td class='text-center'>";
+                            // echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
                             echo "<a href='customereditCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i></a>&nbsp";
-                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Quotation.php\', ' . $row['Ord_cid'] . ')">Quotation</button></a>';
-                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Invoice.php\', ' . $row['Ord_cid'] . ')">Invoice</button></a>';
-                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Deliverynotes.php\', ' . $row['Ord_cid'] . ')">Delivery Notes</button></a>';
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Quotation.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-file-alt"></i> Quotation</button></a>&nbsp;';
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Invoice.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-file-invoice"></i> Invoice</button></a>&nbsp;';
+                            echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Deliverynotes.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-truck"></i> Delivery Notes</button></a>';
                             echo "</td>";
+                            
                             echo "</tr>";
                             $count++;
                         }
