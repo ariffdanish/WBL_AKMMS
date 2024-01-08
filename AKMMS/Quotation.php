@@ -168,8 +168,8 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
         <tr>
                 <th width=250>Description</th>
                 <th width=80>Amount</th>
-                <th class='text-right'width=100>Unit price</th>
-                <th class='text-right'width=100>Total price</th>
+                <th class='text-right'width=100>Unit price (RM)</th>
+                <th class='text-right'width=100>Total price (RM)</th>
             </tr>
 
             <?php
@@ -194,8 +194,8 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
                     echo("<tr>");
                     echo("<td>$description</td>");
                     echo("<td class='text-center'>$amount</td>");
-                    echo("<td class='text-right'>RM $unit_price</td>");
-                    echo("<td class='text-right'>RM $total_price</td>");
+                    echo("<td class='text-right'> $unit_price</td>");
+                    echo("<td class='text-right'> $total_price</td>");
                     echo("</tr>");
                 }
             }

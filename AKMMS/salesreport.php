@@ -126,8 +126,8 @@ include 'dbconnect.php';
         <table border='1' cellspacing='0'>
     <tr>
         <th width=250>Description</th>
-        <th width=80>Quantity Sold</th>
-        <th width=80>Total Amount</th>
+        <th width=150 class='text-center'>Quantity Sold</th>
+        <th width=150 class='text-center'>Total Amount</th>
        
     </tr>
 
@@ -139,7 +139,7 @@ include 'dbconnect.php';
     // Use the existing connection from your connection file
     $query = "SELECT o.Ord_name, q.q_quantity,q_itemDesc,q_totalcost, i.i_Name, i.i_Quantity, i.i_Material
             FROM tb_order o
-            INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name
+            INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Code
             INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID";
 
     $result = mysqli_query($con, $query);

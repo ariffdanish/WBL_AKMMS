@@ -168,8 +168,8 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
         <tr>
                 <th width=250>Description</th>
                 <th width=80>Amount</th>
-                <th class='text-right'width=100>Unit price</th>
-                <th class='text-right'width=100>Total price</th>
+                <th class='text-right'width=100>Unit price (RM)</th>
+                <th class='text-right'width=100>Total price (RM)</th>
             </tr>
 
             <?php
@@ -193,36 +193,36 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
                     echo("<tr>");
                     echo("<td>$description</td>");
                     echo("<td class='text-center'>$amount</td>");
-                    echo("<td class='text-right'>RM $unit_price</td>");
-                    echo("<td class='text-right'>RM $total_price</td>");
+                    echo("<td class='text-right'>$unit_price</td>");
+                    echo("<td class='text-right'>$total_price</td>");
                     echo("</tr>");
                 }
             }
 
             
 echo("<tr>");
-echo("<td colspan='3' class='text-right'><b>TOTAL</b></td>");
-echo("<td class='text-right'><b>RM" . number_format((($total * (1 + $vat))), 2) . "</b></td>");
+echo("<td colspan='3' class='text-right'><b>TOTAL: </b></td>");
+echo("<td class='text-right'><b>" . number_format((($total * (1 + $vat))), 2) . "</b></td>");
 echo("</tr>");
 
 // Amount Payable
 echo("<tr>");
-echo("<td colspan='3' class='text-right'><b>Amount Payable</b></td>");
-echo("<td class='text-right'>RM" . number_format(($total * (1 + $vat)), 2) . "</td>");
+echo("<td colspan='3' class='text-right'><b>Amount Payable: </b></td>");
+echo("<td class='text-right'>" . number_format(($total * (1 + $vat)), 2) . "</td>");
 echo("</tr>");
 
 // Upfront (Replace '0.00' with the actual upfront amount)
 $upfrontAmount = 0.00; // Replace with your logic to calculate upfront amount
 echo("<tr>");
-echo("<td colspan='3' class='text-right'><b>Upfront</b></td>");
-echo("<td class='text-right'>RM" . number_format($upfrontAmount, 2) . "</td>");
+echo("<td colspan='3' class='text-right'><b>Upfront: </b></td>");
+echo("<td class='text-right'>" . number_format($upfrontAmount, 2) . "</td>");
 echo("</tr>");
 
 // Balance (Calculate the balance by subtracting upfront from total amount payable)
 $balanceAmount = ($total * (1 + $vat)) - $upfrontAmount;
 echo("<tr>");
-echo("<td colspan='3' class='text-right'><b>Balance</b></td>");
-echo("<td class='text-right'>RM" . number_format($balanceAmount, 2) . "</td>");
+echo("<td colspan='3' class='text-right'><b>Balance: </b></td>");
+echo("<td class='text-right'><b>" . number_format($balanceAmount, 2) . "</b></td>");
 echo("</tr>");
 
 

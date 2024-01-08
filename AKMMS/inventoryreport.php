@@ -125,10 +125,10 @@ include 'dbconnect.php';
 
         <table border='1' cellspacing='0'>
             <tr>
-                <th width=250>Description</th>
+                <th width=250 class='text-left'>Description</th>
                
-                <th width=80>Used Quantity</th>
-                <th width=80>Remaining Quantity</th>
+                <th width=80 class='text-center'>Used Quantity</th>
+                <th width=80 class='text-center'>Remaining Quantity</th>
             </tr>
 
             <?php
@@ -136,36 +136,73 @@ include 'dbconnect.php';
           
 
             // Use the existing connection from your connection file
-            $query = "SELECT o.Ord_name, q.q_quantity, i.i_Name, i.i_Quantity, i.i_Material
+            $query = "SELECT o.Ord_name, q.q_quantity, i.i_Name, i.i_Quantity, i.i_Material, i.i_Code
             FROM tb_order o
-            INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Name
+            INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Code
             INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID";
   
-  $result = mysqli_query($con, $query);
-  
-  $latestItems = array(); // To keep track of the latest occurrence of each item
+$result = mysqli_query($con, $query);
 
-  if ($result && mysqli_num_rows($result) > 0) {
-      while ($row = mysqli_fetch_assoc($result)) {
-          $description = $row['i_Name'];
-  
-          // Update values for the latest occurrence of the item
-          $latestItems[$description] = [
-              'usedQuantity' => $row['q_quantity'],
-              'remainingQuantity' => $row['i_Quantity'] - $row['q_quantity'],
-          ];
-      }
-  
-      foreach ($latestItems as $description => $values) {
-          echo("<tr>");
-          echo("<td>$description</td>");
-          echo("<td class='text-center'>" . $values['usedQuantity'] . "</td>");
-          echo("<td class='text-center'>" . $values['remainingQuantity'] . "</td>");
-          echo("</tr>");
-      }
-  } else {
-      echo("<tr><td colspan='3'>No data available</td></tr>");
-  }
+$latestItems = array(); // To keep track of the latest occurrence of each item
+$allItems = array(); // To store all items from the tb_item table
+
+// Fetch all items from tb_item
+$queryAllItems = "SELECT i_Name, i_Code,i_Quantity FROM tb_item";
+$resultAllItems = mysqli_query($con, $queryAllItems);
+
+if ($resultAllItems && mysqli_num_rows($resultAllItems) > 0) {
+    while ($rowAllItems = mysqli_fetch_assoc($resultAllItems)) {
+        $descriptionAllItems = $rowAllItems['i_Name'] . " - " . $rowAllItems['i_Code'];
+        $allItems[] = $descriptionAllItems;
+    }
+}
+
+if ($result && mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $description = $row['i_Name'] . " - " . $row['i_Code'];
+
+        // Update values for the latest occurrence of the item
+        $latestItems[$description] = [
+            'usedQuantity' => $row['q_quantity'],
+            'remainingQuantity' => $row['i_Quantity'] - $row['q_quantity'],
+        ];
+
+        // Store all items for comparison later
+        $allItems[] = $description;
+    }
+
+    // Display the latest occurrences
+    foreach ($latestItems as $description => $values) {
+        echo("<tr>");
+        echo("<td>$description</td>");
+        echo("<td class='text-center'>" . $values['usedQuantity'] . "</td>");
+        echo("<td class='text-center'>" . $values['remainingQuantity'] . "</td>");
+        echo("</tr>");
+    }
+    $queryAllItems = "SELECT i_Name, i_Code, i_Quantity FROM tb_item";
+    $resultAllItems = mysqli_query($con, $queryAllItems);
+
+    if ($resultAllItems && mysqli_num_rows($resultAllItems) > 0) {
+        while ($rowAllItems = mysqli_fetch_assoc($resultAllItems)) {
+            $descriptionAllItems = $rowAllItems['i_Name'] . " - " . $rowAllItems['i_Code'];
+
+            // Check if the item has not been displayed
+            if (!isset($latestItems[$descriptionAllItems])) {
+                echo("<tr>");
+                echo("<td>$descriptionAllItems</td>");
+                echo("<td class='text-center'>0</td>");
+                echo("<td class='text-center'>" . $rowAllItems['i_Quantity'] . "</td>");
+                echo("</tr>");
+            }
+        }
+    }
+} else {
+    echo("<tr><td colspan='3'>No data available</td></tr>");
+}
+    // Display the items that have not been displayed
+    
+
+
   
 
             // Close the result set
