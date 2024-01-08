@@ -11,8 +11,8 @@
                             <select class="d-inline-block form-select-sm" name="itemsPerPage" onchange="this.form.submit()">
                                 <option value="5" <?php if (isset($_GET['itemsPerPage']) && $_GET['itemsPerPage'] == '5') echo 'selected'; ?>>5</option>
                                 <option value="10" <?php if (isset($_GET['itemsPerPage']) && $_GET['itemsPerPage'] == '10') echo 'selected'; ?>>10</option>
-                                <option value="20" <?php if (isset($_GET['itemsPerPage']) && $_GET['itemsPerPage'] == '20') echo 'selected'; ?>>20</option>
-                                <option value="50" <?php if (isset($_GET['itemsPerPage']) && $_GET['itemsPerPage'] == '50') echo 'selected'; ?>>50</option>
+                                <option value="15" <?php if (isset($_GET['itemsPerPage']) && $_GET['itemsPerPage'] == '15') echo 'selected'; ?>>15</option>
+                                <option value="30" <?php if (isset($_GET['itemsPerPage']) && $_GET['itemsPerPage'] == '30') echo 'selected'; ?>>30</option>
                             </select>&nbsp;
                         </label>
                     </form>
