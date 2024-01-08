@@ -137,8 +137,8 @@
                                 <!-- Add an image/icon if needed -->
                             </div>
                             <div class="fw-bold">
-                                <div class="text-gray-600 small">' . $row['inb_timestamp'] . '</div>
-                                <span class="text-gray-900">' . $row['inb_decs'] . '</span>
+                                <div class="text-black small">' . $row['inb_timestamp'] . '</div>
+                                <span class="text-black">' . $row['inb_decs'] . '</span>
                             </div>
                         </a>';
                 }
@@ -147,7 +147,7 @@
 
             ?>
 
-<a id="showNotificationsLink" class="dropdown-item text-center small text-gray-500" href="#">Reload Notifications</a>
+<a id="showNotificationsLink" class="dropdown-item text-center small text-black" href="#">Reload Notifications</a>
 <script>
     document.getElementById("showNotificationsLink").addEventListener("click", function(event) {
         event.preventDefault(); // Prevent the default behavior of following the link

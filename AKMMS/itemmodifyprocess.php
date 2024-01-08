@@ -56,17 +56,41 @@ mysqli_stmt_close($stmt);
 
 mysqli_close($con);
 
-// Redirect to next page
-header('Location:browseitem.php');
+// Display Result
+include 'headerNav.php';
 ?>
-<div class="container">
-    <h5>Your updated item details</h5><br><br>
-    <h5>Code: <?php echo $icode; ?></h5>
-    <h5>Name: <?php echo $iname; ?></h5>
-    <h5>Description: <?php echo $idesc; ?></h5>
-    <h5>Item Category: <?php echo $icategory; ?></h5>
-    <h5>Item Material: <?php echo $imaterial; ?></h5>
-    <h5>New Quantity: <?php echo $totalquantity; ?></h5>
-    <h5>New Price: <?php echo $iprice; ?></h5>
-    <h5>Status: Complete</h5>
+<div class="container" style="margin-top: 20px; padding: 20px;">
+    <table class="table">
+        <tr>
+            <td><strong>Code: </strong></td>
+            <td><?php echo $icode; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Name: </strong></td>
+            <td><?php echo $iname; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Description: </strong></td>
+            <td><?php echo $idesc; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Category: </strong></td>
+            <td><?php echo $icategory; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Type: </strong></td>
+            <td><?php echo $imaterial; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Total Quantity: </strong></td>
+            <td><?php echo $totalquantity; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Price: </strong></td>
+            <td><?php echo $iprice; ?></td>
+        </tr>
+    </table>
+    <a class="btn btn-danger" href="browseitem.php">Back</a>
 </div>
+
+<?php include 'footer.php'; ?>
