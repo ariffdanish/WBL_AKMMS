@@ -61,6 +61,7 @@ include 'headerNav.php';
 ?>
 <div class="container" style="margin-top: 20px; padding: 20px;">
     <table class="table">
+        <h4>The item has been successfully updated.</h4>
         <tr>
             <td><strong>Code: </strong></td>
             <td><?php echo $icode; ?></td>
@@ -87,7 +88,7 @@ include 'headerNav.php';
         </tr>
         <tr>
             <td><strong>Price: </strong></td>
-            <td><?php echo $iprice; ?></td>
+            <td><?php echo "RM" . number_format($iprice, 2) . " per unit</p>"; ?></td>
         </tr>
     </table>
     <a class="btn btn-danger" href="browseitem.php">Back</a>
