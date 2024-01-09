@@ -288,7 +288,6 @@ if ($results) {
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
             <small class="text-muted">Last updated: <?php echo date("Y-m-d H:i:s"); ?></small>
-            <i class="fas fa-exclamation-circle fa-3x text-warning"></i>
         </div>
     </div>
 </div>
