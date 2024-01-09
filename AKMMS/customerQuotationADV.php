@@ -75,7 +75,7 @@ include('headerNav.php');
                                 echo "<td>" . $row['q_tax'] . "</td>";
                                 echo "<td>" . $row['q_totalcost'] . "</td>";
 
-                                echo "<td style='text-align: center;'>";
+                                echo "<td class='text-center'>";
                                 echo "<a href='customercancelQuotationADV.php?id=" . $row['q_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a>&nbsp ";
                                 echo "<a href='customereditQuotationADV.php?id=" . $row['q_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                                 echo "</td>";
