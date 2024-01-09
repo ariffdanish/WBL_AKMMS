@@ -89,34 +89,7 @@ if ($results) {
 }
 ?>
 
-<style>
-        
 
-        .payment-list {
-            width: 385px;
-            height: 200px;
-            overflow-y: auto;
-            margin: 20px;
-            border: 1px solid #D3D3D3;
-            border-radius: 5px;
-            background-color: #fff;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse #000000;
-        }
-
-        th, td {
-            border: 1px  #000000;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 
 
 <div class="container-fluid">
@@ -158,8 +131,8 @@ if ($results) {
         
     </div>
 
-    <div class="card shadow p-3">
     
+    <div class="card shadow p-3">
     <!-- Earnings Cards and User Goals -->
     <div class="row">
         <!-- Monthly Earnings -->
@@ -168,7 +141,6 @@ if ($results) {
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
-                        
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1">
                                 <span>Monthly Earnings</span>
                             </div>
@@ -201,51 +173,8 @@ if ($results) {
             </div>
         </div>
 
-        
-        <div class="payment-list">
-            
-        <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <h4><b>Pending Payments</b></h4>
-                            </div>
-   
-    <table>
-        <thead>
-            <tr>
-                
-                <th><b>Order ID</b></th>
-                <th><b>Customer Name</b></th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-            // Assuming you have a database connection established
-            
-
-            $queryPendingPayments = "SELECT o.Ord_id, c.c_name
-                                    FROM tb_order o
-                                    LEFT JOIN tb_customer c ON o.Ord_cid = c.c_id
-                                    WHERE o.Ord_id NOT IN (SELECT p_ordID FROM tb_payment)";
-            $resultPendingPayments = mysqli_query($con, $queryPendingPayments);
-
-            if ($resultPendingPayments) {
-                while ($row = mysqli_fetch_assoc($resultPendingPayments)) {
-                    echo "<tr>";
-                    echo "<td>" . $row['Ord_id'] . "</td>";
-                    echo "<td>" . $row['c_name'] . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='2'>Error fetching pending payments</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
-
-    <!-- Charts -->
-    <div class="row">
-        <div class="col-lg-7 col-xl-8">
-            <!-- Earnings Overview Chart -->
+        <!-- Earnings Overview Chart -->
+        <div class="col-lg-7 col-xl-8 mb-4">
             <div class="card shadow mb-4">
                 <!-- Chart Header -->
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -322,59 +251,105 @@ if ($results) {
             </div>
         </div>
 
-        <!-- Top Three Items Chart -->
-        <div class="col-lg-5 col-xl-4">
-            <div class="card shadow mb-4">
-                <!-- Chart Header -->
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="text-primary fw-bold m-0">Top Three Items (<?php echo $currentYear; ?>)</h6>
-                    <div class="dropdown no-arrow">
-                        <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                            <i class="fas fa-ellipsis-v text-gray-400"></i>
-                        </button>
-                    </div>
-                </div>
-                <!-- Chart Body -->
-                <div class="card-body">
-                    <div class="chart-area">
-                        <canvas id="topItemsChart" data-bss-chart='{
-                            "type": "doughnut",
-                            "data": {
-                                "labels": <?php echo json_encode($labels); ?>,
-                                "datasets": [{
-                                    "label": "",
-                                    "backgroundColor": <?php echo json_encode($backgroundColor); ?>,
-                                    "borderColor": "#ffffff",
-                                    "data": <?php echo json_encode($data); ?>
-                                }]
-                            },
-                            "options": {
-                                "maintainAspectRatio": false,
-                                "legend": {
-                                    "display": false,
-                                    "labels": {
-                                        "fontStyle": "normal"
-                                    }
-                                },
-                                "title": {
-                                    "fontStyle": "normal"
-                                }
+        <div class="col-md-6 col-xl-4 mb-4">
+    <div class="card shadow border-start-warning">
+        <div class="card-body">
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Pending Orders</b></h6>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b>Order ID</b></th>
+                            <th scope="col"><b>Customer Name</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $queryPendingPayments = "SELECT o.Ord_id, c.c_name
+                                                FROM tb_order o
+                                                LEFT JOIN tb_customer c ON o.Ord_cid = c.c_id
+                                                WHERE o.Ord_id NOT IN (SELECT p_ordID FROM tb_payment)";
+                        $resultPendingPayments = mysqli_query($con, $queryPendingPayments);
+
+                        if ($resultPendingPayments && mysqli_num_rows($resultPendingPayments) > 0) {
+                            while ($row = mysqli_fetch_assoc($resultPendingPayments)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['Ord_id'] . "</td>";
+                                echo "<td>" . $row['c_name'] . "</td>";
+                                echo "</tr>";
                             }
-                        }'></canvas>
-                    </div>
-                    <!-- Chart Legend -->
-                    <div class="text-center small mt-4">
-                        <?php for ($i = 0; $i < count($labels); $i++) : ?>
-                            <span class="me-2">
-                                <i class="fas fa-circle" style="color: <?php echo $backgroundColor[$i]; ?>"></i>&nbsp;<?php echo $labels[$i]; ?>
-                            </span>
-                        <?php endfor; ?>
-                    </div>
-                </div>
+                        } else {
+                            echo "<tr><td colspan='2'>No pending orders</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            <small class="text-muted">Last updated: <?php echo date("Y-m-d H:i:s"); ?></small>
+            <i class="fas fa-exclamation-circle fa-3x text-warning"></i>
+        </div>
+    </div>
+</div>
+
+
+<!-- Top Three Items Chart -->
+<div class="col-lg-5 col-xl-4 mb-4">
+    <div class="card shadow mb-4">
+        <!-- Chart Header -->
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h6 class="text-primary fw-bold m-0">Top Three Items (<?php echo $currentYear; ?>)</h6>
+            <div class="dropdown no-arrow">
+                <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
+                    <i class="fas fa-ellipsis-v text-gray-400"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Chart Body -->
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="topItemsChart" data-bss-chart='{
+                    "type": "doughnut",
+                    "data": {
+                        "labels": <?php echo json_encode($labels); ?>,
+                        "datasets": [{
+                            "label": "",
+                            "backgroundColor": <?php echo json_encode($backgroundColor); ?>,
+                            "borderColor": "#ffffff",
+                            "data": <?php echo json_encode($data); ?>
+                        }]
+                    },
+                    "options": {
+                        "maintainAspectRatio": false,
+                        "legend": {
+                            "display": false,
+                            "labels": {
+                                "fontStyle": "normal"
+                            }
+                        },
+                        "title": {
+                            "fontStyle": "normal"
+                        }
+                    }
+                }'></canvas>
+            </div>
+            <!-- Chart Legend -->
+            <div class="text-center small mt-4">
+                <?php for ($i = 0; $i < count($labels); $i++) : ?>
+                    <span class="me-2">
+                        <i class="fas fa-circle" style="color: <?php echo $backgroundColor[$i]; ?>"></i>&nbsp;<?php echo $labels[$i]; ?>
+                    </span>
+                <?php endfor; ?>
             </div>
         </div>
     </div>
 </div>
+
+    </div>
+</div>
+
+
                        
             
                   

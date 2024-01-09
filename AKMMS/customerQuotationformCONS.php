@@ -27,7 +27,7 @@ include('dbconnect.php');
                             <div class="col-sm-9">
                             <?php 
                                 $sql="SELECT * FROM tb_order
-                                      WHERE tb_order.Ord_type = '1'";
+                                      WHERE tb_order.Ord_type = '2'";
                                 $result=mysqli_query($con,$sql);
                         
                                 echo'<select class="form-select" id="q_ordID" placeholder="Select" name="q_ordID">';
@@ -99,12 +99,12 @@ include('dbconnect.php');
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <!--<div class="row mb-3">
                             <label for="tax" class="col-sm-3 col-form-label">Total Cost Inc. Tax (RM):</label>
                             <div class="col-sm-9">
                             <input class="form-control" type="number" id="q_totalcost" name="q_totalcost">
                             </div>
-                        </div>
+                        </div>-->
 
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
