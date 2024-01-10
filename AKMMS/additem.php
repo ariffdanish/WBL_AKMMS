@@ -54,6 +54,7 @@ include 'headerNav.php';?>
                                     <option>Besi</option>
                                     <option>Plastik</option>
                                     <option>Kaca</option>
+                                    <option>Aluminium</option>
                                 </select>
                                 </div>
                                 
