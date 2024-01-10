@@ -379,7 +379,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
         <div class="col-md-6 col-xl-4 mb-4">
     <div class="card shadow border-start-warning">
         <div class="card-body">
-        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Pending Orders</b></h6>
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Pending Order Confirmation (Payment)</b></h6>
             <div class="table-responsive">
                 <table class="table table-striped mb-0">
                     <thead>
