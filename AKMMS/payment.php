@@ -8,14 +8,15 @@ include('headerNav.php');
 ?>
 
 <div class="container-fluid">
-    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-dark mb-0 bold-and-centered">Payment Management</h3>
-        <a class="btn btn-primary" type="add" href="paymentform.php">Payment</a>
+<div class="card shadow p-3 mb-4 bg-primary text-white">
+    <div class="d-sm-flex justify-content-center align-items-center">
+        <h6 class="text-white mb-0 font-weight-bold bold-and-centered">PAYMENT MANAGEMENT</h6>
+        <!--<a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>--> 
     </div>
+</div>
 
     <div class="row mt-4">
         <div class="card shadow p-3">
-
             <div class="row mb-3">
                 <label for="ctype" class="col-sm-3 col-form-label">Select Order:</label>
                 <div class="col-sm-6">
@@ -33,6 +34,7 @@ include('headerNav.php');
                 <div class="col-sm-3">
                     <input type="submit" class="btn btn-primary ms-2" name="search" value="Search">
                     </form>
+                    <a class="btn btn-primary" type="add" href="paymentform.php">Payment</a>
                 </div>
             </div>
 
