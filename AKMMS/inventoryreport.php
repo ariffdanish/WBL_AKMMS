@@ -143,8 +143,9 @@ include 'dbconnect.php';
             // Use the existing connection from your connection file
             $query = "SELECT o.Ord_name, q.q_quantity, i.i_Name, i.i_Quantity, i.i_Material, i.i_Code
             FROM tb_order o
-            INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Code
-            INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID";
+            INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID
+            INNER JOIN tb_item i ON  q.q_codeID= i.i_CodeID";
+            
   
 $result = mysqli_query($con, $query);
 
@@ -152,12 +153,12 @@ $latestItems = array(); // To keep track of the latest occurrence of each item
 $allItems = array(); // To store all items from the tb_item table
 
 // Fetch all items from tb_item
-$queryAllItems = "SELECT i_Name, i_Code,i_Quantity FROM tb_item";
+$queryAllItems = "SELECT i_Name, i_CodeID,i_Quantity FROM tb_item";
 $resultAllItems = mysqli_query($con, $queryAllItems);
 
 if ($resultAllItems && mysqli_num_rows($resultAllItems) > 0) {
     while ($rowAllItems = mysqli_fetch_assoc($resultAllItems)) {
-        $descriptionAllItems = $rowAllItems['i_Name'] . " - " . $rowAllItems['i_Code'];
+        $descriptionAllItems = $rowAllItems['i_Name'] . " - " . $rowAllItems['i_CodeID'];
         $allItems[] = $descriptionAllItems;
     }
 }

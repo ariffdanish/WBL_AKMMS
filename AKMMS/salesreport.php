@@ -138,13 +138,13 @@ include 'dbconnect.php';
 
     <?php
     $totalSales = 0;
-    $vat = 0.06;
+    
 
     // Use the existing connection from your connection file
-    $query = "SELECT o.Ord_name, q.q_quantity,q_itemDesc,q_totalcost, i.i_Name, i.i_Quantity, i.i_Material
+    $query = "SELECT o.Ord_name, q.q_quantity,q.q_itemDesc,q_totalcost, i.i_Name, i.i_Quantity, i.i_Material,q.q_tax
             FROM tb_order o
-            INNER JOIN tb_item i ON o.Ord_itemMaterial = i.i_Code
-            INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID";
+            INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID
+            INNER JOIN tb_item i ON q.q_codeID = i.i_CodeID";
 
     $result = mysqli_query($con, $query);
 
@@ -161,12 +161,15 @@ include 'dbconnect.php';
             echo("</tr>");
 
             // Accumulate total sales
+
             $totalSales += $totalAmount;
+            $tax = $row['q_tax'];
         }
 
         // Display total sales and apply VAT
-        $vatAmount = ($vat *1) * $totalSales;
-        $finalAmount = $totalSales + $vatAmount;
+        
+        $sum = $tax + $totalSales;
+
 
         echo("<tr>");
        echo("<br>");
@@ -175,8 +178,8 @@ include 'dbconnect.php';
         echo("</tr>");
         
         echo("<td></td>");
-        echo("<td class='text-center'><b>Final Amount:</b></td>");
-        echo("<td class='text-center'><b>$finalAmount</b></td>");
+        echo("<td class='text-center'><b>Final Amount (Tax inc):</b></td>");
+        echo("<td class='text-center'><b>$sum</b></td>");
         
     } else {
         echo("<tr><td colspan='4'>No data available</td></tr>");

@@ -14,7 +14,7 @@ function generateItemNotifications($con) {
     $result = $con->query($query);
 
     while ($row = $result->fetch_assoc()) {
-        $notification = "Low stock for item: " . $row['i_Name']. "_".$row['i_Code'];
+        $notification = "Low stock for item: " . $row['i_Name']. "_".$row['i_CodeID'];
         insertNotification($con, $notification);
         
     }

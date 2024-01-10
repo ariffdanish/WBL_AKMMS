@@ -130,14 +130,14 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             <div class="customer-address">
                 <?php
                 // Fetch customer address for the specified Ord_id
-                $queryCustomerAddress = "SELECT DISTINCT c_address FROM tb_customer WHERE c_id =$ordId ";
+                $queryCustomerAddress = "SELECT DISTINCT c_name FROM tb_customer WHERE c_id =$ordId ";
                 $resultCustomerAddress = mysqli_query($con, $queryCustomerAddress);
 
                 if ($resultCustomerAddress && mysqli_num_rows($resultCustomerAddress) > 0) {
                     $row = mysqli_fetch_assoc($resultCustomerAddress);
-                    $customer_address = $row['c_address'];
+                    $customer_address = $row['c_name'];
 
-                    echo "To:<br />";
+                    echo "For:<br />";
                     echo "$customer_address";
                 } else {
                     echo "No customer address available";

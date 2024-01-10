@@ -63,13 +63,15 @@ for ($i = 1; $i <= 12; $i++) {
     }
 }
 
-$querys = "SELECT Ord_itemMaterial, COUNT(*) as usageCount
-          FROM tb_order o
-          JOIN tb_item i ON o.Ord_itemMaterial = i.i_Code
-          WHERE YEAR(o.Ord_date) = $currentYear
-          GROUP BY Ord_itemMaterial
-          ORDER BY usageCount DESC
+$querys = "SELECT i.i_Code, SUM(o.q_quantity) as totalQuantity
+          FROM tb_quotation o
+          JOIN tb_item i ON o.q_codeID = i.i_CodeID
+          JOIN tb_order ord ON o.q_ordID = ord.Ord_id
+          WHERE YEAR(ord.Ord_date) = $currentYear
+          GROUP BY q_codeID
+          ORDER BY totalQuantity DESC
           LIMIT 3";
+
 
 $results = mysqli_query($con, $querys);
 
@@ -78,8 +80,8 @@ if ($results) {
     $labels = $data = $backgroundColor = array();
 
     while ($row = mysqli_fetch_assoc($results)) {
-        $labels[] = $row['Ord_itemMaterial'];
-        $data[] = $row['usageCount'];
+        $labels[] = $row['i_Code'];
+        $data[] = $row['totalQuantity'];
         // You can customize the colors as needed
         $backgroundColor[] = '#' . substr(md5(rand()), 0, 6);
     }
