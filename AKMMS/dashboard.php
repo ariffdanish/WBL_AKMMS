@@ -142,7 +142,7 @@ if ($results) {
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>Monthly Earnings</span>
+                                <span>Current Monthly Earnings</span>
                             </div>
                             <div class="text-dark fw-bold h5 mb-0">
                                 <span>RM<?php echo number_format($totalEarningsMonthly, 2); ?></span>
@@ -172,7 +172,25 @@ if ($results) {
                 </div>
             </div>
         </div>
-
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-start-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col me-2">
+                            <div class="text-uppercase text-primary fw-bold text-xs mb-1">
+                                <span>Last updated</span>
+                            </div>
+                            <div class="text-dark fw-bold h5 mb-0">
+                                <span><?php echo date("Y-m-d H:i:s"); ?></span>
+                            </div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-clock fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
         <!-- Earnings Overview Chart -->
         <div class="col-lg-7 col-xl-8 mb-4">
             <div class="card shadow mb-4">
@@ -250,51 +268,7 @@ if ($results) {
                 </div>
             </div>
         </div>
-
-        <div class="col-md-6 col-xl-4 mb-4">
-    <div class="card shadow border-start-warning">
-        <div class="card-body">
-        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Pending Orders</b></h6>
-            <div class="table-responsive">
-                <table class="table table-striped mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col"><b>Order ID</b></th>
-                            <th scope="col"><b>Customer Name</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $queryPendingPayments = "SELECT o.Ord_id, c.c_name
-                                                FROM tb_order o
-                                                LEFT JOIN tb_customer c ON o.Ord_cid = c.c_id
-                                                WHERE o.Ord_id NOT IN (SELECT p_ordID FROM tb_payment)";
-                        $resultPendingPayments = mysqli_query($con, $queryPendingPayments);
-
-                        if ($resultPendingPayments && mysqli_num_rows($resultPendingPayments) > 0) {
-                            while ($row = mysqli_fetch_assoc($resultPendingPayments)) {
-                                echo "<tr>";
-                                echo "<td>" . $row['Ord_id'] . "</td>";
-                                echo "<td>" . $row['c_name'] . "</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='2'>No pending orders</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="card-footer d-flex justify-content-between align-items-center">
-            <small class="text-muted">Last updated: <?php echo date("Y-m-d H:i:s"); ?></small>
-        </div>
-    </div>
-</div>
-
-
-<!-- Top Three Items Chart -->
-<div class="col-lg-5 col-xl-4 mb-4">
+        <div class="col-lg-5 col-xl-4 mb-4">
     <div class="card shadow mb-4">
         <!-- Chart Header -->
         <div class="card-header d-flex justify-content-between align-items-center">
@@ -345,8 +319,129 @@ if ($results) {
     </div>
 </div>
 
+            
+
+        <div class="col-md-6 col-xl-4 mb-4">
+    <div class="card shadow border-start-warning">
+        <div class="card-body">
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Pending Orders</b></h6>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b>Order ID</b></th>
+                            <th scope="col"><b>Customer Name</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $queryPendingPayments = "SELECT o.Ord_id, c.c_name
+                                                FROM tb_order o
+                                                LEFT JOIN tb_customer c ON o.Ord_cid = c.c_id
+                                                WHERE o.Ord_id NOT IN (SELECT p_ordID FROM tb_payment)";
+                        $resultPendingPayments = mysqli_query($con, $queryPendingPayments);
+
+                        if ($resultPendingPayments && mysqli_num_rows($resultPendingPayments) > 0) {
+                            while ($row = mysqli_fetch_assoc($resultPendingPayments)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['Ord_id'] . "</td>";
+                                echo "<td>" . $row['c_name'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='2'>No pending orders</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
     </div>
 </div>
+
+<div class="col-md-6 col-xl-4 mb-4">
+    <div class="card shadow border-start-warning">
+        <div class="card-body">
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Active Staff</b></h6>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b>Staff ID</b></th>
+                            <th scope="col"><b>Staff Name</b></th>
+                            <th scope="col"><b>Contact Info</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $querys = "SELECT e.e_id, e.e_name, e.e_tel
+                                                FROM tb_employee e
+                                                LEFT JOIN tb_emprole r ON e.e_role = r.role_id";
+                        $results = mysqli_query($con, $querys);
+
+                        if ($results && mysqli_num_rows($results) > 0) {
+                            while ($rows = mysqli_fetch_assoc($results)) {
+                                echo "<tr>";
+                                echo "<td>" . $rows['e_id'] . "</td>";
+                                echo "<td>" . $rows['e_name'] . "</td>";
+                                echo "<td>" . $rows['e_tel'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='2'>No new staff</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="col-md-6 col-xl-4 mb-4">
+    <div class="card shadow border-start-warning">
+        <div class="card-body">
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Alert! : Low Stock</b></h6>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b>Item Code</b></th>
+                            <th scope="col"><b>Item Name</b></th>
+                            <th scope="col"><b>Quantity</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $querys = "SELECT i_Code, i_Name, i_Quantity
+                                                FROM tb_item 
+                                                WHERE i_Quantity < 10";
+                        $results = mysqli_query($con, $querys);
+
+                        if ($results && mysqli_num_rows($results) > 0) {
+                            while ($rows = mysqli_fetch_assoc($results)) {
+                                echo "<tr>";
+                                echo "<td>" . $rows['i_Code'] . "</td>";
+                                echo "<td>" . $rows['i_Name'] . "</td>";
+                                echo "<td>" . $rows['i_Quantity'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='2'>No Item in low stock</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    
+
+
+<!-- Top Three Items Chart -->
+
 
 
                        
