@@ -139,7 +139,33 @@ include 'dbconnect.php';
     <?php
     $totalSales = 0;
     
-
+    $currentMonth = date('Y-m');
+    $lastMonth = date('Y-m', strtotime('-1 month'));
+    
+    // Query to calculate total sales for the current month
+    $queryCurrentMonth = "SELECT SUM(q.q_totalcost) AS totalSalesCurrentMonth
+                          FROM tb_quotation q
+                          JOIN tb_order o ON q.q_ordID = o.Ord_id
+                          WHERE MONTH(o.Ord_date) = MONTH(CURDATE())
+                            AND YEAR(o.Ord_date) = YEAR(CURDATE())";
+    
+    $resultCurrentMonth = mysqli_query($con, $queryCurrentMonth);
+    $rowCurrentMonth = mysqli_fetch_assoc($resultCurrentMonth);
+    $totalSalesCurrentMonth = $rowCurrentMonth['totalSalesCurrentMonth'];
+    
+    // Query to calculate total sales for the last month
+    $queryLastMonth = "SELECT SUM(q.q_totalcost) AS totalSalesLastMonth
+                       FROM tb_quotation q
+                       JOIN tb_order o ON q.q_ordID = o.Ord_id
+                       WHERE MONTH(o.Ord_date) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                         AND YEAR(o.Ord_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))";
+    
+    $resultLastMonth = mysqli_query($con, $queryLastMonth);
+    $rowLastMonth = mysqli_fetch_assoc($resultLastMonth);
+    $totalSalesLastMonth = $rowLastMonth['totalSalesLastMonth'];
+    
+    // Calculate the sales growth
+    $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
     // Use the existing connection from your connection file
     $query = "SELECT o.Ord_name, q.q_quantity,q.q_itemDesc,q_totalcost, i.i_Name, i.i_Quantity, i.i_Material,q.q_tax
             FROM tb_order o
@@ -158,6 +184,7 @@ include 'dbconnect.php';
             echo("<td>$description</td>");
             echo("<td class='text-center'>$quantitySold</td>");
             echo("<td class='text-center'>$totalAmount</td>");
+            
             echo("</tr>");
 
             // Accumulate total sales
@@ -174,17 +201,22 @@ include 'dbconnect.php';
         echo("<tr>");
        echo("<br>");
         echo("<td colspan='2' class='text-right'><b>Total Sales:</b></td>");
-        echo("<td class='text-center'><b>$totalSales</b></td>");
+        echo("<td class='text-center'><b>RM $totalSales</b></td>");
         echo("</tr>");
+        echo("<tr>");
         
         echo("<td></td>");
         echo("<td class='text-center'><b>Final Amount (Tax inc):</b></td>");
-        echo("<td class='text-center'><b>$sum</b></td>");
-        
+        echo("<td class='text-center'><b>RM $sum</b></td>");
+        echo("</tr>");
+        echo("<td></td>");
+        echo("<td class='text-center'><b>Sales Growth (Current Month):</b></td>");
+        echo("<td class='text-center'><b>RM $salesGrowth </b></td>");
     } else {
         echo("<tr><td colspan='4'>No data available</td></tr>");
     }
-
+    
+    
     // Close the result set
     mysqli_free_result($result);
 

@@ -194,7 +194,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>Sales Growth (By Month)</span>
+                                <span>Profit (This Month)</span>
                             </div>
                             <div class="text-dark fw-bold h5 mb-0">
                                 <span style="color: <?php echo ($salesGrowth < 0) ? 'red' : 'green'; ?>">RM<?php echo number_format($salesGrowth, 2); ?></span>
