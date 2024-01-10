@@ -6,7 +6,22 @@ if (!session_id()) {
 include('dbconnect.php');
 include 'headerNav.php';
 
-$sql = "SELECT * FROM tb_customer";
+// Check if the customer ID is provided and valid
+if (isset($_GET['id'])) {
+    $customerId = $_GET['id'];
+
+    // Perform a soft delete by updating c_is_deleted to 1
+    $updateSql = "UPDATE tb_customer SET c_is_deleted = 1 WHERE c_id = '$customerId'";
+    $updateResult = mysqli_query($con, $updateSql);
+
+    if (!$updateResult) {
+        // Handle the error if the update query fails
+        echo "Error updating record: " . mysqli_error($con);
+    }
+}
+
+// Fetch non-deleted records
+$sql = "SELECT * FROM tb_customer WHERE c_is_deleted = 0";
 $result = mysqli_query($con, $sql);
 ?>
 
@@ -45,6 +60,7 @@ $result = mysqli_query($con, $sql);
 
 
                             echo "<td class='text-center'>";
+                            echo "<a href='customercancel.php?id=" . $row['c_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a>&nbsp ";
                             //echo "<a href='customerQuotationADV.php?id=" . $row['c_id'] . "' class='btn btn-primary'><i class='fas fa-file'></i> Order</a> ";
                             echo "<a href='customeredit.php?id=" . $row['c_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                             echo "</td>";
@@ -58,6 +74,12 @@ $result = mysqli_query($con, $sql);
         </div>
     </div>
 </div>
+
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete?");
+    }
+</script>
 
 <?php mysqli_close($con);?>
 <?php include 'footer.php'; ?>

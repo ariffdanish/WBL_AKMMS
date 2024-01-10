@@ -1,21 +1,22 @@
-<?php 
-  include ('mysession.php');
-  if(!session_id())
-  {
+<?php
+include('mysession.php');
+
+if (!session_id()) {
     session_start();
-  }
-  if(isset($_GET['id']))
-  {
-    $fcid=$_GET['id'];
-  }
+}
 
-  include ('dbconnect.php');
+if (isset($_GET['id'])) {
+    $fcid = $_GET['id'];
+}
 
-$sql="DELETE FROM tb_quotation
-      WHERE q_id='$fcid'";
+include('dbconnect.php');
 
-$result=mysqli_query($con,$sql);
+$sql = "UPDATE tb_quotation
+        SET is_deleted = 1
+        WHERE q_id = '$fcid'";
+
+$result = mysqli_query($con, $sql);
 mysqli_close($con);
 
-header('location:customerQuotationCONS.php');
+header('location:customerQuotationADV.php');
 ?>

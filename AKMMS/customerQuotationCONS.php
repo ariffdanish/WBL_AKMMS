@@ -38,7 +38,7 @@ include('headerNav.php');
 
                     if (isset($_POST['search'])) {
                         $selectedOrder = $_POST['Ord_id'];
-                        $quotationSql = "SELECT * FROM tb_quotation WHERE q_ordID = $selectedOrder";
+                        $quotationSql = "SELECT * FROM tb_quotation WHERE q_ordID = $selectedOrder AND is_deleted = 0";
                         $quotationResult = mysqli_query($con, $quotationSql);
                     }
                     ?>
@@ -62,7 +62,7 @@ include('headerNav.php');
                     </thead>
                     <tbody>
                         <?php
-                        if (isset($quotationResult)) {
+                        if (isset($quotationResult) && mysqli_num_rows($quotationResult) > 0) {
                             $count = 1;
                             while ($row = mysqli_fetch_array($quotationResult)) {
                                 echo "<tr>";
