@@ -15,17 +15,18 @@
     $q_price = $_POST['q_price'];
     $q_discount = $_POST['q_discount'];
     $q_tax = $_POST['q_tax'];
+    $q_codeID = $_POST['q_codeID'];
     
     $q_totalcost=(($q_quantity*$q_price)-$q_discount+$q_tax);
 
     if (!empty($fbid)) {
         $sql = "UPDATE tb_quotation
                 SET q_ordID='$q_ordID', q_itemDesc='$q_itemDesc', q_quantity='$q_quantity', 
-                    q_price='$q_price', q_discount='$q_discount', q_tax='$q_tax', q_totalcost='$q_totalcost'
+                    q_price='$q_price', q_discount='$q_discount', q_tax='$q_tax', q_codeID='$q_codeID', q_totalcost='$q_totalcost'
                 WHERE q_id='$fbid'";
     } else {
-        $sql = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_quantity, q_price, q_discount, q_tax, q_totalcost) 
-        VALUES ('$q_ordID', '$q_itemDesc', '$q_quantity', '$q_price', '$q_discount', '$q_tax', '$q_totalcost')";
+        $sql = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_quantity, q_price, q_discount, q_tax, q_codeID, q_totalcost) 
+        VALUES ('$q_ordID', '$q_itemDesc', '$q_quantity', '$q_price', '$q_discount', '$q_tax', '$q_codeID', '$q_totalcost')";
     }
 
     mysqli_query($con, $sql);

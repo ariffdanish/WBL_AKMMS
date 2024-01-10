@@ -52,7 +52,7 @@ $result = mysqli_query($con, $sql);
                           echo"<td>".$row['Ord_date']. "</td>";
                           echo "<td class='text-center'>";
                           // echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
-                          echo "<a href='customereditCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i></a>&nbsp";
+                          echo "<a href='customereditADV.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i></a>&nbsp";
                           echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Quotation.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-file-alt"></i> Quotation</button></a>&nbsp;';
                           echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Invoice.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-file-invoice"></i> Invoice</button></a>&nbsp;';
                           echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Deliverynotes.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-truck"></i> Delivery Notes</button></a>';

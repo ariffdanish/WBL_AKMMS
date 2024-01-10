@@ -14,12 +14,13 @@ if(!session_id())
     $q_price = $_POST['q_price'];
     $q_discount = $_POST['q_discount'];
     $q_tax = $_POST['q_tax'];
+    $q_codeID = $_POST['q_codeID'];
 
     $q_totalcost=(($q_quantity*$q_price)-$q_discount+$q_tax);
 
 // Insert into tb_order using the obtained c_idnum
-$sql = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_quantity, q_price, q_discount, q_tax, q_totalcost) 
-        VALUES ('$q_ordID', '$q_itemDesc', '$q_quantity', '$q_price', '$q_discount', '$q_tax', '$q_totalcost')";
+$sql = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_quantity, q_price, q_discount, q_tax, q_codeID, q_totalcost) 
+        VALUES ('$q_ordID', '$q_itemDesc', '$q_quantity', '$q_price', '$q_discount', '$q_tax', '$q_codeID', '$q_totalcost')";
 
 mysqli_query($con, $sql);
 
