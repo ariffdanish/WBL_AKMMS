@@ -95,6 +95,14 @@ if ($results) {
 <div class="container-fluid">
     <div class="d-sm-flex justify-content-between align-items-center mb-4">
         <h3 class="text-dark mb-0 dashboard-heading fw-bold">DASHBOARD AK MAJU RESOURCES</h3>
+        <div >
+                                
+                            </div>
+                            <div >
+                            <span class="text-uppercase text-align:right text-primary fw-bold h10 mb-1">Last updated: </span>
+                                <span class="text-dark text-align:right fw-bold h10 mb-0"><?php echo date("Y-m-d H:i:s"); ?></span>
+                            </div>
+
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Report
@@ -130,12 +138,73 @@ if ($results) {
 </script>
         
     </div>
+    <?php
+// Assuming you have a database connection established
+
+// Get the current month and last month
+$currentMonth = date('Y-m');
+$lastMonth = date('Y-m', strtotime('-1 month'));
+
+// Query to calculate total sales for the current month
+$queryCurrentMonth = "SELECT SUM(q.q_totalcost) AS totalSalesCurrentMonth
+                      FROM tb_quotation q
+                      JOIN tb_order o ON q.q_ordID = o.Ord_id
+                      WHERE MONTH(o.Ord_date) = MONTH(CURDATE())
+                        AND YEAR(o.Ord_date) = YEAR(CURDATE())";
+
+$resultCurrentMonth = mysqli_query($con, $queryCurrentMonth);
+$rowCurrentMonth = mysqli_fetch_assoc($resultCurrentMonth);
+$totalSalesCurrentMonth = $rowCurrentMonth['totalSalesCurrentMonth'];
+
+// Query to calculate total sales for the last month
+$queryLastMonth = "SELECT SUM(q.q_totalcost) AS totalSalesLastMonth
+                   FROM tb_quotation q
+                   JOIN tb_order o ON q.q_ordID = o.Ord_id
+                   WHERE MONTH(o.Ord_date) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                     AND YEAR(o.Ord_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))";
+
+$resultLastMonth = mysqli_query($con, $queryLastMonth);
+$rowLastMonth = mysqli_fetch_assoc($resultLastMonth);
+$totalSalesLastMonth = $rowLastMonth['totalSalesLastMonth'];
+
+// Calculate the sales growth
+$salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
+
+// Output the result
+
+
+?>
+
+
+
 
     
     <div class="card shadow p-3">
     <!-- Earnings Cards and User Goals -->
+    
+    
     <div class="row">
         <!-- Monthly Earnings -->
+
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-start-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col me-2">
+                            <div class="text-uppercase text-primary fw-bold text-xs mb-1">
+                                <span>Sales Growth</span>
+                            </div>
+                            <div class="text-dark fw-bold h5 mb-0">
+                                <span>RM<?php echo number_format($salesGrowth, 2); ?></span>
+                                
+                            </div>
+                        </div>
+                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-6 col-xl-4 mb-4">
             <div class="card shadow border-start-primary py-2">
                 <div class="card-body">
@@ -172,23 +241,7 @@ if ($results) {
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card shadow border-start-primary py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>Last updated</span>
-                            </div>
-                            <div class="text-dark fw-bold h5 mb-0">
-                                <span><?php echo date("Y-m-d H:i:s"); ?></span>
-                            </div>
-                        </div>
-                        <div class="col-auto"><i class="fas fa-clock fa-2x text-gray-300"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         
         
         <!-- Earnings Overview Chart -->
