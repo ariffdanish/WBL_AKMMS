@@ -19,16 +19,18 @@ $result = mysqli_query($con, $sql);
 ?>
 
 <div class="container-fluid">
-    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-dark mb-0 bold-and-centered">Customer Order Details (Advertisement)</h3>
-        <div class="d-flex">
-            <a class="btn btn-primary mr-4" href="customerorderformADV.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
-            <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
+    <div class="card shadow p-3 mb-4 bg-primary text-white">
+        <div class="d-sm-flex justify-content-center align-items-center">
+            <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER ORDER DETAILS ADVERTISMENT</h6>
         </div>
     </div>
 
     <div class="card shadow p-3">
         <div class="table-responsive">
+                <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->
+                    <a class="btn btn-primary mr-4" href="customerorderformADV.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
+                    <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
+                </div>
             <table class="table table-hover table-bordered">
                 <thead class="table-primary text-center">
                     <tr>

@@ -26,14 +26,19 @@ $result = mysqli_query($con, $sql);
 ?>
 
 <div class="container-fluid">
-    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-    <h3 class="text-dark mb-0 bold-and-centered">Customer Details</h3>
-        <a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>
+<div class="card shadow p-3 mb-4 bg-primary text-white">
+    <div class="d-sm-flex justify-content-center align-items-center">
+        <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER DETAILS</h6>
+        <!--<a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>--> 
     </div>
+</div>
 
     <div class="row mt-4">
         <div class="card shadow p-3">
             <div class="table-responsive">
+                <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->
+                    <a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>
+                </div>
                 <table class="table table-hover table-bordered">
                     <thead class="table-primary text-center">
                         <tr>

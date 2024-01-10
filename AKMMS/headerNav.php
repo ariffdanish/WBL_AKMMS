@@ -30,17 +30,18 @@
                         <i class="fas fa-list"></i>
                         <span>LIST OF ORDER</span>
                     </a>
-                    <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                        <a class="nav-link dropdown-toggle" href="customerorderADV.php">
+                    <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in border-0"> <!-- Removed border -->
+                        <a class="nav-link dropdown-toggle" href="customerorderADV.php" style="font-size: 14px;"> <!-- Adjusted font size -->
                             <i class="fas fa-bullhorn"></i> <!-- Symbol for Advertising -->
-                            Advertising
+                            ADVERTISMENT
                         </a>
-                        <a class="nav-link dropdown-toggle" href="customerorderCONS.php">
+                        <a class="nav-link dropdown-toggle" href="customerorderCONS.php" style="font-size: 14px;"> <!-- Adjusted font size -->
                             <i class="fas fa-hard-hat"></i> <!-- Symbol for Construction -->
-                            Construction
+                            CONSTRUCTION
                         </a>
                     </div>
                 </li>
+
                 
                 <li class="nav-item">
                     <a class="nav-link" href="payment.php">
