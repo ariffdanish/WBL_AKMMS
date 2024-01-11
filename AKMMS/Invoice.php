@@ -156,7 +156,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
                     $invoice_number = $row['Ord_id'];
                     $invoice_date = $row['formatted_date'];
 
-                    echo "Invoice N°: $invoice_number<br />";
+                    echo "Invoice No: $invoice_number<br />";
                     echo "Date: $invoice_date";
                 } else {
                     echo "No invoice data available";
@@ -226,15 +226,21 @@ echo("</tr>");
 $upfrontAmount = 0.00; // Default value
 
 // Fetch the upfront amount from tb_payment
-$queryUpfrontAmount = "SELECT p_amount FROM tb_payment p
+$queryUpfrontAmount = "SELECT SUM(p.p_amount) AS totalAmount
+                       FROM tb_payment p
                        JOIN tb_order o ON p.p_ordID = o.Ord_id
-                       WHERE o.Ord_cid = $ordId";
+                       WHERE o.Ord_cid = $ordId
+                       GROUP BY p.p_ordID";
+
 $resultUpfrontAmount = mysqli_query($con, $queryUpfrontAmount);
 
 if ($resultUpfrontAmount && mysqli_num_rows($resultUpfrontAmount) > 0) {
     $rowUpfrontAmount = mysqli_fetch_assoc($resultUpfrontAmount);
-    $upfrontAmount = $rowUpfrontAmount['p_amount'];
+    $upfrontAmount = $rowUpfrontAmount['totalAmount'];
+} else {
+    $upfrontAmount = 0; // Set a default value if no rows are found
 }
+
 
 // Output the table row with the calculated upfront amount
 echo("<tr>");
