@@ -53,18 +53,10 @@
         color: #ffc107; /* Change to your desired hover color */
     }
 
-    .dropdown-menu a {
-    padding: 10px 20px;
-    color: #333;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.1s ease;
-}
 
     /* Dropdown Styles */
     .dropdown-menu {
         background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
-        animation: fadeInDown 0.2s ease;
         color: white; /* Set the font color to white */
     }
 

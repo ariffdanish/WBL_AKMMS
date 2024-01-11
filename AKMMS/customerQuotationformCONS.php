@@ -47,6 +47,25 @@ include('dbconnect.php');
                             <input class="form-control" type="text" id="q_itemDesc" name="q_itemDesc" required>
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="ctype" class="col-sm-3 col-form-label">Select Item:</label>
+                            <div class="col-sm-9">
+                            <?php 
+                                $sql="SELECT * FROM tb_item";
+                                $result=mysqli_query($con,$sql);
+                        
+                                echo'<select class="form-select" id="q_codeID" placeholder="Select" name="q_codeID">';
+                                while($row=mysqli_fetch_array($result))
+                                {
+                                  echo"<option value='".$row['i_CodeID']."'>".$row['i_Code']." - ".$row['i_Name']."</option>";
+                                }
+                                
+                                echo'</select>';
+                            ?>
+                            </div>
+                        </div>
+                        
                         
 
                         <!--<div class="row mb-3">
