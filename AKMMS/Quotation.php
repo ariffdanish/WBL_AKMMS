@@ -157,7 +157,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
                     $invoice_number = $row['Ord_id'];
                     $invoice_date = $row['formatted_date'];
 
-                    echo "Quotation N°: $invoice_number<br />";
+                    echo "Quotation No: $invoice_number<br />";
                     echo "Date: $invoice_date";
                 } else {
                     echo "No invoice data available";

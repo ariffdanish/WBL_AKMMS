@@ -110,8 +110,11 @@ if ($results) {
                 Report
             </button>
             <div class="dropdown-menu">
+            <a class="dropdown-item text-black" href="#" onclick="printDocument3('financialreport.php')">Financial Report</a>
+            <a class="dropdown-item text-black" href="#" onclick="printDocument2('salesreport.php')">Sales Report</a>
                 <a class="dropdown-item text-black" href="#" onclick="printDocument1('inventoryreport.php')">Inventory Report</a>
-                <a class="dropdown-item text-black" href="#" onclick="printDocument2('salesreport.php')">Sales Report</a>
+                
+                
             </div>
         </div>
     </div>
@@ -136,6 +139,18 @@ if ($results) {
         printWindow.onload = function() {
             printWindow.print();
         };
+
+    }
+    function printDocument3() {
+        // You can replace 'target_file.php' with the filename you want to print
+        var targetFile = 'financialreport.php';
+        
+        var printWindow = window.open(targetFile, '_blank');
+        
+        printWindow.onload = function() {
+            printWindow.print();
+        };
+        
     }
 </script>
         
@@ -194,7 +209,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>Profit (This Month)</span>
+                                <span>Profit (<?php echo date('F'); ?>)</span>
                             </div>
                             <div class="text-dark fw-bold h5 mb-0">
                                 <span style="color: <?php echo ($salesGrowth < 0) ? 'red' : 'green'; ?>">RM<?php echo number_format($salesGrowth, 2); ?></span>
@@ -213,7 +228,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>Current Monthly Earnings</span>
+                                <span>Monthly Earnings (<?php echo date('F'); ?>)</span>
                             </div>
                             <div class="text-dark fw-bold h5 mb-0">
                                 <span>RM<?php echo number_format($totalEarningsMonthly, 2); ?></span>
@@ -232,7 +247,10 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>Yearly Earnings</span>
+                            <span id="yearly-earnings">Yearly Earnings Of <?php echo date('Y'); ?></span>
+
+                     
+
                             </div>
                             <div class="text-dark fw-bold h5 mb-0">
                                 <span>RM<?php echo number_format($totalEarningsYearly, 2); ?></span>
@@ -251,7 +269,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
             <div class="card shadow mb-4">
                 <!-- Chart Header -->
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="text-primary fw-bold m-0">Earnings Overview</h6>
+                    <h6 class="text-primary fw-bold m-0">Earnings Overview (<?php echo date('Y'); ?>)</h6>
                     <div class="dropdown no-arrow">
                         <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
                             <i class="fas fa-ellipsis-v text-gray-400"></i>
