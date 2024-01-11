@@ -5,7 +5,6 @@ if(!session_id())
     session_start();
 }
 include 'headerNav.php';?>
-
         
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">Add Item</h3>
@@ -19,20 +18,20 @@ include 'headerNav.php';?>
                             
                             <form method="POST" action="additemprocess.php" class="user">
                                 <h6>Item Name</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Kayu Jati, etc." name="iname" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="Kayu Jati, etc." name="iname" required></div>
 
                                 <h6>Item Code</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="WD634-2, etc." name="icode" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="WD634-2, etc." name="icode" required></div>
 
                                 <h6>Item Date</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="date" id="exampleFirstName" placeholder="01/01/2024" name="idate" required></div>
+                                <div class="mb-3"><input class="form-control" type="date" id="exampleFirstName" placeholder="01/01/2024" name="idate" required></div>
 
                                 <h6>Item Description</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Keterangan barang" name="idesc" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="Keterangan barang" name="idesc"></div>
 
                                 <h6>Item Category</h6>
                                 <div class="mb-3">
-                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Kategori" name="icategory" required>
+                                <select class="form-select form-control" id="exampleSelect1" placeholder="Kategori" name="icategory" required>
                                     <option disabled selected>-Sila Pilih-</option>
                                     <option>Advertising</option>
                                     <option>Construction</option>
@@ -41,7 +40,7 @@ include 'headerNav.php';?>
                                 
                                 <h6>Item Type</h6>
                                 <div class="mb-3">
-                                <select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Jenis barang" name="imaterial" required>
+                                <select class="form-select form-control" id="exampleSelect1" placeholder="Jenis barang" name="imaterial" required>
                                     <option disabled selected>-Sila Pilih-</option>
                                     <option>I- PENDAWAIAN</option>
                                     <option>II- PAPAN AGIHAN, PEMUTUS LITAR DAN PERALATAN PERLINDUNGAN</option>
@@ -59,10 +58,10 @@ include 'headerNav.php';?>
                                 </div>
                                 
                                 <h6>Item Quantity</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Nombor Bulat sahaja" name="iquantity" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="Nombor Bulat sahaja" name="iquantity" required></div>
                                
                                 <h6>Item Price per Unit</h6>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="(RM, 2 t.p.)" name="iprice" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="(RM, 2 t.p.)" name="iprice" required></div>
                                 <div class="mb-3 d-flex justify-content-center gap-2">
                                     <button type="submit" class="btn btn-primary">Add Item</button>
                                     <button type="reset" class="btn btn-dark mx-2">Reset</button>
