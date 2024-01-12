@@ -65,32 +65,7 @@ include('dbconnect.php');
                             ?>
                             </div>
                         </div>
-                        
-
-                        
-
-                        <!--<div class="row mb-3">
-                            <label for="item" class="col-sm-3 col-form-label">Select Item:</label>
-                            <div class="col-sm-9">
-                            <select id="Ord_itemName" name="Ord_itemName" class="form-control" required onchange="updateMaterialOptions()">
-                                <option value="clothes">Clothes</option>
-                                <option value="book">Book</option>
-                                <option value="banner">Banner</option>
-                                <option value="signboard">Signboard</option>
-                                <option value="bag">Bag</option>
-                                <option value="sport bottle">Sport Bottle</option>
-                            </select>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="material" class="col-sm-3 col-form-label">Select Material:</label>
-                            <div class="col-sm-9">
-                            <select id="Ord_itemMaterial" name="Ord_itemMaterial" class="form-control">
-                            </select>
-                            </div>
-                        </div>--> 
-
+                    
                         <div class="row mb-3">
                             <label for="quantity" class="col-sm-3 col-form-label">Quantity:</label>
                             <div class="col-sm-9">
@@ -118,13 +93,6 @@ include('dbconnect.php');
                             <input class="form-control" type="number" id="q_tax" name="q_tax">
                             </div>
                         </div>
-
-                        <!--<div class="row mb-3">
-                            <label for="tax" class="col-sm-3 col-form-label">Total Cost Inc. Tax (RM):</label>
-                            <div class="col-sm-9">
-                            <input class="form-control" type="number" id="q_totalcost" name="q_totalcost">
-                            </div>
-                        </div>-->
 
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Place Order</button>
