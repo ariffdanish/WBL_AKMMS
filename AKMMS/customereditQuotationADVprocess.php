@@ -9,27 +9,33 @@
 
     // Order Information
     $fbid = $_POST['fbid'];
-    $q_itemDesc = $_POST['q_itemDesc'];
     $q_ordID = $_POST['q_ordID'];
+    $q_itemDesc = $_POST['q_itemDesc'];
+    $q_codeID = $_POST['q_codeID'];
     $q_quantity = $_POST['q_quantity'];
     $q_price = $_POST['q_price'];
     $q_discount = $_POST['q_discount'];
     $q_tax = $_POST['q_tax'];
-    $q_codeID = $_POST['q_codeID'];
     
-    $q_totalcost=(($q_quantity*$q_price)-$q_discount+$q_tax);
+    $q_totalcost = $q_quantity * ($q_price - $q_discount) * (1 + ($q_tax / 100));
 
     if (!empty($fbid)) {
-        $sql = "UPDATE tb_quotation
-                SET q_ordID='$q_ordID', q_itemDesc='$q_itemDesc', q_quantity='$q_quantity', 
-                    q_price='$q_price', q_discount='$q_discount', q_tax='$q_tax', q_codeID='$q_codeID', q_totalcost='$q_totalcost'
-                WHERE q_id='$fbid'";
+        $insertQuotationSQL = "UPDATE tb_quotation
+                               SET q_ordID='$q_ordID', q_itemDesc='$q_itemDesc', q_quantity='$q_quantity', 
+                                   q_price='$q_price', q_discount='$q_discount', q_tax='$q_tax', q_codeID='$q_codeID', q_totalcost='$q_totalcost'
+                               WHERE q_id='$fbid'";
     } else {
-        $sql = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_quantity, q_price, q_discount, q_tax, q_codeID, q_totalcost) 
-        VALUES ('$q_ordID', '$q_itemDesc', '$q_quantity', '$q_price', '$q_discount', '$q_tax', '$q_codeID', '$q_totalcost')";
+        $insertQuotationSQL = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_codeID, q_quantity, q_price, q_discount, q_tax, q_totalcost)
+                               VALUES ('$q_ordID', '$q_itemDesc', '$q_codeID', '$q_quantity', '$q_price', '$q_discount', '$q_tax', '$q_totalcost')";
     }
 
-    mysqli_query($con, $sql);
+    $resultQuotation = mysqli_query($con, $insertQuotationSQL);
+    
+    if ($resultQuotation) {
+        // Deduct the quantity from tb_item
+        $updateItemSQL = "UPDATE tb_item SET i_Quantity = i_Quantity - $q_quantity WHERE i_CodeID = '$q_codeID'";
+        $resultUpdateItem = mysqli_query($con, $updateItemSQL);
+    }
 
     // Close the database connection
     mysqli_close($con);
