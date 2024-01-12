@@ -170,7 +170,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         // Update values for the latest occurrence of the item
         $latestItems[$description] = [
             'usedQuantity' => $row['q_quantity'],
-            'remainingQuantity' => $row['i_Quantity'] - $row['q_quantity'],
+            'remainingQuantity' => $row['i_Quantity'],
         ];
 
         // Store all items for comparison later

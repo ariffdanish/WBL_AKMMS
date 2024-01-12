@@ -201,17 +201,17 @@ include 'dbconnect.php';
         echo("<tr>");
        echo("<br>");
         echo("<td colspan='2' class='text-right'><b>Total Sales:</b></td>");
-        echo("<td class='text-center'><b>RM $totalSales</b></td>");
+        echo("<td class='text-center'><b>RM" . number_format($totalSales, 2) ."</b></td>");
         echo("</tr>");
         echo("<tr>");
         
         echo("<td></td>");
         echo("<td class='text-center'><b>Final Amount (Tax inc):</b></td>");
-        echo("<td class='text-center'><b>RM $sum</b></td>");
+        echo("<td class='text-center'><b> RM" . number_format($sum, 2) ."</b></td>");
         echo("</tr>");
         echo("<td></td>");
         echo("<td class='text-center'><b>Sales Growth (Current Month):</b></td>");
-        echo("<td class='text-center'><b>RM $salesGrowth </b></td>");
+        echo("<td class='text-center'><b>RM" . number_format($salesGrowth, 2) ."</b></td>");
     } else {
         echo("<tr><td colspan='4'>No data available</td></tr>");
     }
