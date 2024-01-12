@@ -53,12 +53,19 @@
         color: #ffc107; /* Change to your desired hover color */
     }
 
+/* Dropdown Styles */
+.dropdown-menu {
+    background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
+    color: white; /* Set the font color to white */
+}
 
-    /* Dropdown Styles */
-    .dropdown-menu {
-        background: linear-gradient(to right, #007bff, #0056b3); /* Blue gradient */
-        color: white; /* Set the font color to white */
-    }
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
+    background-color: blue !important; /* Dark blue color on hover and focus */
+    color: white !important; /* Set font color to white on hover and focus */
+}
+
+
 
     /* Profile Picture */
     .img-profile {

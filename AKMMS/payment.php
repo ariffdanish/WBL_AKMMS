@@ -46,6 +46,7 @@ include('headerNav.php');
                             <th scope="col">Status Payment</th>
                             <th scope="col">Amount Payment (RM)</th>
                             <th scope="col">Date of Payment</th>
+                            <th scope="col">Proof of Payment</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -65,6 +66,7 @@ include('headerNav.php');
                                 echo "<td>" . $row['PS_desc'] . "</td>";
                                 echo "<td>" . $row['p_amount'] . "</td>";
                                 echo "<td>" . $row['p_date'] . "</td>";
+                                echo "<td>" . $row['p_proof'] . "</td>";
                                 echo "<td style='text-align: center;'>";
                                 echo "<a href='paymentedit.php?id=" . $row['p_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i> </a>";
                                 echo "</td>";

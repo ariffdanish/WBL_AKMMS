@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 11, 2024 at 05:33 PM
+-- Generation Time: Jan 12, 2024 at 03:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -77,20 +77,18 @@ CREATE TABLE `tb_employee` (
   `e_pwd` int(20) NOT NULL,
   `e_tel` varchar(15) NOT NULL,
   `e_email` varchar(100) NOT NULL,
-  `e_role` int(2) NOT NULL,
-  `e_resetcode` varchar(10) NOT NULL,
-  `e_timereset` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `e_role` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tb_employee`
 --
 
-INSERT INTO `tb_employee` (`e_id`, `e_name`, `e_pwd`, `e_tel`, `e_email`, `e_role`, `e_resetcode`, `e_timereset`) VALUES
-('A22EC0200', 'Azhar', 123, '0169135200', 'azharr@gmail.com', 1, '', '2024-01-11 15:31:09'),
-('A22EC0204', 'ARIFF DANISH', 123, '0169135248', 'ariffdanish055@gmail.com', 1, '', '2024-01-11 15:31:09'),
-('A22EC0205', 'AIMAN NOAH', 123, '0189132345', 'aiman_noah@gmail.com', 2, '', '2024-01-11 15:31:09'),
-('A22EC0216', 'IMAN FIRDAUS', 123, '0199772181', 'imanfirdaus@gmail.com', 1, '', '2024-01-11 15:31:09');
+INSERT INTO `tb_employee` (`e_id`, `e_name`, `e_pwd`, `e_tel`, `e_email`, `e_role`) VALUES
+('A22EC0200', 'Azhar', 123, '0169135200', 'azharr@gmail.com', 1),
+('A22EC0204', 'ARIFF DANISH', 123, '0169135248', 'ariffdanish055@gmail.com', 1),
+('A22EC0205', 'AIMAN NOAH', 123, '0189132345', 'aiman_noah@gmail.com', 2),
+('A22EC0216', 'IMAN FIRDAUS', 123, '0199772181', 'imanfirdaus@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -237,16 +235,16 @@ CREATE TABLE `tb_payment` (
   `p_ordID` int(11) NOT NULL,
   `p_amount` float NOT NULL,
   `p_date` date NOT NULL,
-  `p_status` int(2) NOT NULL
+  `p_status` int(2) NOT NULL,
+  `p_proof` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tb_payment`
 --
 
-INSERT INTO `tb_payment` (`p_id`, `p_ordID`, `p_amount`, `p_date`, `p_status`) VALUES
-(4, 73, 6000, '2024-01-11', 1),
-(5, 73, 1011, '2024-01-12', 3);
+INSERT INTO `tb_payment` (`p_id`, `p_ordID`, `p_amount`, `p_date`, `p_status`, `p_proof`) VALUES
+(7, 73, 1000, '2024-01-12', 1, 0x437573746f6d6572496e766f6963652d31313732302e706466);
 
 -- --------------------------------------------------------
 
@@ -407,7 +405,7 @@ ALTER TABLE `tb_order`
 -- AUTO_INCREMENT for table `tb_payment`
 --
 ALTER TABLE `tb_payment`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_quotation`

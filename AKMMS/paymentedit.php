@@ -84,6 +84,14 @@ $rowr=mysqli_fetch_array($resultr);
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="p_proof" class="col-sm-3 col-form-label">Proof of Payment (PDF):</label>
+                            <div class="col-sm-9">
+                            <?php echo'<input class="form-control" type="file" value="'.$rowr['p_date'].'" id="p_proof" name="p_proof" accept=".pdf">';?>
+                                <small class="text-muted">Upload a PDF file as proof of payment.</small>
+                            </div>
+                        </div>
+
                                 <div class="mb-3 d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-dark mx-2">Reset</button>

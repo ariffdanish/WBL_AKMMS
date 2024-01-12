@@ -1,33 +1,37 @@
 <?php
-include ('mysession.php');
-if(!session_id())
-{
+include('mysession.php');
+if (!session_id()) {
     session_start();
 }
-    include 'headerNav.php';
-    include('dbconnect.php');
+include('headerNav.php');
+include('dbconnect.php');
 
-    // Order Information
-    $q_itemDesc = $_POST['q_itemDesc'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $q_ordID = $_POST['q_ordID'];
+    $q_itemDesc = $_POST['q_itemDesc'];
+    $q_codeID = $_POST['q_codeID'];
     $q_quantity = $_POST['q_quantity'];
     $q_price = $_POST['q_price'];
     $q_discount = $_POST['q_discount'];
     $q_tax = $_POST['q_tax'];
-    $q_codeID = $_POST['q_codeID'];
 
-    $q_totalcost=(($q_quantity*$q_price)-$q_discount+$q_tax);
+    // Calculate total cost including tax
+    $q_totalcost = $q_quantity * ($q_price - $q_discount) * (1 + ($q_tax / 100));
 
-// Insert into tb_order using the obtained c_idnum
-$sql = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_quantity, q_price, q_discount, q_tax, q_codeID, q_totalcost) 
-        VALUES ('$q_ordID', '$q_itemDesc', '$q_quantity', '$q_price', '$q_discount', '$q_tax', '$q_codeID', '$q_totalcost')";
+    // Insert data into tb_quotation table
+    $insertQuotationSQL = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_codeID, q_quantity, q_price, q_discount, q_tax, q_totalcost)
+                           VALUES ('$q_ordID', '$q_itemDesc', '$q_codeID', '$q_quantity', '$q_price', '$q_discount', '$q_tax', '$q_totalcost')";
+    $resultQuotation = mysqli_query($con, $insertQuotationSQL);
 
-mysqli_query($con, $sql);
+    if ($resultQuotation) {
+        // Deduct the quantity from tb_item
+        $updateItemSQL = "UPDATE tb_item SET i_Quantity = i_Quantity - $q_quantity WHERE i_CodeID = '$q_codeID'";
+        $resultUpdateItem = mysqli_query($con, $updateItemSQL);
+    }
+}
 
-    // Close the database connection
-    mysqli_close($con);
+mysqli_close($con);
 ?>
-
 
 
 <div class="container" style="margin-top: 20px; padding: 20px;">

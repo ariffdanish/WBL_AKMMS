@@ -123,10 +123,10 @@
         <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="notificationDropdown">
             <h6 class="dropdown-header">Notification Centers</h6>
             <?php
-            // Replace these with your actual database credentials
-            include 'dbconnect.php';
+                // Replace these with your actual database credentials
+                include 'dbconnect.php';
 
-                            // Display all notifications from tb_inbox
+                // Display all notifications from tb_inbox
                 $query = "SELECT * FROM tb_inbox ORDER BY inb_timestamp DESC LIMIT 5";
                 $result = $con->query($query);
 
@@ -138,17 +138,17 @@
                                 <!-- Add an image/icon if needed -->
                             </div>
                             <div class="fw-bold">
-                                <div class="text-black small">' . $row['inb_timestamp'] . '</div>
-                                <span class="text-black">' . $row['inb_decs'] . '</span>
+                                <div class="text-white small">' . $row['inb_timestamp'] . '</div>
+                                <span class="text-white">' . $row['inb_decs'] . '</span>
                             </div>
                         </a>';
                 }
 
                 echo '</div>';
-
             ?>
 
-<a id="showNotificationsLink" class="dropdown-item text-center small text-black" href="#">Reload Notifications</a>
+            <a id="showNotificationsLink" class="dropdown-item text-center small text-white" href="#">Reload Notifications</a>
+
 <script>
     document.getElementById("showNotificationsLink").addEventListener("click", function(event) {
         event.preventDefault(); // Prevent the default behavior of following the link
@@ -184,7 +184,9 @@
                                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                                     <img class="border rounded-circle img-profile" src="akmaju.jpeg"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                        <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                        <a class="dropdown-item text-white" href="logout.php">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout
+                                        </a>
                                     </div>
                                 </div>
                             </li>

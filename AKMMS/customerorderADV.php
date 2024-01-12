@@ -44,26 +44,30 @@ $result = mysqli_query($con, $sql);
                 </thead>
                 <tbody>
                     <?php
-                        $count = 1;
-                        while($row=mysqli_fetch_array($result))
-                        {
-                          echo"<tr>";
-                          echo"<td>" .$count. "</td>";
-                          echo"<td>".$row['c_name']. "</td>";
-                          echo"<td>".$row['Ord_name']. "</td>";
-                          echo"<td>".$row['Ord_date']. "</td>";
-                          echo "<td class='text-center'>";
-                          // echo "<a href='customercancelCONS.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i> </a>&nbsp ";
-                          echo "<a href='customereditADV.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i></a>&nbsp";
-                          echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Quotation.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-file-alt"></i> Quotation</button></a>&nbsp;';
-                          echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Invoice.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-file-invoice"></i> Invoice</button></a>&nbsp;';
-                          echo '<a href="#"><button class="btn btn-primary" onclick="printDocument(\'Deliverynotes.php\', ' . $row['Ord_cid'] . ')"><i class="fas fa-truck"></i> Delivery Notes</button></a>';
-                          echo "</td>";
-                          echo "</tr>";
-                          $count++;
-                        }
-                        ?>
-                        
+                    $count = 1;
+                    while($row=mysqli_fetch_array($result)) {
+                        echo "<tr>";
+                        echo "<td>" .$count. "</td>";
+                        echo "<td>".$row['c_name']. "</td>";
+                        echo "<td>".$row['Ord_name']. "</td>";
+                        echo "<td>".$row['Ord_date']. "</td>";
+                        echo "<td class='text-center'>";
+                        echo "<div class='btn-group'>";
+                        echo "<a href='customereditADV.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i></a>&nbsp";
+                        echo "<button class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <i class='fas fa-file-alt'></i> Print
+                            </button>";
+                        echo "<div class='dropdown-menu'>";
+                        echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Quotation.php\", " . $row['Ord_cid'] . ")'>Quotation</a>";
+                        echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Invoice.php\", " . $row['Ord_cid'] . ")'>Invoice</a>";
+                        echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Deliverynotes.php\", " . $row['Ord_cid'] . ")'>Delivery Notes</a>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</td>";
+                        echo "</tr>";
+                        $count++;
+                    }
+                    ?> 
                 </tbody>
             </table>
         </div>
