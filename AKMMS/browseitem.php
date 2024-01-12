@@ -4,27 +4,25 @@ if(!session_id())
 {
     session_start();
 }
-include 'headerNav.php'
-;?>
+include 'headerNav.php';?>
 
 <div class="container-fluid">
-    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-dark mb-0">Inventory AK MAJU</h3>
-        
-        
-        <div class="col-md-6">
-            <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                <label class="form-label">
-                    <input type="search" class="form-control, justify-content-center gap-2" id="searchInput" placeholder="Find An Item">
-                    <a class="btn btn-primary" onclick="searchItems()">Search</a>
-                </label>
-            </div>
+    <div class="card shadow p-3 mb-4 bg-primary text-white">
+        <div class="d-sm-flex justify-content-center align-items-center">
+            <h6 class="text-white mb-0 font-weight-bold bold-and-centered">INVENTORY AND STOCK AK MAJU RESOURCES</h6>
         </div>
-        <a class="btn btn-primary" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>
     </div>
 
     <div class="row mt-4">
-        <div class="card shadow p-3">
+    <div class="card shadow p-3">
+                <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->
+                    <div class="col-sm-2 col-form-label">
+                        <label><input type="search" class="form-control" id="searchInput" placeholder=""></label>
+                    </div>&nbsp
+                    <a class="btn btn-primary" onclick="searchItems()">Search</a>&nbsp
+                    <a class="btn btn-primary" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>
+                </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead class="table-primary text-center">

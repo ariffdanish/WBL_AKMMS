@@ -13,9 +13,6 @@ $sql = "SELECT * FROM tb_order
         WHERE tb_order.Ord_type = '1'";
 
 $result = mysqli_query($con, $sql);
-
-
-
 ?>
 
 <div class="container-fluid">
