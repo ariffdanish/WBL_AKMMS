@@ -76,7 +76,7 @@ include('headerNav.php');
                                 echo "<td>" . $row['q_totalcost'] . "</td>";
 
                                 echo "<td style='text-align: center;'>";
-                                echo "<a href='customercancelQuotationCONS.php?id=" . $row['q_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a>&nbsp ";
+                                echo "<a href='customercancelQuotationCONS.php?id=" . $row['q_id'] . "' class='btn btn-danger mr-2' onclick='confirmDelete(\"" . $row['q_id'] . "\")'><i class='fas fa-times'></i></a>&nbsp ";
                                 echo "<a href='customereditQuotationCONS.php?id=" . $row['q_id'] . "' class='btn btn-primary'><i class='fas fa-edit'></i></a> ";
                                 echo "</td>";
 
@@ -93,10 +93,34 @@ include('headerNav.php');
     <a class="btn btn-danger" href="customerorderCONS.php">Back</a>
 </div>
 
-<script>
-    function confirmDelete() {
-        return confirm("Are you sure you want to delete?");
+
+    <script>
+    // JavaScript function to confirm item deletion
+    // JavaScript function to confirm item deletion
+function confirmDelete(q_id) {
+    var confirmDelete = confirm("Are you sure you want to delete this quotation?");
+    if (confirmDelete) {
+        // If the user confirms, send an AJAX request to update_totalcost.php
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'update_totalcost.php?q_id=' + q_id, true);
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Item successfully deleted
+                alert("Quotation with ID " + q_id + " has been removed.");
+                // Reload the page to reflect the changes
+                location.reload();
+            } else {
+                // Display an error message if deletion fails
+                alert("Error: Unable to delete the quotation.");
+            }
+        };
+
+        xhr.send();
     }
-</script>
+}
+
+    </script>
+
 
 <?php include 'footer.php'; ?>
