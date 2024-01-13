@@ -182,7 +182,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             $query = "SELECT o.Ord_name, q.q_quantity 
             FROM tb_order o
             JOIN tb_quotation q ON o.Ord_id = q.q_ordID 
-            WHERE o.Ord_cid = $ordId";
+            WHERE o.Ord_cid = $ordId AND q.q_totalcost <> 0";
   
 
 $result = mysqli_query($con, $query);

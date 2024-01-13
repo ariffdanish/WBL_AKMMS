@@ -184,10 +184,11 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             
 
             // Use the existing connection from your connection file
-            $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price,q.q_discount,q.q_tax 
+            $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price, q.q_discount, q.q_tax 
                FROM tb_quotation q
                JOIN tb_order o ON q.q_ordID = o.Ord_id
-               WHERE o.Ord_cid = $ordId";
+               WHERE o.Ord_cid = $ordId AND q.q_totalcost <> 0";
+
 
             $resultItems = mysqli_query($con, $queryItems);
 
@@ -229,7 +230,7 @@ $upfrontAmount = 0.00; // Default value
 $queryUpfrontAmount = "SELECT SUM(p.p_amount) AS totalAmount
                        FROM tb_payment p
                        JOIN tb_order o ON p.p_ordID = o.Ord_id
-                       WHERE o.Ord_cid = $ordId
+                       WHERE o.Ord_cid = $ordId 
                        GROUP BY p.p_ordID";
 
 $resultUpfrontAmount = mysqli_query($con, $queryUpfrontAmount);
