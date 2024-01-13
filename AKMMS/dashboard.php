@@ -437,39 +437,77 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
         <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Active Staff</b></h6>
             <div class="table-responsive">
                 <table class="table table-striped mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col"><b>Staff ID</b></th>
-                            <th scope="col"><b>Staff Name</b></th>
-                            <th scope="col"><b>Contact Info</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $querys = "SELECT e.e_id, e.e_name, e.e_tel
-                                                FROM tb_employee e
-                                                LEFT JOIN tb_emprole r ON e.e_role = r.role_id";
-                        $results = mysqli_query($con, $querys);
+                <thead>
+    <tr>
+        <th scope="col"><b>Staff ID</b></th>
+        <th scope="col"><b>Staff Name</b></th>
+        <th scope="col"><b>Contact Info</b></th>
+        <th scope="col"><b>Action</b></th> <!-- New column for the delete button -->
+    </tr>
+</thead>
+<tbody>
+    <?php
+    $querys = "SELECT e.e_id, e.e_name, e.e_tel,e.e_role
+               FROM tb_employee e
+               LEFT JOIN tb_emprole r ON e.e_role = r.role_id
+               WHERE e.e_role IN ('1', '2')";
 
-                        if ($results && mysqli_num_rows($results) > 0) {
-                            while ($rows = mysqli_fetch_assoc($results)) {
-                                echo "<tr>";
-                                echo "<td>" . $rows['e_id'] . "</td>";
-                                echo "<td>" . $rows['e_name'] . "</td>";
-                                echo "<td>" . $rows['e_tel'] . "</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='2'>No new staff</td></tr>";
-                        }
-                        ?>
-                    </tbody>
+    $results = mysqli_query($con, $querys);
+
+    
+    if ($results && mysqli_num_rows($results) > 0) {
+        while ($rows = mysqli_fetch_assoc($results)) {
+            echo "<tr>";
+            echo "<td>" . $rows['e_id'] . "</td>";
+            echo "<td>" . $rows['e_name'] . "</td>";
+            echo "<td>" . $rows['e_tel'] . "</td>";
+            echo "<td>";
+            echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $rows['e_id'] . '\' )">Delete</button>';
+            echo "</td>"; // Delete button
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='4'>No new staff</td></tr>";
+    }
+    ?>
+    
+    <script>
+    // JavaScript function to confirm item deletion
+    function deleteItem(e_id) {
+        var confirmDelete = confirm("Are you sure you want to inactivate this staff?");
+        if (confirmDelete) {
+            // If user confirms, send an AJAX request to update_employee_role.php
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'update_employee_role.php?e_id=' + e_id, true);
+    
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Item successfully deleted
+                    alert("Staff with ID " + e_id + " has been removed.");
+                    // Reload the page to reflect the changes
+                    location.reload();
+                } else {
+                    // Display an error message if deletion fails
+                    alert("Error: Unable to delete the staff.");
+                }
+            };
+    
+            xhr.send();
+        }
+    }
+    </script>
+    
+</tbody>
+
+
+
                 </table>
             </div>
         </div>
         
     </div>
 </div>
+
 
 <div class="col-md-6 col-xl-4 mb-4">
     <div class="card shadow border-start-warning">
@@ -509,6 +547,8 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
         </div>
         
                 
+                    </div>
+                    </div>
                     </div>
 
 <!-- Top Three Items Chart -->
