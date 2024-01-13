@@ -99,11 +99,11 @@ if ($results) {
         <h3 class="text-dark mb-0 dashboard-heading fw-bold">DASHBOARD AK MAJU RESOURCES</h3>
         <div >
                                 
-                            </div>
-                            <div >
-                            <span class="text-uppercase text-align:right text-primary fw-bold h10 mb-1">Last updated: </span>
-                                <span class="text-dark text-align:right fw-bold h10 mb-0"><?php echo date("Y-m-d H:i:s"); ?></span>
-                            </div>
+            </div>
+            <div >
+            <span class="text-uppercase text-align:right text-primary fw-bold h10 mb-1">Last updated: </span>
+                <span class="text-dark text-align:right fw-bold h10 mb-0"><?php echo date("Y-m-d H:i:s"); ?></span>
+            </div>
 
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

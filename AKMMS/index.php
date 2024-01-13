@@ -1,6 +1,6 @@
 <?php include 'header.php';?>
 
-<body style="background-color: white;">
+<body style="background-image: url(&quot;bg4.gif&quot;);">
     <div class="container">
         <div class="card shadow-lg o-hidden border-0 my-5">
             <div class="card-body p-0">
@@ -15,24 +15,39 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4">Welcome Back !</h4>
                                     </div>
-                                    <form method="POST" action="loginprocess.php" class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="type" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Staff ID" name="fid"></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="fpwd"></div>
-                                        <div class="mb-3">
-                                            <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button><br>
-                                    </form>
-                                    <div class="text-center"><a class="small" href="forgotpassword.php">Forgot Password?</a></div>
-                                    <div class="text-center"><a class="small" href="register.php">Register Account</a></div>
-                                </div>
+
+                                    <div class="container">
+                                        <form method="POST" action="loginprocess.php" class="user">
+                                            <div class="form-group">
+                                                <label for="staffId">Staff ID:</label>
+                                                <input class="form-control" type="text" id="staffId" placeholder="Enter Staff ID" name="fid">
+                                            </div><br>
+
+                                            <div class="form-group">
+                                                <label for="password">Password:</label>
+                                                <input class="form-control" type="password" id="password" placeholder="Password" name="fpwd">
+                                            </div><br>
+
+                                            <div class="form-group form-check">
+                                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                                <label class="form-check-label" for="rememberMe">Remember Me</label>
+                                            </div><br>
+
+                                            <button class="btn btn-primary btn-block mx-auto" type="submit">Login</button>
+                                        </form>
+                                    </div>
+
+                            <div class="text-center mt-3">
+                                <a class="small" href="forgotpassword.php">Forgot Password?</a>
+                            </div>
+                            <div class="text-center mt-2">
+                                <p class="small">Don't have an account? <a href="register.php">Register Here</a></p>
                             </div>
 
-                
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <?php include 'footer.php';?>

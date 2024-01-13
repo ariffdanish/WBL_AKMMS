@@ -2,7 +2,7 @@
 include ('dbconnect.php');
 include 'header.php';?>
 
-<body style="background-color: white;">
+<body style="background-image: url(&quot;bg4.gif&quot;);">
     <div class="container">
         <div class="card shadow-lg o-hidden border-0 my-5">
             <div class="card-body p-0">
@@ -18,29 +18,51 @@ include 'header.php';?>
                                 <h4 class="text-dark mb-4">Register Account</h4>
                             </div>
                             <form method="POST" action="registerprocess.php" class="user">
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Full Name" name="fname"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Staff ID" name="fid"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email Address" name="femail"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="text" id="exampleFirstName" placeholder="Telephone No" name="ftel"></div>
-                                <div class="mb-3"><input class="form-control form-control-user" type="password" id="examplePasswordInput" placeholder="Password" name="fpwd"></div>
-                                <div class="mb-3">
-                                <?php 
-                                $sql="SELECT * FROM tb_emprole";
-                                $result=mysqli_query($con,$sql);
-                        
-                                echo'<select class="form-select form-control form-control-user" id="exampleSelect1" placeholder="Select" name="ftype">';
-                                while($row=mysqli_fetch_array($result))
-                                {
-                                  echo"<option value='".$row['role_id']."'>".$row['role_desc']."</option>";
-                                }
-                                
-                                echo'</select>';
-                              ?>
-                                </div>
-                                <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account</button><br>
-                            </form>
-                            <div class="text-center"><a class="small" href="forgotpassword.php">Forgot Password?</a></div>
-                            <div class="text-center"><a class="small" href="index.php">Already have an account? Login!</a></div>
+                                <div class="form-group">
+                                    <label for="fname">Full Name:</label>
+                                    <input class="form-control" type="text" id="fname" placeholder="Enter Full Name" name="fname">
+                                </div><br>
+
+                                <div class="form-group">
+                                    <label for="fid">Staff ID:</label>
+                                    <input class="form-control" type="text" id="fid" placeholder="Enter Staff ID" name="fid">
+                                </div><br>
+
+                                <div class="form-group">
+                                    <label for="femail">Email Address:</label>
+                                    <input class="form-control" type="email" id="femail" aria-describedby="emailHelp" placeholder="Enter Email Address" name="femail">
+                                </div><br>
+
+                                <div class="form-group">
+                                    <label for="ftel">Telephone No:</label>
+                                    <input class="form-control" type="text" id="ftel" placeholder="Enter Telephone No" name="ftel">
+                                </div><br>
+
+                                <div class="form-group">
+                                    <label for="fpwd">Password:</label>
+                                    <input class="form-control" type="password" id="fpwd" placeholder="Enter Password" name="fpwd">
+                                </div><br>
+
+                                <div class="form-group">
+                                    <label for="ftype">Employee Role:</label>
+                                    <?php 
+                                    $sql="SELECT * FROM tb_emprole";
+                                    $result=mysqli_query($con,$sql);
+                                    
+                                    echo '<select class="form-select" id="ftype" name="ftype">';
+                                    while($row=mysqli_fetch_array($result)) {
+                                        echo "<option value='".$row['role_id']."'>".$row['role_desc']."</option>";
+                                    }
+                                    echo '</select>';
+                                    ?>
+                                </div><br>
+
+                                <button class="btn btn-primary btn-block" type="submit">Register Account</button>
+                            </form><br>
+
+                            <div class="text-center mt-2">
+                                <p class="small">Forgot password ? Click <a class="small" href="forgotpassword.php">here</a></p>
+                            </div>
                         </div>
                     </div> 
                     

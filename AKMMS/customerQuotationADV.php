@@ -8,10 +8,11 @@ include('headerNav.php');
 ?>
 
 <div class="container-fluid">
-    <div class="d-sm-flex justify-content-between align-items-center mb-4">
-        <h3 class="text-dark mb-0 bold-and-centered">Customer Order Details</h3>
-        <a class="btn btn-primary" type="add" href="customerQuotationformADV.php"><i class="fas fa-plus"></i> Add Item</a>
+<div class="card shadow p-3 mb-4 bg-primary text-white">
+    <div class="d-sm-flex justify-content-center align-items-center">
+        <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER ORDER DETAILS</h6>
     </div>
+</div>
 
 
     <div class="row mt-4">
@@ -33,8 +34,9 @@ include('headerNav.php');
                     echo '</select>';
                     echo '</div>';
                     echo '<div class="col-sm-3">';
-                    echo '<input type="submit" class="btn btn-primary ms-2" name="search" value="Search">';
+                    echo '<input type="submit" class="btn btn-primary ms-2" name="search" value="Search">&nbsp';
                     echo '</form>';
+                    echo '<a class="btn btn-primary" type="add" href="customerQuotationformADV.php"><i class="fas fa-plus"></i> Add Item</a>';
 
                     if (isset($_POST['search'])) {
                         $selectedOrder = $_POST['Ord_id'];

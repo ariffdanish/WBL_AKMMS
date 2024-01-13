@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
 
     <style>
+
     /* Your existing styles */
 
     /* Clock and Date styles */

@@ -24,10 +24,6 @@ $result = mysqli_query($con, $sql);
 
     <div class="card shadow p-3">
         <div class="table-responsive">
-                <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->
-                    <a class="btn btn-primary mr-4" href="customerorderformADV.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
-                    <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
-                </div>
             <table class="table table-hover table-bordered">
                 <thead class="table-primary text-center">
                     <tr>
@@ -67,6 +63,10 @@ $result = mysqli_query($con, $sql);
                     ?> 
                 </tbody>
             </table>
+            <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->
+                    <a class="btn btn-primary mr-4" href="customerorderformADV.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
+                    <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
+            </div>
         </div>
     </div>
 </div>

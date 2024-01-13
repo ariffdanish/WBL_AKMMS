@@ -36,7 +36,7 @@ $rowr=mysqli_fetch_array($resultr);
                         <?php echo'<input type="hidden" value="'.$rowr['q_id'].'" name="fbid">';?>
 
                         <div class="row mb-3">
-                            <label for="ctype" class="col-sm-3 col-form-label">Customer Type:</label>
+                            <label for="ctype" class="col-sm-3 col-form-label">Select Order :</label>
                             <div class="col-sm-9">
                             <?php 
                                 $sql="SELECT * FROM tb_order";
