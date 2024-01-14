@@ -90,6 +90,7 @@ include 'headerNav.php';?>
                             echo "<td class='text-center'>";
                             echo '<button class="btn btn-warning" onclick="modifyItem(\'' . $row['i_Code'] . '\')">Modify</button>';
                             echo '&nbsp;';
+                            echo '&nbsp;';
                             echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $row['i_Code'] . '\')">Delete</button>';
                             echo "</td>";
                             echo "</tr>";
