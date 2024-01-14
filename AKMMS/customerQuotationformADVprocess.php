@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $q_tax = $_POST['q_tax'];
 
     // Calculate total cost including tax
-    $q_totalcost = $q_quantity * ($q_price - $q_discount) * (1 + ($q_tax / 100));
+    $q_totalcost = $q_quantity * ($q_price - ($q_discount / 100)) * (1 + ($q_tax / 100));
 
     // Insert data into tb_quotation table
     $insertQuotationSQL = "INSERT INTO tb_quotation (q_ordID, q_itemDesc, q_codeID, q_quantity, q_price, q_discount, q_tax, q_totalcost)
@@ -56,12 +56,12 @@ mysqli_close($con);
         </tr>
 
         <tr>
-            <td><strong>Discount (RM) :</strong></td>
+            <td><strong>Discount % (RM) :</strong></td>
             <td><?php echo $q_discount; ?></td>
         </tr>
 
         <tr>
-            <td><strong>Tax (RM) :</strong></td>
+            <td><strong>Tax % (RM) :</strong></td>
             <td><?php echo $q_tax; ?></td>
         </tr>
 

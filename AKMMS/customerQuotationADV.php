@@ -58,9 +58,8 @@ include('headerNav.php');
                             <th scope="col">Item Description</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Unit Price (RM)</th>
-                            <th scope="col">Discount (RM)</th>
-                            <th scope="col">Amount Discount (RM)</th>
-                            <th scope="col">Tax Amount (RM)</th>
+                            <th scope="col">Discount % (RM)</th>
+                            <th scope="col">Tax  % (RM)</th>
                             <th scope="col">Total Inc. Tax (RM)</th>
                             <th scope="col"></th>
                         </tr>
@@ -75,7 +74,6 @@ include('headerNav.php');
                                 echo "<td>" . $row['q_itemDesc'] . "</td>";
                                 echo "<td>" . $row['q_quantity'] . "</td>";
                                 echo "<td>" . $row['q_price'] . "</td>";
-                                echo "<td>" . $row['q_discount'] . "</td>";
                                 echo "<td>" . $row['q_discount'] . "</td>";
                                 echo "<td>" . $row['q_tax'] . "</td>";
                                 echo "<td>" . $row['q_totalcost'] . "</td>";
