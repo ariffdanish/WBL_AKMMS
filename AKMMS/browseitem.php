@@ -7,19 +7,20 @@ if(!session_id())
 include 'headerNav.php';?>
 
 <div class="container-fluid">
+    
+
+    <div class="row mt-4">
+    <div class="card shadow p-3">
     <div class="card shadow p-3 mb-4 bg-primary text-white">
         <div class="d-sm-flex justify-content-center align-items-center">
             <h6 class="text-white mb-0 font-weight-bold bold-and-centered">INVENTORY AND STOCK AK MAJU RESOURCES</h6>
         </div>
     </div>
-
-    <div class="row mt-4">
-    <div class="card shadow p-3">
                 <div class="row mb-3">
-                    <label for="icategory" class="col-sm-3 col-form-label">Select Item Category</label>
+                    <label for="icategory" class="col-sm-3 col-form-label">Select Item Category:</label>
                     <div class="col-sm-6">
                         <form method="post" action="">
-                            <select class="form-select" id="i_Category" name="i_Category">
+                            <select class="form-select justify-content-center align-items-center" id="i_Category" name="i_Category">
                                 <option value="Advertising" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'Advertising' ? 'selected' : ''; ?>>Advertising</option>
                                 <option value="Construction" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'Construction' ? 'selected' : ''; ?>>Construction</option>
                             </select>
@@ -32,9 +33,9 @@ include 'headerNav.php';?>
                 <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->  
                     <div class="col-sm-2 col-form-label">
                         <label><input type="search" class="form-control" id="searchInput" placeholder="Search Item"></label>
-                    </div>&nbsp
-                    <a class="btn btn-primary" onclick="searchItems()">Search</a>&nbsp
-                    <a class="btn btn-primary" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>
+                    </div>&nbsp &nbsp
+                    <a class="btn btn-primary" onclick="searchItems()">Search</a>&nbsp &nbsp
+                    <a class="btn btn-primary align-items-right" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>
                 </div>
 
             <div class="table-responsive">
