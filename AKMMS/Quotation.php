@@ -185,7 +185,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             
 
             // Use the existing connection from your connection file
-            $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price, q.q_discount, q.q_tax 
+            $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price, q.q_discount, q.q_tax,q.q_totalcost 
             FROM tb_quotation q
             JOIN tb_order o ON q.q_ordID = o.Ord_id
             WHERE o.Ord_cid = $ordId AND q.q_totalcost <> 0";
@@ -200,7 +200,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
                     $unit_price = ($row['q_price']);
                     $disc = ($row['q_discount']);
                     $tax = ($row['q_tax']);
-                    $total_price = (($amount * $unit_price)-$disc+$tax);
+                    $total_price = ($row['q_totalcost']);
                     $total += $total_price;
                     echo("<tr>");
                     echo("<td>$description</td>");
