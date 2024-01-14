@@ -33,7 +33,7 @@
                     <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in border-0"> <!-- Removed border -->
                         <a class="nav-link dropdown-toggle" href="customerorderADV.php" style="font-size: 14px;"> <!-- Adjusted font size -->
                             <i class="fas fa-bullhorn"></i> <!-- Symbol for Advertising -->
-                            ADVERTISMENT
+                            ADVERTISEMENT
                         </a>
                         <a class="nav-link dropdown-toggle" href="customerorderCONS.php" style="font-size: 14px;"> <!-- Adjusted font size -->
                             <i class="fas fa-hard-hat"></i> <!-- Symbol for Construction -->
