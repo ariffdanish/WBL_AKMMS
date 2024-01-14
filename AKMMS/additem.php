@@ -49,11 +49,12 @@ include 'headerNav.php';?>
                                     <option>V- PEMASANGAN LUAR - LAMPU JALAN, LAMPU ISYARAT, DAN LAMPU KAWASAN</option>
                                     <option>VI- KABEL BAWAH TANAH DAN AKSESORI</option>
                                     <option>VII - PELBAGAI</option>
-                                    <option>Kayu</option>
-                                    <option>Besi</option>
-                                    <option>Plastik</option>
-                                    <option>Kaca</option>
-                                    <option>Aluminium</option>
+                                    <option>KAYU</option>
+                                    <option>BESI</option>
+                                    <option>PLASTIK</option>
+                                    <option>KACA</option>
+                                    <option>ALUMINIUM</option>
+                                    <option>KERTAS</option>
                                 </select>
                                 </div>
                                 
@@ -62,6 +63,10 @@ include 'headerNav.php';?>
                                
                                 <h6>Item Price per Unit</h6>
                                 <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="(RM, 2 t.p.)" name="iprice" required></div>
+
+                                <h6>Item Status</h6>
+                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="Active" name="istatus" disabled></div>
+
                                 <div class="mb-3 d-flex justify-content-center gap-2">
                                     <button type="submit" class="btn btn-primary">Add Item</button>
                                     <button type="reset" class="btn btn-dark mx-2">Reset</button>

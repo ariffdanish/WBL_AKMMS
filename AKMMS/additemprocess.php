@@ -16,11 +16,12 @@ $icategory=$_POST['icategory'];
 $imaterial=$_POST['imaterial'];
 $iquantity=$_POST['iquantity'];
 $iprice=$_POST['iprice'];
+$istatus= 1 ;
 
 //CRUD Operations
 //CREATE-SQL Insert statement
-$sqlp="INSERT INTO tb_item(i_Code,i_Date,i_Name,i_Desc,i_Category,i_Material,i_Quantity,i_Price)
-		VALUES('$icode','$idate','$iname','$idesc','$icategory','$imaterial','$iquantity','$iprice')";
+$sqlp="INSERT INTO tb_item(i_Code, i_Date, i_Name, i_Desc, i_Category, i_Material, i_Quantity, i_Price, i_Status)
+		VALUES('$icode','$idate','$iname','$idesc','$icategory','$imaterial','$iquantity','$iprice','$istatus')";
 
 //EXECUTE SQL
 mysqli_query($con, $sqlp);
@@ -65,7 +66,11 @@ include 'headerNav.php';
         </tr>
         <tr>
             <td><strong>Price: </strong></td>
-            <td><?php echo "RM" . number_format($iprice, 2) . " per unit</p>"; ?></td>
+            <td><?php echo "RM" . number_format($iprice, 2) . " per unit"; ?></td>
+        </tr>
+        <tr>
+            <td><strong>Status: </strong></td>
+            <td><?php echo "Active"; ?></td>
         </tr>
     </table>
     <a class="btn btn-danger" href="browseitem.php">Back</a>

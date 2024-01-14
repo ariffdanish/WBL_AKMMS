@@ -31,21 +31,21 @@ include 'headerNav.php';
                 <div class="form-group">
                     <label for="icode" class="form-label mt-4">Enter Item Code</label>
                     <?php
-                    echo '<input type="text" value="' . $rowr['i_Code'] . '" name="icode" class="form-control" id="ic" placeholder="Same as the Selected Item" required>';
+                    echo '<input type="text" value="' . $rowr['i_Code'] . '" name="icode" class="form-control" id="ic" placeholder="Same as the Selected Item">';
                     ?>
                 </div>
 
                 <div class="form-group">
                     <label for="iname" class="form-label mt-4">Enter Item New Name</label>
                     <?php
-                    echo '<input type="text" value="' . $rowr['i_Name'] . '" name="iname" class="form-control" id="ic" placeholder="New Item Name" required>';
+                    echo '<input type="text" value="' . $rowr['i_Name'] . '" name="iname" class="form-control" id="ic" placeholder="New Item Name">';
                     ?>
                 </div>
 
                 <div class="form-group">
                     <label for="idesc" class="form-label mt-4">Enter Item New Description</label>
                     <?php
-                    echo '<input type="text" value="' . $rowr['i_Desc'] . '" name="idesc" class="form-control" id="ic" placeholder="New Item Description" required>';
+                    echo '<input type="text" value="' . $rowr['i_Desc'] . '" name="idesc" class="form-control" id="ic" placeholder="New Item Description">';
                     ?>
                 </div>
 
@@ -85,14 +85,14 @@ include 'headerNav.php';
                 <div class="form-group">
                     <label for="iquantity" class="form-label mt-4">Add Item Quantity</label>
                     <?php
-                    echo '<input type="text" value="0" name="iquantity" class="form-control" id="ic" placeholder="Add Quantity to the Item" oninput="validateQuantity(this)" required>';
+                    echo '<input type="text" value="0" name="iquantity" class="form-control" id="ic" placeholder="Add Quantity to the Item" oninput="validateQuantity(this)">';
                     ?>
                 </div>
 
                 <div class="form-group">
                     <label for="iprice" class="form-label mt-4">Update Item Price</label>
                     <?php
-                    echo '<input type="text" value="' . $rowr['i_Price'] . '" name="iprice" class="form-control" id="ic" placeholder="Update Price of Item" required>';
+                    echo '<input type="text" value="' . $rowr['i_Price'] . '" name="iprice" class="form-control" id="ic" placeholder="Update Price of Item">';
                     ?>
                 </div>
 

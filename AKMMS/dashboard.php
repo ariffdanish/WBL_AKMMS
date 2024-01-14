@@ -509,7 +509,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
 <div class="col-md-6 col-xl-4 mb-4">
     <div class="card shadow border-start-warning">
         <div class="card-body">
-        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Alert! : Low Stock</b></h6>
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Low Item Stock; Please Restock ASAP</b></h6>
             <div class="table-responsive">
                 <table class="table table-striped mb-0">
                     <thead>
@@ -523,7 +523,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                         <?php
                         $querys = "SELECT i_Code, i_Name, i_Quantity
                                                 FROM tb_item 
-                                                WHERE i_Quantity < 10";
+                                                WHERE i_Quantity < 20";
                         $results = mysqli_query($con, $querys);
 
                         if ($results && mysqli_num_rows($results) > 0) {

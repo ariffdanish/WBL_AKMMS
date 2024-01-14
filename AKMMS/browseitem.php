@@ -40,39 +40,43 @@ include 'headerNav.php';?>
                         // Connect to DB
                         include('dbconnect.php');
 
-                        // Retrieve data from tb_item
-                        $sqlSelect = "SELECT i_Name, i_Code, i_Desc, i_Quantity, i_Price FROM tb_item";
-
-                        // If search query is provided, filter the results
                         if (isset($_GET['search'])) {
                             $searchInput = mysqli_real_escape_string($con, $_GET['search']);
-                            $sqlSelect .= " WHERE i_Code LIKE '%$searchInput%' OR i_Name LIKE '%$searchInput%'";
+                            $sqlSelect = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
+                                FROM tb_item i
+                                LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
+                                WHERE i.i_Status IN ('1') AND (i.i_Code LIKE '%$searchInput%' OR i.i_Name LIKE '%$searchInput%')";
+                        } else {
+                            // Retrieve data from tb_item
+                            $sqlSelect = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
+                                FROM tb_item i
+                                LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
+                                WHERE i.i_Status IN ('1')";
                         }
 
-            
+
                         $result = mysqli_query($con, $sqlSelect);
 
-                        // Display retrieved data
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td><a href='viewitemprocess.php?icode=" . $row['i_Code'] . "'>" . $row['i_Code'] . "</a></td>";
-                            echo "<td>" . $row['i_Name'] . "</td>";
-                            echo "<td>" . $row['i_Desc'] . "</td>";
-                            echo "<td class='text-center'>" . $row['i_Quantity'] . "</td>";
-                            echo "<td class='text-center'>" . number_format($row['i_Price'], 2) . "</td>";
-                            echo "<td class='text-center'>";
-                            echo '<button class="btn btn-warning" onclick="modifyItem(\'' . $row['i_Code'] . '\')">Modify</button>';
-                            echo '&nbsp;';
-                            echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $row['i_Code'] . '\')">Delete</button>';
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-
-                        // Display message if no matching items found
-                        if (mysqli_num_rows($result) == 0 && isset($_GET['search'])) {
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td><a href='viewitemprocess.php?icode=" . $row['i_Code'] . "'>" . $row['i_Code'] . "</a></td>";
+                                echo "<td>" . $row['i_Name'] . "</td>";
+                                echo "<td>" . $row['i_Desc'] . "</td>";
+                                echo "<td class='text-center'>" . $row['i_Quantity'] . "</td>";
+                                echo "<td class='text-center'>" . number_format($row['i_Price'], 2) . "</td>";
+                                echo "<td class='text-center'>";
+                                echo '<button class="btn btn-warning" onclick="modifyItem(\'' . $row['i_Code'] . '\')">Modify</button>';
+                                echo '&nbsp;';
+                                echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $row['i_Code'] . '\')">Delete</button>';
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
                             echo "<tr><td colspan='6'>No matching items found.</td></tr>";
                         }
 
+                        
                         // Close DB Connection
                         mysqli_close($con);
                         ?>
@@ -86,11 +90,11 @@ include 'headerNav.php';?>
 <script>
     // JavaScript function to confirm item deletion
     function deleteItem(itemCode) {
-        var confirmDelete = confirm("Are you sure you want to delete this item?");
+        var confirmDelete = confirm("Are you sure you want to remove this item?");
         if (confirmDelete) {
             // If user confirms, send an AJAX request to deleteitem.php
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'deleteitem.php?icode=' + itemCode, true);
+            xhr.open('GET', 'updateitemstatus.php?icode=' + itemCode, true);
 
             xhr.onload = function () {
                 if (xhr.status === 200) {

@@ -13,10 +13,11 @@ $iname = $_POST['iname'];
 $idesc = $_POST['idesc'];
 $iquantity = $_POST['iquantity'];
 $iprice = $_POST['iprice'];
+$istatus = $_POST['istatus'];
 
 // CRUD Operations
 // UPDATE - SQL Update statement
-$sqld = "SELECT i_Code, i_Name, i_Desc, i_Quantity, i_Price
+$sqld = "SELECT i_Code, i_Name, i_Desc, i_Quantity, i_Price, i_Status
          FROM tb_item";
          
 // EXECUTE SQL
