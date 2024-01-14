@@ -51,7 +51,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="browseitem.php">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-box"></i>
                         <span>INVENTORY AND STOCK</span>
                     </a>
                 </li>
