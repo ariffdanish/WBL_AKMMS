@@ -8,41 +8,39 @@ include('headerNav.php');
 ?>
 
 <div class="container-fluid">
-<div class="card shadow p-3 mb-4 bg-primary text-white">
-    <div class="d-sm-flex justify-content-center align-items-center">
-        <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER ORDER DETAILS</h6>
-    </div>
-</div>
-
 
     <div class="row mt-4">
         <div class="card shadow p-3">
+        <div class="card shadow p-3 mb-4 bg-primary text-white">
+            <div class="d-sm-flex justify-content-center align-items-center">
+                <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER ORDER DETAILS</h6>
+            </div>
+        </div>
 
             <div class="row mb-3">
                 <label for="ctype" class="col-sm-3 col-form-label">Select Order:</label>
                 <div class="col-sm-6">
                     <?php
-                    $sql = "SELECT * FROM tb_order
-                            WHERE tb_order.Ord_type = '2'";
-                    $result = mysqli_query($con, $sql);
+                        $sql = "SELECT * FROM tb_order WHERE tb_order.Ord_type = '2'";
+                        $result = mysqli_query($con, $sql);
 
-                    echo '<form method="post" action="">';
-                    echo '<select class="form-select" id="Ord_id" placeholder="Select" name="Ord_id">';
-                    while ($row = mysqli_fetch_array($result)) {
-                        echo "<option value='" . $row['Ord_id'] . "'>" . $row['Ord_name'] . "</option>";
-                    }
-                    echo '</select>';
-                    echo '</div>';
-                    echo '<div class="col-sm-3">';
-                    echo '<input type="submit" class="btn btn-primary ms-2" name="search" value="Search">&nbsp';
-                    echo '</form>';
-                    echo '<a class="btn btn-primary" type="add" href="customerQuotationformCONS.php"><i class="fas fa-plus"></i> Add Item</a>';
+                        echo '<form method="post" action="" id="searchForm" onsubmit="return validateForm()">';
+                        echo '<select class="form-select" id="Ord_id" placeholder="Select" name="Ord_id">';
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<option value='" . $row['Ord_id'] . "'>" . $row['Ord_name'] . "</option>";
+                        }
+                        echo '</select>';
+                        echo '</div>';
+                        echo '<div class="col-sm-3">';
+                        echo '<input type="submit" class="btn btn-primary ms-2" name="search" value="Search">&nbsp';
+                        echo '</form>';
+                        echo '<a class="btn btn-primary" type="add" href="customerQuotationformCONS.php"><i class="fas fa-plus"></i> Add Item</a>';
 
-                    if (isset($_POST['search'])) {
-                        $selectedOrder = $_POST['Ord_id'];
-                        $quotationSql = "SELECT * FROM tb_quotation WHERE q_ordID = $selectedOrder AND is_deleted = 0";
-                        $quotationResult = mysqli_query($con, $quotationSql);
-                    }
+                        if (isset($_POST['search'])) {
+                            $selectedOrder = $_POST['Ord_id'];
+                            $quotationSql = "SELECT * FROM tb_quotation WHERE q_ordID = $selectedOrder AND is_deleted = 0";
+                            $quotationResult = mysqli_query($con, $quotationSql);
+                        }
                     ?>
                 </div>
             </div>
@@ -97,6 +95,16 @@ include('headerNav.php');
 
 
     <script>
+
+        // JavaScript function to validate the form before submission
+    function validateForm() {
+        var selectedOrder = document.getElementById('Ord_id').value;
+        if (!selectedOrder) {
+            alert("Please select an order before searching.");
+            return false; // Prevent form submission
+        }
+        return true; // Continue with form submission
+    }
     // JavaScript function to confirm item deletion
     // JavaScript function to confirm item deletion
 function confirmDelete(q_id) {

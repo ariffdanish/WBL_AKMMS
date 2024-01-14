@@ -16,14 +16,13 @@ $result = mysqli_query($con, $sql);
 ?>
 
 <div class="container-fluid">
-    <div class="card shadow p-3 mb-4 bg-primary text-white">
+
+        <div class="card shadow p-3">
+        <div class="card shadow p-3 mb-4 bg-primary text-white">
             <div class="d-sm-flex justify-content-center align-items-center">
                 <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER ORDER DETAILS CONSTRUCTION</h6>
             </div>
-    </div>
-
-
-        <div class="card shadow p-3">
+        </div>
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead class="table-primary text-center">

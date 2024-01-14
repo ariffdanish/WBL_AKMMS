@@ -8,15 +8,14 @@ include('headerNav.php');
 ?>
 
 <div class="container-fluid">
-<div class="card shadow p-3 mb-4 bg-primary text-white">
-    <div class="d-sm-flex justify-content-center align-items-center">
-        <h6 class="text-white mb-0 font-weight-bold bold-and-centered">PAYMENT MANAGEMENT</h6>
-        <!--<a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>--> 
-    </div>
-</div>
-
     <div class="row mt-4">
         <div class="card shadow p-3">
+        <div class="card shadow p-3 mb-4 bg-primary text-white">
+            <div class="d-sm-flex justify-content-center align-items-center">
+                <h6 class="text-white mb-0 font-weight-bold bold-and-centered">PAYMENT MANAGEMENT</h6>
+            </div>
+        </div>
+        
             <div class="row mb-3">
                 <label for="ctype" class="col-sm-3 col-form-label">Select Order:</label>
                 <div class="col-sm-6">

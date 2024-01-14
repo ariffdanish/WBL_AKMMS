@@ -195,9 +195,6 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
 
     
     <div class="card shadow p-3">
-    <!-- Earnings Cards and User Goals -->
-    
-    
     <div class="row">
         <!-- Monthly Earnings -->
 
@@ -550,6 +547,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                     </div>
                     </div>
                     </div>
+                    </div>
 
 <!-- Top Three Items Chart -->
 
@@ -605,12 +603,6 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
         }
     }
 </script>
-
-
-
-
-
-
 
 
 <?php include 'footer.php';?>
