@@ -15,7 +15,21 @@ include 'headerNav.php';?>
 
     <div class="row mt-4">
     <div class="card shadow p-3">
-                <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->
+                <div class="row mb-3">
+                    <label for="icategory" class="col-sm-3 col-form-label">Select Item Category</label>
+                    <div class="col-sm-6">
+                        <form method="post" action="">
+                            <select class="form-select" id="i_Category" name="i_Category">
+                                <option value="Advertising" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'Advertising' ? 'selected' : ''; ?>>Advertising</option>
+                                <option value="Construction" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'Construction' ? 'selected' : ''; ?>>Construction</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="submit" class="btn btn-primary ms-2" name="search" value="Search">
+                        </form>
+                    </div>
+                </div>
+                <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->  
                     <div class="col-sm-2 col-form-label">
                         <label><input type="search" class="form-control" id="searchInput" placeholder="Search Item"></label>
                     </div>&nbsp
@@ -36,50 +50,56 @@ include 'headerNav.php';?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        // Connect to DB
-                        include('dbconnect.php');
+                    <?php
+                    // Connect to DB
+                    include('dbconnect.php');
 
-                        if (isset($_GET['search'])) {
-                            $searchInput = mysqli_real_escape_string($con, $_GET['search']);
-                            $sqlSelect = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
-                                FROM tb_item i
-                                LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
-                                WHERE i.i_Status IN ('1') AND (i.i_Code LIKE '%$searchInput%' OR i.i_Name LIKE '%$searchInput%')";
-                        } else {
-                            // Retrieve data from tb_item
-                            $sqlSelect = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
-                                FROM tb_item i
-                                LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
-                                WHERE i.i_Status IN ('1')";
+                    if (isset($_POST['search'])) {
+                        // Category search
+                        $selectedCategory = mysqli_real_escape_string($con, $_POST['i_Category']);
+                        $sqlSearch = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
+                            FROM tb_item i
+                            LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
+                            WHERE i.i_Status IN ('1') AND i.i_Category = '$selectedCategory'";
+                    } elseif (isset($_GET['search'])) {
+                        // Item code or name search
+                        $searchInput = mysqli_real_escape_string($con, $_GET['search']);
+                        $sqlSearch = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
+                            FROM tb_item i
+                            LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
+                            WHERE i.i_Status IN ('1') AND (i.i_Code LIKE '%$searchInput%' OR i.i_Name LIKE '%$searchInput%')";
+                    } else {
+                        // Retrieve data from tb_item without search filter
+                        $sqlSearch = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
+                            FROM tb_item i
+                            LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
+                            WHERE i.i_Status IN ('1')";
+                    }
+
+                    $result = mysqli_query($con, $sqlSearch);
+
+                    if ($result && mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td><a href='viewitemprocess.php?icode=" . $row['i_Code'] . "'>" . $row['i_Code'] . "</a></td>";
+                            echo "<td>" . $row['i_Name'] . "</td>";
+                            echo "<td>" . $row['i_Desc'] . "</td>";
+                            echo "<td class='text-center'>" . $row['i_Quantity'] . "</td>";
+                            echo "<td class='text-center'>" . number_format($row['i_Price'], 2) . "</td>";
+                            echo "<td class='text-center'>";
+                            echo '<button class="btn btn-warning" onclick="modifyItem(\'' . $row['i_Code'] . '\')">Modify</button>';
+                            echo '&nbsp;';
+                            echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $row['i_Code'] . '\')">Delete</button>';
+                            echo "</td>";
+                            echo "</tr>";
                         }
+                    } else {
+                        echo "<tr><td colspan='6'>No matching items found.</td></tr>";
+                    }
 
-
-                        $result = mysqli_query($con, $sqlSelect);
-
-                        if ($result && mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-                                echo "<td><a href='viewitemprocess.php?icode=" . $row['i_Code'] . "'>" . $row['i_Code'] . "</a></td>";
-                                echo "<td>" . $row['i_Name'] . "</td>";
-                                echo "<td>" . $row['i_Desc'] . "</td>";
-                                echo "<td class='text-center'>" . $row['i_Quantity'] . "</td>";
-                                echo "<td class='text-center'>" . number_format($row['i_Price'], 2) . "</td>";
-                                echo "<td class='text-center'>";
-                                echo '<button class="btn btn-warning" onclick="modifyItem(\'' . $row['i_Code'] . '\')">Modify</button>';
-                                echo '&nbsp;';
-                                echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $row['i_Code'] . '\')">Delete</button>';
-                                echo "</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='6'>No matching items found.</td></tr>";
-                        }
-
-                        
-                        // Close DB Connection
-                        mysqli_close($con);
-                        ?>
+                    // Close DB Connection
+                    mysqli_close($con);
+                    ?>
                     </tbody>
                 </table>
             </div>
