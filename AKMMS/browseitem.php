@@ -17,7 +17,7 @@ include 'headerNav.php';?>
     <div class="card shadow p-3">
                 <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->
                     <div class="col-sm-2 col-form-label">
-                        <label><input type="search" class="form-control" id="searchInput" placeholder=""></label>
+                        <label><input type="search" class="form-control" id="searchInput" placeholder="Search Item"></label>
                     </div>&nbsp
                     <a class="btn btn-primary" onclick="searchItems()">Search</a>&nbsp
                     <a class="btn btn-primary" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>
