@@ -42,13 +42,13 @@ include 'headerNav.php';?>
                                 <div class="mb-3">
                                 <select class="form-select form-control" id="exampleSelect1" placeholder="Jenis barang" name="imaterial" required>
                                     <option disabled selected>-Sila Pilih-</option>
-                                    <option>I- PENDAWAIAN</option>
-                                    <option>II- PAPAN AGIHAN, PEMUTUS LITAR DAN PERALATAN PERLINDUNGAN</option>
-                                    <option>III- ALAT-ALAT LENGKAP PENDAWAIAN ELEKTRIK</option>
-                                    <option>IV- LENGKAPAN PENCAHAYAAN, LAMPU, KOMPONEN-KOMPONEN LAMPU DAN KIPAS</option>
-                                    <option>V- PEMASANGAN LUAR - LAMPU JALAN, LAMPU ISYARAT, DAN LAMPU KAWASAN</option>
-                                    <option>VI- KABEL BAWAH TANAH DAN AKSESORI</option>
-                                    <option>VII - PELBAGAI</option>
+                                    <option>JKR (I)</option>
+                                    <option>JKR (II)</option>
+                                    <option>JKR (III)</option>
+                                    <option>JKR (IV)</option>
+                                    <option>JKR (V)</option>
+                                    <option>JKR (VI)</option>
+                                    <option>JKR (VII)</option>
                                     <option>KAYU</option>
                                     <option>BESI</option>
                                     <option>PLASTIK</option>
