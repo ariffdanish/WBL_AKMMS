@@ -17,7 +17,7 @@
     $q_discount = $_POST['q_discount'];
     $q_tax = $_POST['q_tax'];
     
-    $q_totalcost = $q_quantity * ($q_price - $q_discount) * (1 + ($q_tax / 100));
+    $q_totalcost = $q_quantity * ($q_price - ($q_discount / 100)) * (1 + ($q_tax / 100));
 
     if (!empty($fbid)) {
         $insertQuotationSQL = "UPDATE tb_quotation
@@ -65,12 +65,12 @@
         </tr>
 
         <tr>
-            <td><strong>Discount (RM) :</strong></td>
+            <td><strong>Discount % (RM) :</strong></td>
             <td><?php echo $q_discount; ?></td>
         </tr>
 
         <tr>
-            <td><strong>Tax (RM) :</strong></td>
+            <td><strong>Tax % (RM) :</strong></td>
             <td><?php echo $q_tax; ?></td>
         </tr>
 
