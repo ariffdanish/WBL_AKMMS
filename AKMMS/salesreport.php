@@ -137,6 +137,7 @@ include 'dbconnect.php';
 
     <?php
     $totalSales = 0;
+    $totalSale = 0;
     
     $currentMonth = date('Y-m');
     $lastMonth = date('Y-m', strtotime('-1 month'));
@@ -166,7 +167,7 @@ include 'dbconnect.php';
     // Calculate the sales growth
     $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
     // Use the existing connection from your connection file
-    $query = "SELECT o.Ord_name, q.q_quantity,q.q_itemDesc,q_totalcost, i.i_Name, i.i_Quantity, i.i_Material,q.q_tax
+    $query = "SELECT o.Ord_name, q.q_quantity,q.q_itemDesc,q_totalcost, i.i_Name, i.i_Quantity, i.i_Material,q.q_tax,q.q_price
             FROM tb_order o
             INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID
             INNER JOIN tb_item i ON q.q_codeID = i.i_CodeID";
@@ -177,6 +178,7 @@ include 'dbconnect.php';
         while ($row = mysqli_fetch_assoc($result)) {
             $description = $row['Ord_name'] . " - " . $row['q_itemDesc'];
             $quantitySold = $row['q_quantity'];
+            $sold = $row['q_price'];
             $totalAmount = $row['q_totalcost'];
 
             echo("<tr>");
@@ -187,26 +189,27 @@ include 'dbconnect.php';
             echo("</tr>");
 
             // Accumulate total sales
+            $totalSale += $quantitySold * $sold;
 
             $totalSales += $totalAmount;
-            $tax = $row['q_tax'];
+            
         }
 
         // Display total sales and apply VAT
         
-        $sum = $tax + $totalSales;
+        
 
 
         echo("<tr>");
        echo("<br>");
-        echo("<td colspan='2' class='text-right'><b>Total Sales:</b></td>");
-        echo("<td class='text-center'><b>RM" . number_format($totalSales, 2) ."</b></td>");
+        echo("<td colspan='2' class='text-right'><b>Total Cost (Sold):</b></td>");
+        echo("<td class='text-center'><b>RM" . number_format($totalSale, 2) ."</b></td>");
         echo("</tr>");
         echo("<tr>");
         
         echo("<td></td>");
         echo("<td class='text-center'><b>Final Amount (Tax inc):</b></td>");
-        echo("<td class='text-center'><b> RM" . number_format($sum, 2) ."</b></td>");
+        echo("<td class='text-center'><b> RM" . number_format($totalSales, 2) ."</b></td>");
         echo("</tr>");
         echo("<td></td>");
         echo("<td class='text-center'><b>Sales Growth (Current Month):</b></td>");

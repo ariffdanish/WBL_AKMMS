@@ -137,7 +137,7 @@ include 'dbconnect.php';
             $totalSales = 0;
             $totalCost = 0;
 
-            $query = "SELECT o.Ord_name, q.q_quantity, q.q_itemDesc, q.q_totalcost, i.i_Name, i.i_Quantity, i.i_Material, q.q_tax
+            $query = "SELECT o.Ord_name, q.q_quantity, q.q_itemDesc, q.q_totalcost, i.i_Name, i.i_Quantity, i.i_Material, q.q_tax,q.q_price
                     FROM tb_order o
                     INNER JOIN tb_quotation q ON o.Ord_id = q.q_ordID
                     INNER JOIN tb_item i ON q.q_codeID = i.i_CodeID";
@@ -148,9 +148,9 @@ include 'dbconnect.php';
                 while ($row = mysqli_fetch_assoc($result)) {
                     $description = $row['Ord_name'] . " - " . $row['q_itemDesc'];
                     $quantitySold = $row['q_quantity'];
-                    $unitPrice = $row['q_totalcost'] / $quantitySold;
+                    $unitPrice = $row['q_price'];
                     $totalAmount = $row['q_totalcost'];
-                    $tax = $row['q_tax'];
+                   
 
                     echo("<tr>");
                     echo("<td>$description</td>");
@@ -160,7 +160,7 @@ include 'dbconnect.php';
                     echo("</tr>");
 
                     // Accumulate total sales and cost
-                    $totalSales += $totalAmount + $tax;
+                    $totalSales += $totalAmount;
                     $totalCost += ($unitPrice * $quantitySold);
                 }
 
