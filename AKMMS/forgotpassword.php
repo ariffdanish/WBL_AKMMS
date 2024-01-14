@@ -5,6 +5,26 @@ require 'vendor/autoload.php'; // Include PHPMailer autoloader
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+function base_url($url = null)
+{
+    global $baseUrl;
+    return $baseUrl . $url;
+}
+
+$baseUrl = 'http://localhost/WBL_AKMMS/AKMMS/';
+
+function alert($message, $type = 'info')
+{
+    // bootsrap 4 alert
+    $text = '<div class="alert alert-' . $type . ' alert-dismissible fade show" role="alert">';
+    $text .= $message;
+    $text .= '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+    $text .= '<span aria-hidden="true">&times;</span>';
+    $text .= '</button>';
+    $text .= '</div>';
+    return $text;
+}
+
 if ($phpMailerPassword == '' || $phpMailerUsername == '' || $phpMailerHost == '') {
     $_SESSION['message'] = alert('Please configure your email credentials in config.php', 'danger');
     redirect('login.php');
