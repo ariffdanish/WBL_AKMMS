@@ -75,7 +75,7 @@ include('dbconnect.php');
                         <div class="row mb-3">
                             <label for="p_proof" class="col-sm-3 col-form-label">Proof of Payment (PDF):</label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="file" id="p_proof" name="p_proof" accept=".pdf">
+                                <input class="form-control" type="file" id="p_proof" name="p_proof" accept=".pdf" required>
                                 <small class="text-muted">Upload a PDF file as proof of payment.</small>
                             </div>
                         </div>

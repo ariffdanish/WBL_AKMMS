@@ -73,7 +73,7 @@ $rowr=mysqli_fetch_array($resultr);
                         <div class="row mb-3">
                             <label for="orderName" class="col-sm-3 col-form-label">Amount Payment (RM):</label>
                             <div class="col-sm-9">
-                            <?php echo'<input class="form-control" type="text" value="'.$rowr['p_amount'].'" id="p_amount" name="p_amount" required>';?>
+                            <?php echo'<input class="form-control" type="text" value="'.$rowr['p_amount'].'" id="p_amount" name="p_amount" required disabled>';?>
                             </div>
                         </div>
                         
@@ -87,7 +87,7 @@ $rowr=mysqli_fetch_array($resultr);
                         <div class="row mb-3">
                             <label for="p_proof" class="col-sm-3 col-form-label">Proof of Payment (PDF):</label>
                             <div class="col-sm-9">
-                            <?php echo'<input class="form-control" type="file" value="'.$rowr['p_date'].'" id="p_proof" name="p_proof" accept=".pdf">';?>
+                            <?php echo'<input class="form-control" type="file" value="'.$rowr['p_date'].'" id="p_proof" name="p_proof" accept=".pdf" required>';?>
                                 <small class="text-muted">Upload a PDF file as proof of payment.</small>
                             </div>
                         </div>
