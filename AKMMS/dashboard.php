@@ -222,7 +222,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                                 
                             </div>
                         </div>
-                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                        
                     </div>
                 </div>
             </div>
@@ -254,7 +254,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                     </div>
                 </div>
                 <div class="col-auto" id="calendarIcon">
-                    <i class="fas fa-calendar fa-2x text-gray-300" style="cursor: pointer;"></i>
+                    <i class="fas fa-calendar fa-2x text-black" style="cursor: pointer;"></i>
                 </div>
             </div>
         </div>
@@ -293,7 +293,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                     </div>
                 </div>
                 <div class="col-auto" id="yearIcon">
-                    <i class="fas fa-calendar fa-2x text-gray-300" style="cursor: pointer;"></i>
+                    <i class="fas fa-calendar fa-2x text-black" style="cursor: pointer;"></i>
                 </div>
             </div>
         </div>
@@ -466,9 +466,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h6 class="text-primary fw-bold m-0">Earnings Overview (<?php echo date('Y'); ?>)</h6>
                     <div class="dropdown no-arrow">
-                        <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                            <i class="fas fa-ellipsis-v text-gray-400"></i>
-                        </button>
+                        
                     </div>
                 </div>
                 <!-- Chart Body -->
@@ -542,9 +540,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
         <div class="card-header d-flex justify-content-between align-items-center">
             <h6 class="text-primary fw-bold m-0">Top Three Items (<?php echo $currentYear; ?>)</h6>
             <div class="dropdown no-arrow">
-                <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                    <i class="fas fa-ellipsis-v text-gray-400"></i>
-                </button>
+                
             </div>
         </div>
         <!-- Chart Body -->
