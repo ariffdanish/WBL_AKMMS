@@ -26,13 +26,14 @@ include('dbconnect.php');
                             <label for="ctype" class="col-sm-3 col-form-label">Select Order :</label>
                             <div class="col-sm-9">
                             <?php 
-                                $sql="SELECT * FROM tb_order";
+                                $sql="SELECT * FROM tb_order
+                                      WHERE tb_order.Ord_is_deleted=0";
                                 $result=mysqli_query($con,$sql);
                         
                                 echo'<select class="form-select" id="p_ordID" placeholder="Select" name="p_ordID">';
                                 while($row=mysqli_fetch_array($result))
                                 {
-                                  echo"<option value='".$row['Ord_id']."'>".$row['Ord_name']."</option>";
+                                    echo "<option value='" . $row['Ord_id'] . "'>" . $row['Ord_id'] . " - " . $row['Ord_name'] . "</option>";
                                 }
                                 
                                 echo'</select>';
