@@ -22,7 +22,7 @@ include('headerNav.php');
                 <label for="ctype" class="col-sm-3 col-form-label">Select Order:</label>
                 <div class="col-sm-6">
                     <?php
-                        $sql = "SELECT * FROM tb_order WHERE tb_order.Ord_type = '1'";
+                        $sql = "SELECT * FROM tb_order WHERE tb_order.Ord_type = '1' AND Ord_is_deleted=0";
                         $result = mysqli_query($con, $sql);
 
                         echo '<form method="post" action="" id="searchForm" onsubmit="return validateForm()">';

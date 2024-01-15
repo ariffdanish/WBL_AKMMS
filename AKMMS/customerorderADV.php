@@ -21,7 +21,7 @@ if (isset($_GET['searchDate']) && !empty($_GET['searchDate'])) {
 
 $sql = "SELECT * FROM tb_order
         LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id
-        WHERE tb_order.Ord_type = '1'" . $searchCondition;
+        WHERE tb_order.Ord_type = '1' AND Ord_is_deleted = 0 ". $searchCondition;
 
 $result = mysqli_query($con, $sql);
 ?>
@@ -77,6 +77,7 @@ $result = mysqli_query($con, $sql);
                             echo "<td>".$row['Ord_date']. "</td>";
                             echo "<td class='text-center'>";
                             echo "<div class='btn-group'>";
+                            echo "<a href='customercancelADV.php?id=" . $row['Ord_id'] . "' class='btn btn-danger mr-2' onclick='return confirmDelete()'><i class='fas fa-times'></i></a>&nbsp";
                             echo "<a href='customereditADV.php?id=" . $row['Ord_id'] . "' class='btn btn-primary mr-2'><i class='fas fa-edit'></i></a>&nbsp";
                             echo "<button class='btn btn-primary dropdown-toggle' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                                     <i class='fas fa-file-alt'></i> Print

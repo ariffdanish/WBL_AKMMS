@@ -39,7 +39,8 @@ $rowr=mysqli_fetch_array($resultr);
                             <label for="ctype" class="col-sm-3 col-form-label">Select Order :</label>
                             <div class="col-sm-9">
                             <?php 
-                                $sql="SELECT * FROM tb_order";
+                                $sql="SELECT * FROM tb_order
+                                      WHERE tb_order.Ord_type = '1' AND Ord_is_deleted=0";
                                 $result=mysqli_query($con,$sql);
                         
                                 echo'<select class="form-select" id="q_ordID" placeholder="Select" name="q_ordID">';
