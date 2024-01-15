@@ -67,21 +67,27 @@ $query = "SELECT * FROM tb_inbox GROUP BY inb_decs ORDER BY inb_timestamp DESC L
 
 $result = $con->query($query);
 
+
 echo '<div id="notificationList">';
 
+
 while ($row = $result->fetch_assoc()) {
+    
     echo '<a class="dropdown-item d-flex align-items-center" href="#">
-            <div class="dropdown-list-image me-3">
+    
+            <div class="dropdown-list-image me-3" >
                 <!-- Add an image/icon if needed -->
+                
             </div>
             <div class="fw-bold">
-                <div class="text-gray-600 small">' . $row['inb_timestamp'] . '</div>
-                <span class="text-white-900">' . $row['inb_decs'] . '</span>
+                <div class="text-white small">' . $row['inb_timestamp'] . '</div>
+                <span class="text-white">' . $row['inb_decs'] . '</span>
             </div>
         </a>';
 }
 
 echo '</div>';
+
 
 // Update notification count
 $notificationCountQuery = "SELECT COUNT(DISTINCT inb_decs) AS count FROM tb_inbox";

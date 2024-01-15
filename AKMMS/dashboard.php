@@ -256,6 +256,163 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                 </div>
             </div>
         </div>
+
+        
+        <div class="col-md-6 col-xl-4 mb-4">
+    <div class="card shadow border-start-warning">
+        <div class="card-body">
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Pending Order Confirmation (Payment)</b></h6>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b>Order ID</b></th>
+                            <th scope="col"><b>Customer Name</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $queryPendingPayments = "SELECT o.Ord_id, c.c_name
+                                                FROM tb_order o
+                                                LEFT JOIN tb_customer c ON o.Ord_cid = c.c_id
+                                                WHERE o.Ord_id NOT IN (SELECT p_ordID FROM tb_payment)";
+                        $resultPendingPayments = mysqli_query($con, $queryPendingPayments);
+
+                        if ($resultPendingPayments && mysqli_num_rows($resultPendingPayments) > 0) {
+                            while ($row = mysqli_fetch_assoc($resultPendingPayments)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['Ord_id'] . "</td>";
+                                echo "<td>" . $row['c_name'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='2'>No pending orders</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="col-md-6 col-xl-4 mb-4">
+    <div class="card shadow border-start-warning">
+        <div class="card-body">
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Active Staff</b></h6>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                <thead>
+    <tr>
+        <th scope="col"><b>Staff ID</b></th>
+        <th scope="col"><b>Staff Name</b></th>
+       
+        <th scope="col"><b>Action</b></th> <!-- New column for the delete button -->
+    </tr>
+</thead>
+<tbody>
+    <?php
+    $querys = "SELECT e.e_id, e.e_name, e.e_tel,e.e_role
+               FROM tb_employee e
+               LEFT JOIN tb_emprole r ON e.e_role = r.role_id
+               WHERE e.e_role IN ('1', '2')";
+
+    $results = mysqli_query($con, $querys);
+
+    
+    if ($results && mysqli_num_rows($results) > 0) {
+        while ($rows = mysqli_fetch_assoc($results)) {
+            echo "<tr>";
+            echo "<td>" . $rows['e_id'] . "</td>";
+            echo "<td>" . $rows['e_name'] . "</td>";
+            
+            echo "<td>";
+            echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $rows['e_id'] . '\' )">Delete</button>';
+            echo "</td>"; // Delete button
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='4'>No new staff</td></tr>";
+    }
+    ?>
+    
+    <script>
+    // JavaScript function to confirm item deletion
+    function deleteItem(e_id) {
+        var confirmDelete = confirm("Are you sure you want to inactivate this staff?");
+        if (confirmDelete) {
+            // If user confirms, send an AJAX request to update_employee_role.php
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'update_employee_role.php?e_id=' + e_id, true);
+    
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Item successfully deleted
+                    alert("Staff with ID " + e_id + " has been removed.");
+                    // Reload the page to reflect the changes
+                    location.reload();
+                } else {
+                    // Display an error message if deletion fails
+                    alert("Error: Unable to delete the staff.");
+                }
+            };
+    
+            xhr.send();
+        }
+    }
+    </script>
+    
+</tbody>
+
+
+
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<div class="col-md-6 col-xl-4 mb-4">
+    <div class="card shadow border-start-warning">
+        <div class="card-body">
+        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Low Item Stock! Please Restock ASAP</b></h6>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b>Item Code</b></th>
+                            <th scope="col"><b>Item Name</b></th>
+                            <th scope="col"><b>Quantity</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $querys = "SELECT i_Code, i_Name, i_Quantity
+                                                FROM tb_item 
+                                                WHERE i_Quantity < 20";
+                        $results = mysqli_query($con, $querys);
+
+                        if ($results && mysqli_num_rows($results) > 0) {
+                            while ($rows = mysqli_fetch_assoc($results)) {
+                                echo "<tr>";
+                                echo "<td>" . $rows['i_Code'] . "</td>";
+                                echo "<td>" . $rows['i_Name'] . "</td>";
+                                echo "<td>" . $rows['i_Quantity'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='2'>No Item in low stock</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+        </div>
         
         
         
@@ -389,165 +546,9 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
 
             
 
-        <div class="col-md-6 col-xl-4 mb-4">
-    <div class="card shadow border-start-warning">
-        <div class="card-body">
-        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Pending Order Confirmation (Payment)</b></h6>
-            <div class="table-responsive">
-                <table class="table table-striped mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col"><b>Order ID</b></th>
-                            <th scope="col"><b>Customer Name</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $queryPendingPayments = "SELECT o.Ord_id, c.c_name
-                                                FROM tb_order o
-                                                LEFT JOIN tb_customer c ON o.Ord_cid = c.c_id
-                                                WHERE o.Ord_id NOT IN (SELECT p_ordID FROM tb_payment)";
-                        $resultPendingPayments = mysqli_query($con, $queryPendingPayments);
-
-                        if ($resultPendingPayments && mysqli_num_rows($resultPendingPayments) > 0) {
-                            while ($row = mysqli_fetch_assoc($resultPendingPayments)) {
-                                echo "<tr>";
-                                echo "<td>" . $row['Ord_id'] . "</td>";
-                                echo "<td>" . $row['c_name'] . "</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='2'>No pending orders</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-    </div>
-</div>
-
-<div class="col-md-6 col-xl-4 mb-4">
-    <div class="card shadow border-start-warning">
-        <div class="card-body">
-        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Active Staff</b></h6>
-            <div class="table-responsive">
-                <table class="table table-striped mb-0">
-                <thead>
-    <tr>
-        <th scope="col"><b>Staff ID</b></th>
-        <th scope="col"><b>Staff Name</b></th>
-        <th scope="col"><b>Contact Info</b></th>
-        <th scope="col"><b>Action</b></th> <!-- New column for the delete button -->
-    </tr>
-</thead>
-<tbody>
-    <?php
-    $querys = "SELECT e.e_id, e.e_name, e.e_tel,e.e_role
-               FROM tb_employee e
-               LEFT JOIN tb_emprole r ON e.e_role = r.role_id
-               WHERE e.e_role IN ('1', '2')";
-
-    $results = mysqli_query($con, $querys);
-
-    
-    if ($results && mysqli_num_rows($results) > 0) {
-        while ($rows = mysqli_fetch_assoc($results)) {
-            echo "<tr>";
-            echo "<td>" . $rows['e_id'] . "</td>";
-            echo "<td>" . $rows['e_name'] . "</td>";
-            echo "<td>" . $rows['e_tel'] . "</td>";
-            echo "<td>";
-            echo '<button class="btn btn-danger" onclick="deleteItem(\'' . $rows['e_id'] . '\' )">Delete</button>';
-            echo "</td>"; // Delete button
-            echo "</tr>";
-        }
-    } else {
-        echo "<tr><td colspan='4'>No new staff</td></tr>";
-    }
-    ?>
-    
-    <script>
-    // JavaScript function to confirm item deletion
-    function deleteItem(e_id) {
-        var confirmDelete = confirm("Are you sure you want to inactivate this staff?");
-        if (confirmDelete) {
-            // If user confirms, send an AJAX request to update_employee_role.php
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'update_employee_role.php?e_id=' + e_id, true);
-    
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    // Item successfully deleted
-                    alert("Staff with ID " + e_id + " has been removed.");
-                    // Reload the page to reflect the changes
-                    location.reload();
-                } else {
-                    // Display an error message if deletion fails
-                    alert("Error: Unable to delete the staff.");
-                }
-            };
-    
-            xhr.send();
-        }
-    }
-    </script>
-    
-</tbody>
-
-
-
-                </table>
-            </div>
-        </div>
-        
-    </div>
-</div>
-
-
-<div class="col-md-6 col-xl-4 mb-4">
-    <div class="card shadow border-start-warning">
-        <div class="card-body">
-        <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Low Item Stock; Please Restock ASAP</b></h6>
-            <div class="table-responsive">
-                <table class="table table-striped mb-0">
-                    <thead>
-                        <tr>
-                            <th scope="col"><b>Item Code</b></th>
-                            <th scope="col"><b>Item Name</b></th>
-                            <th scope="col"><b>Quantity</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $querys = "SELECT i_Code, i_Name, i_Quantity
-                                                FROM tb_item 
-                                                WHERE i_Quantity < 20";
-                        $results = mysqli_query($con, $querys);
-
-                        if ($results && mysqli_num_rows($results) > 0) {
-                            while ($rows = mysqli_fetch_assoc($results)) {
-                                echo "<tr>";
-                                echo "<td>" . $rows['i_Code'] . "</td>";
-                                echo "<td>" . $rows['i_Name'] . "</td>";
-                                echo "<td>" . $rows['i_Quantity'] . "</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='2'>No Item in low stock</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
         
                 
-                    </div>
-                    </div>
-                    </div>
-                    </div>
+                    
 
 <!-- Top Three Items Chart -->
 
