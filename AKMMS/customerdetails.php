@@ -44,6 +44,7 @@ $result = mysqli_query($con, $sql);
                 <div class="col-sm-3">
                     <input type="submit" class="btn btn-primary ms-2" name="search" value="Search">
                     </form>
+                    <a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>
                 </div>
             </div>
 
@@ -58,7 +59,7 @@ $result = mysqli_query($con, $sql);
                     <table class="table table-hover table-bordered">
                         <thead class="table-primary text-center">
                             <tr>
-                                <th scope="col">Cust ID</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">IC Number / No. Branch</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Telephone No</th>
@@ -90,10 +91,6 @@ $result = mysqli_query($con, $sql);
             <?php
             }
             ?>
-
-            <div class="d-sm-flex justify-content-center align-items-center mb-4">
-                <a class="btn btn-primary" type="add" href="customerdetailsform.php"><i class="fas fa-plus"></i> Add Customer</a>
-            </div>
         </div>
     </div>
 </div>
