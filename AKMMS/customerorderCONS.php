@@ -1,45 +1,77 @@
 <?php
 include('mysession.php');
-if (!session_id()) 
-{
+if (!session_id()) {
     session_start();
 }
 include('dbconnect.php');
-// Display Result
 include 'headerNav.php';
+
+// Handle search criteria
+$searchCondition = "";
+
+if (isset($_GET['searchName']) && !empty($_GET['searchName'])) {
+    $searchName = mysqli_real_escape_string($con, $_GET['searchName']);
+    $searchCondition .= " AND tb_customer.c_name LIKE '%$searchName%'";
+}
+
+if (isset($_GET['searchDate']) && !empty($_GET['searchDate'])) {
+    $searchDate = mysqli_real_escape_string($con, $_GET['searchDate']);
+    $searchCondition .= " AND tb_order.Ord_date LIKE '%$searchDate%'";
+}
 
 $sql = "SELECT * FROM tb_order
         LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id
-        WHERE tb_order.Ord_type = '2'";
+        WHERE tb_order.Ord_type = '2'" . $searchCondition;
 
 $result = mysqli_query($con, $sql);
 ?>
 
 <div class="container-fluid">
-
-        <div class="card shadow p-3">
+    <div class="card shadow p-3">
         <div class="card shadow p-3 mb-4 bg-primary text-white">
             <div class="d-sm-flex justify-content-center align-items-center">
                 <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER ORDER DETAILS CONSTRUCTION</h6>
             </div>
         </div>
+
+        <div class="row mb-3">
+            <label for="search" class="col-sm-3 col-form-label">Search Order:</label>
+            <div class="col-sm-6">
+                <form method="get" action="" id="searchForm" onsubmit="return validateForm()">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchName" name="searchName" placeholder="Enter customer name">
+                        <input type="date" class="form-control ms-2" id="searchDate" name="searchDate" placeholder="Select a date">
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                <input type="submit" class="btn btn-primary ms-2" name="search" value="Search">
+                </form>
+            </div>
+        </div>
+
+        <?php
+        if (mysqli_num_rows($result) == 0) {
+            echo "<div class='alert alert-info text-center' role='alert'>";
+            echo "No matching records found.";
+            echo "</div>";
+        } else {
+        ?>
             <div class="table-responsive">
                 <table class="table table-hover table-bordered">
                     <thead class="table-primary text-center">
                         <tr>
-                            <th scope="col">No</th>
+                            <th scope="col">Ord ID</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">Order</th>
-                            <th scope="col">Date</th>  
+                            <th scope="col">Date</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
-                        $count = 1;
+                        <?php
                         while($row=mysqli_fetch_array($result)) {
                             echo "<tr>";
-                            echo "<td>" .$count. "</td>";
+                            echo "<td style='text-align: center;'>" . $row['Ord_id']. "</td>";
                             echo "<td>".$row['c_name']. "</td>";
                             echo "<td>".$row['Ord_name']. "</td>";
                             echo "<td>".$row['Ord_date']. "</td>";
@@ -57,40 +89,27 @@ $result = mysqli_query($con, $sql);
                             echo "</div>";
                             echo "</td>";
                             echo "</tr>";
-                            $count++;
                         }
-                    ?> 
+                        ?> 
                     </tbody>
                 </table>
-                <div class="d-sm-flex justify-content-center align-items-center mb-4"> <!-- Changed justify-content to center -->
-                    <a class="btn btn-primary mr-4" type="add" href="customerorderformCONS.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
-                    <a class="btn btn-primary" type="add" href="customerQuotationCONS.php"><i class="fas fa"></i>Quotation</a>
-                </div>
             </div>
+        <?php
+        }
+        ?>
+
+        <div class="d-sm-flex justify-content-center align-items-center mb-4">
+            <a class="btn btn-primary mr-4" href="customerorderformCONS.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
+            <a class="btn btn-primary" href="customerQuotationCONS.php"><i class="fas fa"></i>Quotation</a>
         </div>
     </div>
 </div>
 
 <script>
-function confirmDelete() {
-    return confirm("Are you sure you want to delete?");
-}
-
-function loadOrders() {
-    var customerId = document.getElementById("Ord_cid").value;
-    var url = "get_orders.php?customerId=" + customerId; // Replace with the actual PHP file to fetch orders
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("orderTableBody").innerHTML = this.responseText;
-        }
-    };
-
-    xhttp.open("GET", url, true);
-    xhttp.send();
-}
-function printDocument(targetFile, Ord_cid) {
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete?");
+    }
+    function printDocument(targetFile, Ord_cid) {
         // You can include other necessary parameters here
         var targetUrl = targetFile + '?Ord_cid=' + Ord_cid;
         var printWindow = window.open(targetUrl, '_blank');
@@ -101,8 +120,4 @@ function printDocument(targetFile, Ord_cid) {
     }
 </script>
 
-
 <?php include 'footer.php'; ?>
-
-
-   
