@@ -28,7 +28,7 @@ include('headerNav.php');
                         echo '<form method="post" action="" id="searchForm" onsubmit="return validateForm()">';
                         echo '<select class="form-select" id="Ord_id" placeholder="Select" name="Ord_id">';
                         while ($row = mysqli_fetch_array($result)) {
-                            echo "<option value='" . $row['Ord_id'] . "'>" . $row['Ord_name'] . "</option>";
+                            echo "<option value='" . $row['Ord_id'] . "'>" . $row['Ord_id'] . " - " . $row['Ord_name'] . "</option>";
                         }
                         echo '</select>';
                         echo '</div>';
