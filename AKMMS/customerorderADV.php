@@ -46,6 +46,8 @@ $result = mysqli_query($con, $sql);
             <div class="col-sm-3">
                 <input type="submit" class="btn btn-primary ms-2" name="search" value="Search">
                 </form>
+                <a class="btn btn-primary mr-4" href="customerorderformADV.php">Add</a>
+                <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
             </div>
         </div>
 
@@ -98,11 +100,6 @@ $result = mysqli_query($con, $sql);
         <?php
         }
         ?>
-
-        <div class="d-sm-flex justify-content-center align-items-center mb-4">
-            <a class="btn btn-primary mr-4" href="customerorderformADV.php"><i class="fas fa-plus"></i> Add Order</a>&nbsp
-            <a class="btn btn-primary" href="customerQuotationADV.php"><i class="fas fa"></i>Quotation</a>
-        </div>
     </div>
 </div>
 
