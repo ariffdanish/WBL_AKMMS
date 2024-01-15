@@ -187,7 +187,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price, q.q_discount, q.q_tax ,q.q_totalcost
                FROM tb_quotation q
                JOIN tb_order o ON q.q_ordID = o.Ord_id
-               WHERE o.Ord_cid = $ordId AND q.q_totalcost <> 0";
+               WHERE o.Ord_id = $ordId AND q.q_totalcost <> 0";
 
 
             $resultItems = mysqli_query($con, $queryItems);

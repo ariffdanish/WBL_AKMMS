@@ -15,11 +15,15 @@ include 'dbconnect.php';
 $currentMonth = date('m');
 $currentYear = date('Y');
 
-// Query to get the total earnings for the current month
-$queryMonthly = "SELECT SUM(q_totalcost) AS totalEarnings FROM tb_quotation 
-                 WHERE MONTH((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $currentMonth 
-                 AND YEAR((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $currentYear";
+$startDate = isset($_POST['start_date']) ? $_POST['start_date'] : date('Y-m-01');
+$endDate = isset($_POST['end_date']) ? $_POST['end_date'] : date('Y-m-t');
 
+// Query to get the total earnings for the specified date range
+$queryMonthly = "SELECT SUM(q_totalcost) AS totalEarnings FROM tb_quotation 
+                 WHERE tb_quotation.q_ordID IN (
+                     SELECT tb_order.Ord_id FROM tb_order 
+                     WHERE tb_order.Ord_date BETWEEN '$startDate' AND '$endDate'
+                 )";
 $resultMonthly = mysqli_query($con, $queryMonthly);
 
 // Check if the query was successful
@@ -32,8 +36,13 @@ if ($resultMonthly) {
 }
 
 // Query to get the total earnings for the current year
+// Assuming you have received user input for start and end years, you can replace the hardcoded values below
+// Assuming you have received user input for the year, replace the hardcoded value below
+$selectedYear = isset($_POST['selected_year']) ? $_POST['selected_year'] : date('Y');
+
+// Query to get the total earnings for the specified year
 $queryYearly = "SELECT SUM(q_totalcost) AS totalEarnings FROM tb_quotation 
-                WHERE YEAR((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $currentYear";
+                WHERE YEAR((SELECT Ord_date FROM tb_order WHERE tb_order.Ord_id = tb_quotation.q_ordID)) = $selectedYear";
 $resultYearly = mysqli_query($con, $queryYearly);
 
 // Check if the query was successful
@@ -44,6 +53,8 @@ if ($resultYearly) {
     // Handle the error if the query fails
     $totalEarningsYearly = 0;
 }
+
+
 
 $monthlySalesData = array();
 for ($i = 1; $i <= 12; $i++) {
@@ -204,7 +215,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
                     <div class="row align-items-center no-gutters">
                         <div class="col me-2">
                             <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>Profit (<?php echo date('F'); ?>)</span>
+                                <span>Sales Growth (<?php echo date('F'); ?>)</span>
                             </div>
                             <div class="text-dark fw-bold h5 mb-0">
                                 <span style="color: <?php echo ($salesGrowth < 0) ? 'red' : 'green'; ?>">RM<?php echo number_format($salesGrowth, 2); ?></span>
@@ -218,44 +229,76 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
         </div>
 
         <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card shadow border-start-primary py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                                <span>Monthly Earnings (<?php echo date('F'); ?>)</span>
-                            </div>
-                            <div class="text-dark fw-bold h5 mb-0">
-                                <span>RM<?php echo number_format($totalEarningsMonthly, 2); ?></span>
-                            </div>
-                        </div>
-                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+    <div class="card shadow border-start-primary py-2">
+        <div class="card-body">
+            <!-- Toggleable form with date input -->
+            <div id="dateFormContainer">
+                <form id="dateForm" method="post" action="" style="display: none;">
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" name="start_date" required>
+
+                    <label for="end_date">End Date:</label>
+                    <input type="date" name="end_date" required>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="row align-items-center no-gutters">
+                <div class="col me-2">
+                    <div class="text-uppercase text-primary fw-bold text-xs mb-1">
+                        <span id="monthly-earnings">Monthly Earnings (<?php echo date('F Y', strtotime($startDate)); ?> - <?php echo date('F Y', strtotime($endDate)); ?>)</span>
                     </div>
+                    <div class="text-dark fw-bold h5 mb-0">
+                        <span>RM<?php echo number_format($totalEarningsMonthly, 2); ?></span>
+                    </div>
+                </div>
+                <div class="col-auto" id="calendarIcon">
+                    <i class="fas fa-calendar fa-2x text-gray-300" style="cursor: pointer;"></i>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
 
         <!-- Yearly Earnings -->
         <div class="col-md-6 col-xl-4 mb-4">
-            <div class="card shadow border-start-primary py-2">
-                <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                        <div class="col me-2">
-                            <div class="text-uppercase text-primary fw-bold text-xs mb-1">
-                            <span id="yearly-earnings">Yearly Earnings Of <?php echo date('Y'); ?></span>
+    <div class="card shadow border-start-primary py-2">
+        <div class="card-body">
+            <!-- Toggleable form with year input -->
+            <div id="yearForm" style="display: none;">
+                <form method="post" action="">
+                    <label for="selected_year">Select Year:</label>
+                    <select name="selected_year" id="selected_year" required>
+                        <?php
+                        $currentYear = date('Y');
+                        for ($year = $currentYear; $year >= $currentYear - 10; $year--) {
+                            echo "<option value=\"$year\">$year</option>";
+                        }
+                        ?>
+                    </select>
 
-                     
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
 
-                            </div>
-                            <div class="text-dark fw-bold h5 mb-0">
-                                <span>RM<?php echo number_format($totalEarningsYearly, 2); ?></span>
-                            </div>
-                        </div>
-                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+            <div class="row align-items-center no-gutters">
+                <div class="col me-2">
+                    <div class="text-uppercase text-primary fw-bold text-xs mb-1">
+                        <span id="yearly-earnings">Yearly Earnings Of <?php echo $selectedYear; ?></span>
                     </div>
+                    <div class="text-dark fw-bold h5 mb-0">
+                        <span>RM<?php echo number_format($totalEarningsYearly, 2); ?></span>
+                    </div>
+                </div>
+                <div class="col-auto" id="yearIcon">
+                    <i class="fas fa-calendar fa-2x text-gray-300" style="cursor: pointer;"></i>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
         
         <div class="col-md-6 col-xl-4 mb-4">
@@ -603,6 +646,36 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
             goal.classList.remove('text-muted'); // Remove styles for unticked goal
         }
     }
+
+
+   
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarIcon = document.getElementById('calendarIcon');
+        var dateForm = document.getElementById('dateForm');
+
+        if (calendarIcon && dateForm) {
+            calendarIcon.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevents the default behavior of the link
+
+                dateForm.style.display = dateForm.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var yearIcon = document.getElementById('yearIcon');
+        var yearForm = document.getElementById('yearForm');
+
+        if (yearIcon && yearForm) {
+            yearIcon.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevents the default behavior of the link
+
+                yearForm.style.display = yearForm.style.display === 'none' ? 'block' : 'none';
+            });
+        }
+    });
+
 </script>
 
 
