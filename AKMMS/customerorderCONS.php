@@ -85,9 +85,9 @@ $result = mysqli_query($con, $sql);
                                     <i class='fas fa-file-alt'></i> Print
                                 </button>";
                             echo "<div class='dropdown-menu'>";
-                            echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Quotation.php\", " . $row['Ord_cid'] . ")'>Quotation</a>";
-                            echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Invoice.php\", " . $row['Ord_cid'] . ")'>Invoice</a>";
-                            echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Deliverynotes.php\", " . $row['Ord_cid'] . ")'>Delivery Notes</a>";
+                            echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Quotation.php\", " . $row['Ord_id'] . ")'>Quotation</a>";
+                            echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Invoice.php\", " . $row['Ord_id'] . ")'>Invoice</a>";
+                            echo "<a class='dropdown-item text-white' href='#' onclick='printDocument(\"Deliverynotes.php\", " . $row['Ord_id'] . ")'>Delivery Notes</a>";
                             echo "</div>";
                             echo "</div>";
                             echo "</td>";
@@ -107,9 +107,9 @@ $result = mysqli_query($con, $sql);
     function confirmDelete() {
         return confirm("Are you sure you want to delete?");
     }
-    function printDocument(targetFile, Ord_cid) {
+    function printDocument(targetFile, Ord_id) {
         // You can include other necessary parameters here
-        var targetUrl = targetFile + '?Ord_cid=' + Ord_cid;
+        var targetUrl = targetFile + '?Ord_id=' + Ord_id;
         var printWindow = window.open(targetUrl, '_blank');
 
         printWindow.onload = function() {
