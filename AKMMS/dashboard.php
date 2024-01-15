@@ -7,7 +7,12 @@
 include 'headerNav.php';
 include 'dbconnect.php';
 ?>
-
+<style>
+    .table-container {
+        max-height: 200px; /* Set the maximum height before enabling the scrollbar */
+        overflow-y: auto; /* Enable vertical scrollbar when the content exceeds the height */
+    }
+</style>
 <?php
 // Assuming you have a database connection established
 
@@ -305,8 +310,8 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
     <div class="card shadow border-start-warning">
         <div class="card-body">
         <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Pending Order Confirmation (Payment)</b></h6>
-            <div class="table-responsive">
-                <table class="table table-striped mb-0">
+            <div class="table-container">
+                <table class="table table-striped mb-0 table table-hover">
                     <thead>
                         <tr>
                             <th scope="col"><b>Order ID</b></th>
@@ -344,7 +349,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
     <div class="card shadow border-start-warning">
         <div class="card-body">
         <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Active Staff</b></h6>
-            <div class="table-responsive">
+            <div class="table-container">
                 <table class="table table-striped mb-0">
                 <thead>
     <tr>
@@ -379,6 +384,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
         echo "<tr><td colspan='4'>No new staff</td></tr>";
     }
     ?>
+    
     
     <script>
     // JavaScript function to confirm item deletion
@@ -422,7 +428,7 @@ $salesGrowth = $totalSalesCurrentMonth - $totalSalesLastMonth;
     <div class="card shadow border-start-warning">
         <div class="card-body">
         <h6 class="text-uppercase text-primary fw-bold mb-3"><b>Low Item Stock! Please Restock ASAP</b></h6>
-            <div class="table-responsive">
+            <div class="table-container">
                 <table class="table table-striped mb-0">
                     <thead>
                         <tr>
