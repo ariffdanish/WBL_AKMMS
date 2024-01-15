@@ -6,7 +6,7 @@ if(!session_id())
 }
 // Include your database connection file
 include 'dbconnect.php';
-$ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
+$ordId = isset($_GET['Ord_id']) ? intval($_GET['Ord_id']) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +131,8 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             <div class="customer-address">
                 <?php
                 // Fetch customer address for the specified Ord_id
-                $queryCustomerAddress = "SELECT DISTINCT c_name FROM tb_customer WHERE c_id =$ordId ";
+                $queryCustomerAddress = "SELECT DISTINCT c_name FROM tb_customer c JOIN tb_order o ON c.c_id = o.Ord_cid
+                WHERE o.Ord_id = $ordId ";
                 $resultCustomerAddress = mysqli_query($con, $queryCustomerAddress);
 
                 if ($resultCustomerAddress && mysqli_num_rows($resultCustomerAddress) > 0) {
@@ -149,7 +150,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             <div class="invoice-details">
                 <?php
                 // Fetch invoice details for the specified Ord_id
-                $queryInvoiceDetails = "SELECT Ord_id, DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS formatted_date FROM tb_order WHERE Ord_cid = $ordId ORDER BY Ord_id DESC LIMIT 1";
+                $queryInvoiceDetails = "SELECT Ord_id, DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS formatted_date FROM tb_order WHERE Ord_id = $ordId ORDER BY Ord_id DESC LIMIT 1";
                 $resultInvoiceDetails = mysqli_query($con, $queryInvoiceDetails);
 
                 if ($resultInvoiceDetails && mysqli_num_rows($resultInvoiceDetails) > 0) {
@@ -188,7 +189,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
             $queryItems = "SELECT q.q_itemDesc, q.q_quantity, q.q_price, q.q_discount, q.q_tax,q.q_totalcost 
             FROM tb_quotation q
             JOIN tb_order o ON q.q_ordID = o.Ord_id
-            WHERE o.Ord_cid = $ordId AND q.q_totalcost <> 0";
+            WHERE o.Ord_id = $ordId AND q.q_totalcost <> 0";
 
 
             $resultItems = mysqli_query($con, $queryItems);

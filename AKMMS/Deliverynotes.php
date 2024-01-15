@@ -6,7 +6,7 @@ if(!session_id())
 }
 // Include your database connection file
 include 'dbconnect.php';
-$ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
+$ordId = isset($_GET['Ord_id']) ? intval($_GET['Ord_id']) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -129,7 +129,8 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
         <div class="details-container">
             <div class="customer-address">
                 <?php
-                $query = "SELECT DISTINCT c_address FROM tb_customer WHERE c_id = $ordId";
+                $query = "SELECT DISTINCT c_address FROM tb_customer c JOIN tb_order o ON c.c_id = o.Ord_cid
+                WHERE o.Ord_id = $ordId ";
                 $result = mysqli_query($con, $query);
 
                 if ($result && mysqli_num_rows($result) > 0) {
@@ -146,7 +147,7 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
 
             <div class="invoice-details">
                 <?php
-               $queryInvoiceDetails = "SELECT Ord_id, DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS formatted_date FROM tb_order WHERE Ord_cid = $ordId ORDER BY Ord_id DESC LIMIT 1";
+               $queryInvoiceDetails = "SELECT Ord_id, DATE_FORMAT(CURDATE(), '%d/%m/%Y') AS formatted_date FROM tb_order WHERE Ord_id = $ordId ORDER BY Ord_id DESC LIMIT 1";
                $resultInvoiceDetails = mysqli_query($con, $queryInvoiceDetails);
 
                if ($resultInvoiceDetails && mysqli_num_rows($resultInvoiceDetails) > 0) {
@@ -179,10 +180,10 @@ $ordId = isset($_GET['Ord_cid']) ? intval($_GET['Ord_cid']) : 0;
     
 
             // Use the existing connection from your connection file
-            $query = "SELECT o.Ord_name, q.q_quantity 
+            $query = "SELECT q.q_itemDesc, q.q_quantity 
             FROM tb_order o
             JOIN tb_quotation q ON o.Ord_id = q.q_ordID 
-            WHERE o.Ord_cid = $ordId AND q.q_totalcost <> 0";
+            WHERE o.Ord_id = $ordId AND q.q_totalcost <> 0";
   
 
 $result = mysqli_query($con, $query);
@@ -191,7 +192,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $total = 0; // Initialize total outside the while loop
 
     while ($row = mysqli_fetch_assoc($result)) {
-        $description = $row['Ord_name'];
+        $description = $row['q_itemDesc'];
         $amount = $row['q_quantity'];
         $total_price = number_format($amount, 2); // Format the amount
 
