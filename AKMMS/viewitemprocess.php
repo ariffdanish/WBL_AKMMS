@@ -29,7 +29,7 @@ include 'headerNav.php'; ?>
                     echo "<p><strong>Name :</strong> " . $row['i_Name'] . "</p>";
                     echo "<p><strong>Description :</strong> " . $row['i_Desc'] . "</p>";
                     echo "<p><strong>Category :</strong> " . $row['i_Category'] . "</p>";
-                    echo "<p><strong>Material :</strong> " . $row['i_Material'] . "</p>";
+                    echo "<p><strong>Material/Type :</strong> " . $row['i_Material'] . "</p>";
                     echo "<p><strong>Quantity :</strong> " . $row['i_Quantity'] . "</p>";
                     echo "<p><strong>Price :</strong> RM" . number_format($row['i_Price'], 2) . " per unit</p>";
 

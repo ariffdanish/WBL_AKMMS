@@ -20,7 +20,7 @@ $result = mysqli_query($con, $sql);
     <div class="card shadow p-3">
     <div class="card shadow p-3 mb-4 bg-primary text-white">
         <div class="d-sm-flex justify-content-center align-items-center">
-            <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER ORDER DETAILS ADVERTISMENT</h6>
+            <h6 class="text-white mb-0 font-weight-bold bold-and-centered">CUSTOMER ORDER DETAILS ADVERTISEMENT</h6>
         </div>
     </div>
         <div class="table-responsive">

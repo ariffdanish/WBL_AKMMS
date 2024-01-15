@@ -18,10 +18,10 @@ include 'headerNav.php';?>
                             
                             <form method="POST" action="additemprocess.php" class="user">
                                 <h6>Item Name</h6>
-                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="Kayu Jati, etc." name="iname" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="BUKU NOTA, CENDERAHATI etc." name="iname" required></div>
 
                                 <h6>Item Code</h6>
-                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="WD634-2, etc." name="icode" required></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="BK001, etc." name="icode" required></div>
 
                                 <h6>Item Date</h6>
                                 <div class="mb-3"><input class="form-control" type="date" id="exampleFirstName" placeholder="01/01/2024" name="idate" required></div>
