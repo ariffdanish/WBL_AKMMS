@@ -20,7 +20,7 @@ if ($row && password_verify($fpwd, $row['e_pwd'])) {
     $_SESSION['suid'] = $fid;
 
     // Redirect to corresponding page based on user role
-    if ($row['e_role'] == 'Admin') {
+    if ($row['e_role'] == '1') {
         header('Location: dashboard.php');
     } else {
         header('Location: dashboard.php');
