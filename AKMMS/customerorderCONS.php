@@ -21,7 +21,7 @@ if (isset($_GET['searchDate']) && !empty($_GET['searchDate'])) {
 
 $sql = "SELECT * FROM tb_order
         LEFT JOIN tb_customer ON tb_order.Ord_cid = tb_customer.c_id
-        WHERE tb_order.Ord_type = '2'" . $searchCondition;
+        WHERE tb_order.Ord_type = '2' AND Ord_is_deleted = 0 " . $searchCondition;
 
 $result = mysqli_query($con, $sql);
 ?>
