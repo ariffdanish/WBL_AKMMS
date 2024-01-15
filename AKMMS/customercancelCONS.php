@@ -12,9 +12,9 @@
 
   include ('dbconnect.php');
 
-
-$sql="DELETE FROM tb_order
-      WHERE Ord_id='$fcid'";
+  $sql = "UPDATE tb_order
+  SET Ord_is_deleted = 1
+  WHERE Ord_id = '$fcid'";
 
 $result=mysqli_query($con,$sql);
 mysqli_close($con);

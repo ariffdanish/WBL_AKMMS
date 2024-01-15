@@ -11,7 +11,7 @@ if(isset($_GET['id']))
 include ('dbconnect.php');
 
 $sqlr ="SELECT *FROM tb_order
-        WHERE Ord_id = $fbid";
+        WHERE Ord_id = $fbid AND Ord_is_deleted = 0 ";
 
 //Execute 
 $resultr=mysqli_query($con,$sqlr);
@@ -40,13 +40,13 @@ include 'headerNav.php';
                             <label for="ctype" class="col-sm-3 col-form-label">Select Customer :</label>
                             <div class="col-sm-9">
                             <?php 
-                                $sql="SELECT * FROM tb_customer";
+                                $sql="SELECT * FROM tb_customer WHERE c_is_deleted = 0";
                                 $result=mysqli_query($con,$sql);
                         
                                 echo'<select class="form-select" id="Ord_cid" placeholder="Select" name="Ord_cid">';
                                 while($row=mysqli_fetch_array($result))
                                 {
-                                  echo"<option value='".$row['c_id']."'>".$row['c_name']."</option>";
+                                  echo"<option value='".$row['c_id']."'>".$row['c_id']." - ".$row['c_name']."</option>";
                                 }
                                 
                                 echo'</select>';

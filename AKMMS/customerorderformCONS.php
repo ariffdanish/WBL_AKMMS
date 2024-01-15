@@ -27,12 +27,12 @@ include('dbconnect.php');
                                     <label for="ctype" class="col-sm-3 col-form-label">Select Customer :</label>
                                     <div class="col-sm-9">
                                         <?php
-                                        $sql = "SELECT * FROM tb_customer";
+                                        $sql = "SELECT * FROM tb_customer WHERE c_is_deleted = 0";
                                         $result = mysqli_query($con, $sql);
 
                                         echo '<select class="form-select" id="Ord_cid" placeholder="Select" name="Ord_cid">';
                                         while ($row = mysqli_fetch_array($result)) {
-                                            echo "<option value='" . $row['c_id'] . "'>" . $row['c_name'] . "</option>";
+                                            echo "<option value='" . $row['c_id'] . "'>" . $row['c_id'] . " - " . $row['c_name'] . "</option>";
                                         }
 
                                         echo '</select>';
