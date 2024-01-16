@@ -21,6 +21,7 @@ include 'headerNav.php';?>
                     <div class="col-sm-6">
                         <form method="post" action="">
                             <select class="form-select justify-content-center align-items-center" id="i_Category" name="i_Category">
+                                <option value="All" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'All' ? 'selected' : ''; ?>>All</option>
                                 <option value="Advertising" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'Advertising' ? 'selected' : ''; ?>>Advertising</option>
                                 <option value="Construction" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'Construction' ? 'selected' : ''; ?>>Construction</option>
                             </select>
@@ -35,7 +36,8 @@ include 'headerNav.php';?>
                         <label><input type="search" class="form-control" id="searchInput" placeholder="Search Item"></label>
                     </div>&nbsp &nbsp
                     <a class="btn btn-primary" onclick="searchItems()">Search</a>&nbsp &nbsp
-                    <a class="btn btn-primary align-items-right" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>
+                    <a class="btn btn-success align-items-right" type="add" href="additem.php"><i class="fas fa-plus"></i> Add Item</a>&nbsp &nbsp
+                    <a class="btn btn-secondary" href="inactiveitems.php"><i class="fas fa-minus"></i> See Inactive</a>
                 </div>
 
             <div class="table-responsive">
@@ -56,12 +58,26 @@ include 'headerNav.php';?>
                     include('dbconnect.php');
 
                     if (isset($_POST['search'])) {
-                        // Category search
                         $selectedCategory = mysqli_real_escape_string($con, $_POST['i_Category']);
+                        if ($selectedCategory == 'All') {
+                            // If "All" is selected, do not filter by category
+                            $sqlSearch = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
+                                FROM tb_item i
+                                LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
+                                WHERE i.i_Status IN ('1')";
+                        } else {
+                            // Filter by the selected category
+                            $sqlSearch = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
+                                FROM tb_item i
+                                LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
+                                WHERE i.i_Status IN ('1') AND i.i_Category = '$selectedCategory'";
+                        }
+                    } elseif (isset($_POST['showInactive'])) {
+                        // Display only inactive items
                         $sqlSearch = "SELECT i.i_Code, i.i_Name, i.i_Desc, i.i_Quantity, i.i_Price, i.i_Status
                             FROM tb_item i
                             LEFT JOIN tb_itemstatus s ON i.i_Status = s.i_StatusID
-                            WHERE i.i_Status IN ('1') AND i.i_Category = '$selectedCategory'";
+                            WHERE i.i_Status = '2'";
                     } elseif (isset($_GET['search'])) {
                         // Item code or name search
                         $searchInput = mysqli_real_escape_string($con, $_GET['search']);

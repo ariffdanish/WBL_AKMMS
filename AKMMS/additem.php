@@ -68,7 +68,7 @@ include 'headerNav.php';?>
                                 <div class="mb-3"><input class="form-control" type="text" id="exampleFirstName" placeholder="Active" name="istatus" disabled></div>
 
                                 <div class="mb-3 d-flex justify-content-center gap-2">
-                                    <button type="submit" class="btn btn-primary">Add Item</button>
+                                    <button type="submit" class="btn btn-success">Add Item</button>
                                     <button type="reset" class="btn btn-dark mx-2">Reset</button>
                                     <a type="cancel" class="btn btn-danger" href="browseitem.php">Cancel</a>
                                 
