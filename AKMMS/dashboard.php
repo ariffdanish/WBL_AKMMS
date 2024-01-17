@@ -127,7 +127,7 @@ if ($results) {
             </button>
             <div class="dropdown-menu">
                 <a class="dropdown-item text-white" href="#" onclick="printDocument3('financialreport.php')">Financial Report</a>
-                <a class="dropdown-item text-white" href="#" onclick="printDocument2('salesreport.php')">Sales Report</a>
+                <a class="dropdown-item text-white" href="#" onclick="printDocument2('salesreport.php')">Sales Report (Current Month)</a>
                 <a class="dropdown-item text-white" href="#" onclick="printDocument1('inventoryreport.php')">Inventory Report</a>
             </div>
         </div>
