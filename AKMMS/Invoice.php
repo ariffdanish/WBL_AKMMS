@@ -107,6 +107,25 @@ $ordId = isset($_GET['Ord_id']) ? intval($_GET['Ord_id']) : 0;
     .text-right {
         text-align: right;
     }
+    .signature-container {
+    margin-top: 30px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .signature-line {
+    width: 100px; /* Adjust the width of the line */
+    height: 1px; /* Adjust the height of the line */
+    background: repeating-linear-gradient(90deg, #000, #000 5px, transparent 5px, transparent 10px); /* Adjust the length of dashes */
+    margin-right: 20px; /* Adjust the space between the line and the text */
+  }
+
+  .authorized-text {
+    font-weight: bold;
+  }
 </style>
 </head>
 
@@ -118,12 +137,12 @@ $ordId = isset($_GET['Ord_id']) ? intval($_GET['Ord_id']) : 0;
                 <img src="../AKMMS/akmaju.jpeg" alt="AK Maju Logo" class="logo">
             </div>
             <div class="company-address">
-                AK Maju Resources
+            AK Maju Resources SDN. BHD.
                 <br />
-                20 (Jalan Tengku Ahmad)
+                No. 39 & 41, Jalan Utama 3/2, Pusat Komersial Sri Utama,
                 <br />
                 85000 Segamat, Johor Malaysia
-                <br />
+                <br />07-9310717, 010-2218224<br />
             </div>
         </div>
 
@@ -132,18 +151,21 @@ $ordId = isset($_GET['Ord_id']) ? intval($_GET['Ord_id']) : 0;
 
         <div class="details-container">
             <div class="customer-address">
-                <?php
+            <?php
                 // Fetch customer address for the specified Ord_id
-                $queryCustomerAddress = "SELECT DISTINCT c_name FROM tb_customer c JOIN tb_order o ON c.c_id = o.Ord_cid
+                $queryCustomerAddress = "SELECT DISTINCT c_name,c_address FROM tb_customer c JOIN tb_order o ON c.c_id = o.Ord_cid
                 WHERE o.Ord_id = $ordId ";
                 $resultCustomerAddress = mysqli_query($con, $queryCustomerAddress);
 
                 if ($resultCustomerAddress && mysqli_num_rows($resultCustomerAddress) > 0) {
                     $row = mysqli_fetch_assoc($resultCustomerAddress);
-                    $customer_address = $row['c_name'];
+                    $customer_name = $row['c_name'];
+                    $cust_address = $row['c_address'];
 
-                    echo "For:<br />";
-                    echo "$customer_address";
+                    echo "To:<br />";
+                    echo "$customer_name";
+                    echo"<br/>";
+                    echo"$cust_address";
                 } else {
                     echo "No customer address available";
                 }
@@ -281,6 +303,10 @@ echo("</tr>");
             <!-- The rest of your PHP code remains unchanged -->
         </table>
     </div>
+    <div class="signature-container">
+  <div class="signature-line"></div>
+  <div class="authorized-text">Received By</div>
+</div>
 </body>
 
 </html>
