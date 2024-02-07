@@ -18,7 +18,7 @@ include 'headerNav.php';?>
     </div>
                 <div class="row mb-3">
                     <label for="icategory" class="col-sm-3 col-form-label">Select Item Category:</label>
-                    <div class="col-sm-6">
+                        <div class="col-sm-6">
                         <form method="post" action="">
                             <select class="form-select justify-content-center align-items-center" id="i_Category" name="i_Category">
                                 <option value="All" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'All' ? 'selected' : ''; ?>>All</option>
@@ -26,7 +26,7 @@ include 'headerNav.php';?>
                                 <option value="Construction" <?php echo isset($_POST['i_Category']) && $_POST['i_Category'] == 'Construction' ? 'selected' : ''; ?>>Construction</option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
+                    <div class="col-sm-3">
                             <input type="submit" class="btn btn-primary ms-2" name="search" value="Search">
                         </form>
                     </div>
